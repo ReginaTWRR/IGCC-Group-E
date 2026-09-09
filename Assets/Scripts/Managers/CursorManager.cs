@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CursorManager : Singleton<CursorManager>
+public class CursorManager : PersistentSingleton<CursorManager>
 {
     bool isCursorEnabled = false;
     public bool IsCursorEnabled => isCursorEnabled;
