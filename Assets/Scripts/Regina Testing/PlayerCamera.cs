@@ -11,21 +11,19 @@ public class PlayerCamera : MonoBehaviour
     float mouseDeltaX = 0f;
     float mouseDeltaY = 0f;
 
-    Vector2 scrollInput;
-
     // Calculations 計算
     float yaw = 0f;
     float pitch = 0f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // Boolean flags ブールフラグ
+    bool isCameraEnabled = true;
 
     // Update is called once per frame
     void Update()
     {
+        isCameraEnabled = !CursorManager.Instance.IsCursorEnabled;
+        if (isCameraEnabled == false) return;
+
         HandleInput();
 
         UpdateRotation();
@@ -36,8 +34,6 @@ public class PlayerCamera : MonoBehaviour
     {
         mouseDeltaX = Mouse.current.delta.x.ReadValue();
         mouseDeltaY = Mouse.current.delta.y.ReadValue();
-
-        scrollInput = Mouse.current.scroll.ReadValue();
     }
 
     private void UpdateRotation()
