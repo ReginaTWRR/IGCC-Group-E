@@ -12,7 +12,7 @@ public class PlayerCamera : MonoBehaviour
     float mouseDeltaY = 0f;
 
     // Calculations 計算
-    float yaw = 0f;
+    float yaw = 90f;
     float pitch = 0f;
 
     // Boolean flags ブールフラグ
