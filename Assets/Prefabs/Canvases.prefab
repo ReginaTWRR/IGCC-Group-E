@@ -722,6 +722,7 @@ GameObject:
   - component: {fileID: 7253398863976999345}
   - component: {fileID: 5285870537763281951}
   - component: {fileID: 4138692351219269625}
+  - component: {fileID: 8927534630572881368}
   m_Layer: 0
   m_Name: Slot (3)
   m_TagString: Untagged
@@ -788,6 +789,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8927534630572881368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710933303302613362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 5736543824553581061}
+  quantityText: {fileID: 7852791415840923006}
 --- !u!1 &715308660847081558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +1512,7 @@ GameObject:
   - component: {fileID: 7759241892630851359}
   - component: {fileID: 6770873106021239899}
   - component: {fileID: 5113977800256917473}
+  - component: {fileID: 8270672465549982965}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -1563,6 +1579,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8270672465549982965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219822615303364268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 991554032587632974}
+  quantityText: {fileID: 6734039073367017884}
 --- !u!1 &1341493715710845073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,6 +2319,7 @@ GameObject:
   - component: {fileID: 7861947530491799911}
   - component: {fileID: 708020228058702391}
   - component: {fileID: 6911282738376419203}
+  - component: {fileID: 2167694510151749699}
   m_Layer: 0
   m_Name: Slot (7)
   m_TagString: Untagged
@@ -2355,6 +2386,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2167694510151749699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603078206740118580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 7641400637121681715}
+  quantityText: {fileID: 283793295569009986}
 --- !u!1 &1659966642566995335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2683,7 @@ GameObject:
   - component: {fileID: 1912575358110088982}
   - component: {fileID: 518872818989534268}
   - component: {fileID: 2816385398104649186}
+  - component: {fileID: 6226222513530552993}
   m_Layer: 0
   m_Name: Slot (11)
   m_TagString: Untagged
@@ -2704,6 +2750,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6226222513530552993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369357145136773519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 4745061212598521165}
+  quantityText: {fileID: 3535225707286198735}
 --- !u!1 &2464743434716063467
 GameObject:
   m_ObjectHideFlags: 0
@@ -3250,6 +3310,7 @@ GameObject:
   - component: {fileID: 2040785377214645957}
   - component: {fileID: 5025947518257032268}
   - component: {fileID: 3111989735931735904}
+  - component: {fileID: 6883208112245699740}
   m_Layer: 0
   m_Name: Slot (10)
   m_TagString: Untagged
@@ -3316,6 +3377,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6883208112245699740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2904908269712194628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 392227191236238375}
+  quantityText: {fileID: 8266845992116851426}
 --- !u!1 &3146016747856165328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,6 +3843,7 @@ GameObject:
   - component: {fileID: 6343984652455280319}
   - component: {fileID: 8552889403096174430}
   - component: {fileID: 6351140210625183842}
+  - component: {fileID: 8652927551433995420}
   m_Layer: 0
   m_Name: Slot (4)
   m_TagString: Untagged
@@ -3834,6 +3910,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8652927551433995420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595612915212266403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 7258386640345973980}
+  quantityText: {fileID: 2760600927357707824}
 --- !u!1 &3848787977172310470
 GameObject:
   m_ObjectHideFlags: 0
@@ -4785,6 +4875,7 @@ GameObject:
   - component: {fileID: 8580230448884588031}
   - component: {fileID: 8119336475210705278}
   - component: {fileID: 9179377621410899769}
+  - component: {fileID: 9151468632996831575}
   m_Layer: 0
   m_Name: Slot (9)
   m_TagString: Untagged
@@ -4851,6 +4942,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9151468632996831575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348818442905338163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 3942149710643851257}
+  quantityText: {fileID: 1483712110011361204}
 --- !u!1 &4691281640383122654
 GameObject:
   m_ObjectHideFlags: 0
@@ -6644,6 +6749,7 @@ GameObject:
   - component: {fileID: 1415704567026982888}
   - component: {fileID: 9054715164151523059}
   - component: {fileID: 8844183952451006226}
+  - component: {fileID: 9059073325503824423}
   m_Layer: 0
   m_Name: Slot (2)
   m_TagString: Untagged
@@ -6710,6 +6816,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9059073325503824423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5865820881606579807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 7380088876211004598}
+  quantityText: {fileID: 657211248424171674}
 --- !u!1 &5983232329909125814
 GameObject:
   m_ObjectHideFlags: 0
@@ -7025,6 +7145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11597599de17f24d839c5a8944b2309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionOutline
+  outlineImage: {fileID: 4362739255059932457}
 --- !u!1 &6086543898537095234
 GameObject:
   m_ObjectHideFlags: 0
@@ -7235,6 +7356,7 @@ GameObject:
   - component: {fileID: 48874003038036703}
   - component: {fileID: 4037388329127285567}
   - component: {fileID: 3757596578837755375}
+  - component: {fileID: 134415564003563476}
   m_Layer: 0
   m_Name: Slot (8)
   m_TagString: Untagged
@@ -7301,6 +7423,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &134415564003563476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6304846024447653193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 9089116096013776907}
+  quantityText: {fileID: 6166001633109825695}
 --- !u!1 &6308899627576418210
 GameObject:
   m_ObjectHideFlags: 0
@@ -7449,6 +7585,7 @@ GameObject:
   - component: {fileID: 1482187774080944617}
   - component: {fileID: 6339809273403082910}
   - component: {fileID: 6786765550824292258}
+  - component: {fileID: 1628820693827451252}
   m_Layer: 0
   m_Name: Slot (5)
   m_TagString: Untagged
@@ -7515,6 +7652,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1628820693827451252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358937902553739015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 2742219786182497062}
+  quantityText: {fileID: 3968544613633195377}
 --- !u!1 &6365961322041902022
 GameObject:
   m_ObjectHideFlags: 0
@@ -7955,6 +8106,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce262b67900b47419bd09931bc509f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToolbarUI
+  slots:
+  - {fileID: 8270672465549982965}
+  - {fileID: 8024176984996261974}
+  - {fileID: 9059073325503824423}
+  - {fileID: 8927534630572881368}
+  - {fileID: 8652927551433995420}
+  - {fileID: 1628820693827451252}
+  - {fileID: 6402505398214100527}
+  - {fileID: 2167694510151749699}
+  - {fileID: 134415564003563476}
+  - {fileID: 9151468632996831575}
+  - {fileID: 6883208112245699740}
+  - {fileID: 6226222513530552993}
+  slnOutline: {fileID: 7094125267035061012}
 --- !u!1 &6744305964074465493
 GameObject:
   m_ObjectHideFlags: 0
@@ -9227,6 +9392,7 @@ GameObject:
   - component: {fileID: 6252366863290434916}
   - component: {fileID: 440134001846970943}
   - component: {fileID: 101421245764273657}
+  - component: {fileID: 8024176984996261974}
   m_Layer: 0
   m_Name: Slot (1)
   m_TagString: Untagged
@@ -9293,6 +9459,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8024176984996261974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568736608357944803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 7279761494574420700}
+  quantityText: {fileID: 5100085756418531063}
 --- !u!1 &7575542608480979053
 GameObject:
   m_ObjectHideFlags: 0
@@ -10518,6 +10698,7 @@ GameObject:
   - component: {fileID: 8669262556649000144}
   - component: {fileID: 9010449486891179934}
   - component: {fileID: 2824116319608799470}
+  - component: {fileID: 6402505398214100527}
   m_Layer: 0
   m_Name: Slot (6)
   m_TagString: Untagged
@@ -10584,6 +10765,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6402505398214100527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674642863346276751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e8aa7e729b2604eb3ace7caabc4e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
+  itemImage: {fileID: 3184599279110798377}
+  quantityText: {fileID: 4070368321217065466}
 --- !u!1 &8745433300569756459
 GameObject:
   m_ObjectHideFlags: 0
