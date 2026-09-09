@@ -1,0 +1,87 @@
+{
+    "version": 1,
+    "name": "InputPlayerSystem",
+    "maps": [
+        {
+            "name": "Human",
+            "id": "8a8c9731-fe56-4a9f-a5a4-3c8f5cf4662e",
+            "actions": [
+                {
+                    "name": "ChangeGhost",
+                    "type": "Button",
+                    "id": "862102c1-7f60-4ff2-b10a-5324338af84c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cdd2b645-ea80-4ca2-ab9b-3bed9ece3497",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeGhost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34cf5b4a-2d63-4660-9e5a-638a15997abd",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeGhost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Ghost",
+            "id": "f7db7185-58c3-40c1-a064-054bdd387aec",
+            "actions": [
+                {
+                    "name": "ChangeHuman",
+                    "type": "Button",
+                    "id": "b12d3233-b9dd-4a72-a3ab-a064bc554a36",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e2039703-c6d2-4152-a706-11bd91db5df1",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeHuman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "683081eb-5d78-43ac-9978-472769583995",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeHuman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
