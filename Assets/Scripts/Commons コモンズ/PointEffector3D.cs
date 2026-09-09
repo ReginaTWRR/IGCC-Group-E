@@ -45,9 +45,14 @@ public class PointEffector3D : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (objectsInRange.Contains(other.gameObject))
+        RemoveObject(other.gameObject);
+    }
+
+    public void RemoveObject(GameObject toRemove)
+    {
+        if (objectsInRange.Contains(toRemove))
         {
-            objectsInRange.Remove(other.gameObject);
+            objectsInRange.Remove(toRemove);
         }
     }
 }
