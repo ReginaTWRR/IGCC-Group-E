@@ -12,7 +12,13 @@ public class PlayerChangeController : MonoBehaviour
     // Ghost Object　幽霊オブジェクト
     [SerializeField] private GameObject ghostObject;
 
-    // Camera　カメラ
+    // Grave Object　墓オブジェクト
+    [SerializeField] private GameObject graveObject;
+
+
+    [Header("Camera 「カメラ」")]
+
+    // POV camera　視点カメラ
     [SerializeField] private Camera mainCamera;
 
 
@@ -34,6 +40,9 @@ public class PlayerChangeController : MonoBehaviour
 
         // Switch perspectives　視点を切り替える
         mainCamera.GetComponent<CameraPersonController>().TogglePerspective();
+
+        // Spawn a grave at the player's position　墓をプレイヤーの位置に生成する
+        Instantiate(graveObject, transform.position, transform.rotation);
     }
 
     //Function to change to a human　プレイヤーを人間に変更する関数
@@ -48,5 +57,9 @@ public class PlayerChangeController : MonoBehaviour
 
         // Switch perspectives　視点を切り替える
         mainCamera.GetComponent<CameraPersonController>().TogglePerspective();
+
+        // Delete the generated grave　生成した墓を削除する
+        GameObject deleteObject = GameObject.Find("Grave(Clone)");
+        if (deleteObject != null) GameObject.Destroy(deleteObject);
     }
 }
