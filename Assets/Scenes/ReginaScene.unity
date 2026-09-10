@@ -2599,14 +2599,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvases
       objectReference: {fileID: 0}
-    - target: {fileID: 3319355933410831279, guid: 865546eaba581f246a6f80ce97983502, type: 3}
-      propertyPath: m_fontSize
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 3319355933410831279, guid: 865546eaba581f246a6f80ce97983502, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 24
-      objectReference: {fileID: 0}
     - target: {fileID: 6995193145722650200, guid: 865546eaba581f246a6f80ce97983502, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

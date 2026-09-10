@@ -19,19 +19,18 @@ public class TooltipUI : PersistentSingleton<TooltipUI>
         UpdateUI();
     }
 
-    public void ShowTooltip(InventorySlotUI hoveredSlot)
+    public void ShowTooltip(CollectibleItemData data, Transform hoveredSlot)
     {
         isTooltipShown = true;
+
+        // Update the description
+        // 説明を更新します
+        descriptionText.text = data.tooltipDescription;
 
         // Visually move the image
         // 画像を視覚的に移動させる
         tooltipImage.rectTransform.SetParent(hoveredSlot.transform, false);
         tooltipImage.rectTransform.localPosition = Vector3.zero + localOffset;
-
-        // Find the item data and description through the item database
-        // アイテムデータベースからアイテムデータと説明を検索します
-        CollectibleItemData data = Inventory.Instance.CollectibleDB.GetByItemSprite(hoveredSlot.itemImage.sprite);
-        descriptionText.text = data.tooltipDescription;
 
         UpdateUI();
     }

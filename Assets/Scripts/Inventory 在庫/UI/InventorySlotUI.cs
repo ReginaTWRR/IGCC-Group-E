@@ -3,17 +3,26 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Inventory Slot")]
     public Image itemImage;
     public TextMeshProUGUI quantityText;
 
+    public bool IsOccupied => (itemImage.enabled == true && quantityText.enabled == true);
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (itemImage.enabled == true && quantityText.enabled == true)
+        if (IsOccupied)
         {
-            TooltipUI.Instance.ShowTooltip(this);
+            // Find the item data through the item database
+            // アイテムデータベースからアイテムデータと説明を検索します
+            CollectibleItemData data = Inventory.Instance.CollectibleDB.GetByItemSprite(itemImage.sprite);
+
+            if (data.hasTooltip)
+            {
+                TooltipUI.Instance.ShowTooltip(data, transform);
+            }
         }
     }
 
@@ -22,6 +31,14 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (TooltipUI.Instance.IsTooltipShown)
         {
             TooltipUI.Instance.HideTooltip();
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (InventoryUI.Instance.IsInventoryOpen)
+        {
+            ToolbarUI.Instance.OnInventorySlotClicked(this);
         }
     }
 

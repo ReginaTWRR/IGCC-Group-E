@@ -1,32 +1,59 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum CursorState
+{
+    Enabled,
+    Disabled,
+    TemporarilyEnabled
+}
+
 public class CursorManager : PersistentSingleton<CursorManager>
 {
-    bool isCursorEnabled = false;
-    public bool IsCursorEnabled => isCursorEnabled;
+    CursorState state = CursorState.Disabled;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        isCursorEnabled = false;
-    }
+    public bool IsCursorEnabled => (
+        state == CursorState.Enabled ||
+        state == CursorState.TemporarilyEnabled
+    );
 
     // Update is called once per frame
     void Update()
     {
-        HandleInput();
-        UpdateCursor();
-    }
+        // Update the FSM
+        // FSMを更新する
+        switch (state)
+        {
+            case CursorState.Enabled:
+                if (InventoryUI.Instance.IsInventoryOpen == false)
+                {
+                    state = CursorState.Disabled;
+                }
 
-    private void HandleInput()
-    {
-        isCursorEnabled = Keyboard.current.leftAltKey.isPressed;
-    }
+                break;
+            case CursorState.Disabled:
+                if (InventoryUI.Instance.IsInventoryOpen)
+                {
+                    state = CursorState.Enabled;
+                }
+                else if (Keyboard.current.leftAltKey.isPressed)
+                {
+                    state = CursorState.TemporarilyEnabled;
+                }
 
-    private void UpdateCursor()
-    {
-        if (isCursorEnabled)
+                break;
+            case CursorState.TemporarilyEnabled:
+                if (Keyboard.current.leftAltKey.isPressed == false)
+                {
+                    state = CursorState.Enabled;
+                }
+
+                break;
+        }
+
+        // Update the cursor
+        // カーソルを更新する
+        if (IsCursorEnabled)
         {
             Cursor.lockState = CursorLockMode.None;
         }

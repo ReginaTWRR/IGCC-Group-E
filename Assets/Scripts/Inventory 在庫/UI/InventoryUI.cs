@@ -8,6 +8,7 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
     [SerializeField] List<GameObject> inventoryRows;
 
     bool isInventoryOpen = false;
+    public bool IsInventoryOpen => isInventoryOpen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
