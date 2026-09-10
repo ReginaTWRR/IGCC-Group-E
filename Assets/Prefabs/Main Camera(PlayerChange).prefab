@@ -153,4 +153,4 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   firstPersonAnchor: {fileID: 0}
   thistPersonAnchor: {fileID: 0}
-  transitionSpeed: 5
+  transitionSpeed: 8
