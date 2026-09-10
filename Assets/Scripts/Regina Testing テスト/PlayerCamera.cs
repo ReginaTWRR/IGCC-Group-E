@@ -5,6 +5,7 @@ public class PlayerCamera : MonoBehaviour
 {
     [Header("Player Camera")]
     [SerializeField] Transform player;
+    [SerializeField] Vector3 offset;
     [SerializeField] float rotationSpeed = 72f;
 
     // Input 入力
@@ -51,7 +52,6 @@ public class PlayerCamera : MonoBehaviour
 
     private void UpdatePosition()
     {
-        transform.position = player.position;
-        transform.LookAt(player.position);
+        transform.position = player.position + offset;
     }
 }
