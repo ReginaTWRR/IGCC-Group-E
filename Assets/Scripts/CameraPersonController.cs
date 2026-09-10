@@ -21,7 +21,7 @@ public class CameraPersonController : MonoBehaviour
     [Header("System 「設定」")]
 
     // Interpolation speed　補間速度
-    [SerializeField] private float transitionSpeed = 5.0f;
+    [SerializeField] private float transitionSpeed = 8.0f;
 
     // Target fixation　ターゲット固定
     private Transform targetAnchor;

@@ -29,6 +29,7 @@ public class PlayerChangeController : MonoBehaviour
 
 
     [Header("Sytem 「設定」")]
+
     // Rigid Body
     [SerializeField] private Rigidbody rigidBody;
 
