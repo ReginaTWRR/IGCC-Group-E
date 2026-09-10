@@ -8,6 +8,15 @@ public class InventorySlotUI : MonoBehaviour
     public Image itemImage;
     public TextMeshProUGUI quantityText;
 
+    public void ClearUI()
+    {
+        itemImage.sprite = null;
+        itemImage.enabled = false;
+
+        quantityText.text = "0";
+        quantityText.enabled = false;
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Find References")]
     private void FindReferences()

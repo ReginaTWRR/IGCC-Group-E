@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : PersistentSingleton<InventoryUI>
 {
     [Header("Inventory")]
-    [SerializeField] GameObject toolbarRow;
+    [SerializeField] InventoryRowUI toolbarRow;
     [SerializeField] List<GameObject> inventoryRows;
 
     bool isInventoryOpen = false;
@@ -29,6 +29,38 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void BuildUI()
+    {
+        // Clear the UI first
+        // まずUIをクリアする
+        ClearUI();
+
+        // Build the UI according to the list of inventory slots
+        // インベントリスロットのリストに基づいてUIを構築する
+        List<InventorySlot> slots = Inventory.Instance.Slots;
+
+        for (int i = 0; i < slots.Count; ++i)
+        {
+            if (slots[i].IsOccupied == false) continue;
+
+            if (i <= 11)
+            {
+                // This slot will be displayed at the toolbar
+                // このスロットはツールバーに表示されます
+            }
+        }
+    }
+
+    private void ClearUI()
+    {
+        // Loop through each slot and clear the item image and text
+        // 各スロットをループ処理し、アイテムの画像とテキストをクリアする
+        foreach (InventorySlotUI slot in toolbarRow.slots)
+        {
+            slot.ClearUI();
+        }
+    }
+
     private void ToggleInventory()
     {
         isInventoryOpen = !isInventoryOpen;
@@ -46,11 +78,11 @@ public class InventoryUI : MonoBehaviour
         // Add the toolbar row
         // ツールバー行を追加する
         toolbarRow = null;
-        toolbarRow = transform.Find("Toolbar Row").gameObject;
+        Transform toolbarTransform = transform.Find("Toolbar Row");
 
-        if (toolbarRow == null)
+        if (toolbarTransform.TryGetComponent<InventoryRowUI>(out toolbarRow) == false)
         {
-            Debug.LogWarning("InventoryUI: Failed to find toolbar row.");
+            Debug.LogWarning("InventoryUI: Failed to find toolbar row component.");
         }
 
         // Add the inventory rows

@@ -5073,7 +5073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d456c3c2846e18a4e817b27c2209148e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
-  toolbarRow: {fileID: 6726088283289471319}
+  toolbarRow: {fileID: 4231384331755463909}
   inventoryRows:
   - {fileID: 6365961322041902022}
   - {fileID: 9176031836964827482}
@@ -8044,6 +8044,7 @@ GameObject:
   - component: {fileID: 5672293930302264077}
   - component: {fileID: 3034420166464582005}
   - component: {fileID: 8582723058780147187}
+  - component: {fileID: 4231384331755463909}
   - component: {fileID: 7945061359746313954}
   m_Layer: 0
   m_Name: Toolbar Row
@@ -8111,7 +8112,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7945061359746313954
+--- !u!114 &4231384331755463909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8120,9 +8121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6726088283289471319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ce262b67900b47419bd09931bc509f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 49b0f42f8d109604b9e28eccbd809d05, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ToolbarUI
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRowUI
   slots:
   - {fileID: 8270672465549982965}
   - {fileID: 8024176984996261974}
@@ -8136,6 +8137,19 @@ MonoBehaviour:
   - {fileID: 9151468632996831575}
   - {fileID: 6883208112245699740}
   - {fileID: 6226222513530552993}
+--- !u!114 &7945061359746313954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726088283289471319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce262b67900b47419bd09931bc509f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToolbarUI
+  row: {fileID: 4231384331755463909}
   slnOutline: {fileID: 7094125267035061012}
 --- !u!1 &6744305964074465493
 GameObject:
