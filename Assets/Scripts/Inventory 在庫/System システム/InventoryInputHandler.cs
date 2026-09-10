@@ -62,4 +62,9 @@ public class InventoryInputHandler : PersistentSingleton<InventoryInputHandler>
 
         return ScrollMovement.None;
     }
+
+    public bool CheckToggleInventoryPressed()
+    {
+        return InputSystem.actions["Toggle Inventory"].WasPressedThisFrame();
+    }
 }
