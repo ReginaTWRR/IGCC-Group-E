@@ -3,6 +3,12 @@ using UnityEngine;
 // Script for changing the camera viewpoint　カメラの視点変更に関するスクリプト
 public class CameraPersonController : MonoBehaviour
 {
+    [Header("Object 「オブジェクト」")]
+
+    // Player Object　プレイヤーオブジェクト
+    [SerializeField] private GameObject playerObject;
+
+
     [Header("Reference point for the viewpoint 「視点の基準点」")]
 
     // First person fixed position　1人称視点固定位置
@@ -38,8 +44,27 @@ public class CameraPersonController : MonoBehaviour
     {
         if (targetAnchor == null) return;
 
+        // Target position　ターゲットの位置
+        Vector3 targetPosition = targetAnchor.transform.position;
+
+        // direction　方向
+        Vector3 direction = (targetPosition - playerObject.transform.position).normalized;
+
+        // The distance between the camera and the player　カメラとプレイヤーの間の距離
+        float maxDistance = Vector3.Distance(targetPosition, playerObject.transform.position);
+        RaycastHit hit;
+
+        // Check if an object is in contact with the space between the camera and the player　カメラとプレイヤーの間にオブジェクトが接触しているか調べる
+        if (Physics.Raycast(playerObject.transform.position, direction.normalized, out hit, maxDistance))
+        {
+            // Move the camera slightly forward from the point of contact　接触位置からカメラを少し前に出す
+            targetPosition = hit.point - direction.normalized * 0.2f;
+        }
+        // No contact　接触なし
+        else targetPosition = targetAnchor.position;
+
         // Interpolated movement toward the target　ターゲットに向かって補間移動
-        transform.position = Vector3.Lerp(transform.position, targetAnchor.position, Time.deltaTime * transitionSpeed);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * transitionSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetAnchor.rotation, Time.deltaTime * transitionSpeed);
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8918282526979327966}
   - component: {fileID: 8381603387006141679}
   m_Layer: 0
-  m_Name: Grave(Model)
+  m_Name: Coffin(Model)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 7592655181285272717}
   - component: {fileID: 9135306340837425866}
   m_Layer: 0
-  m_Name: Grave(Collision)
+  m_Name: Coffin(Collision)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 731441214141610847}
   - component: {fileID: 7681230103481675207}
   m_Layer: 0
-  m_Name: Grave
+  m_Name: Coffin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
