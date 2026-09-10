@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         Look();
     }
 
-private void Move()
+    private void Move()
     {
         // Movement using WASD
         // WASDによる移動
@@ -94,7 +94,7 @@ private void Move()
 
         // Jump
         // ジャンプ
-        if (isGrounded)
+        if (isGrounded == true)
         {
             // Reset the falling speed when on the ground
             // 地面にいるときは落下速度をリセット
@@ -118,6 +118,8 @@ private void Move()
         // 移動
         Vector3 velocity = move * moveSpeed + Vector3.up * verticalVelocity;
         controller.Move(velocity * Time.deltaTime);
+
+        //アイテムを使ったら足が速くなる
     }
 
     private void Look()
@@ -147,7 +149,8 @@ private void Move()
         // Rotate the camera up and down
         // カメラを上下に回転
         cameraPitch -= mouseY;
-        cameraPitch = Mathf.Clamp(cameraPitch,-maxLookAngle,maxLookAngle);
-        playerCamera.localRotation = Quaternion.Euler( cameraPitch,0f,0f);
+        cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);
+        playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
     }
+
 }
