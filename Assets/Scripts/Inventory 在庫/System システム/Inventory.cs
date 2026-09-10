@@ -21,7 +21,7 @@ public class Inventory : PersistentSingleton<Inventory>
         }
     }
 
-    public bool CollectItem(ItemInstance item)
+    public bool CollectItem(CollectibleItemInstance item)
     {
         // Find a free slot in the list and assign the item to it
         // リスト内の空きスロットを見つけて、そこにアイテムを割り当てる
@@ -31,11 +31,11 @@ public class Inventory : PersistentSingleton<Inventory>
             return false;
         }
 
-        unoccupiedSlot.AssignItem(item);
+        unoccupiedSlot.AssignItem(item.data);
 
-        // Update the ItemInstance
-        // ItemInstance を更新します
-        item.AddToStack();
+        // Update the InventorySlot
+        // InventorySlotを更新する
+        unoccupiedSlot.AddToStack();
 
         // In this system, the UI is "rebuilt" after every update
         // このシステムでは、UIは更新のたびに「再構築」されます
