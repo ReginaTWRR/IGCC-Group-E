@@ -4,7 +4,10 @@ using System.Collections.Generic;
 public class Inventory : PersistentSingleton<Inventory>
 {
     [Header("Inventory")]
+    [SerializeField] CollectibleItemDatabase collectibleDB;
     [SerializeField] int capacity = 36;
+
+    public CollectibleItemDatabase CollectibleDB => collectibleDB;
 
     List<InventorySlot> slots = new();
     public List<InventorySlot> Slots => slots;

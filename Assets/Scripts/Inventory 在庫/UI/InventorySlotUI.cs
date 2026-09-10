@@ -11,12 +11,18 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipUI.Instance.ShowTooltip();
+        if (itemImage.enabled == true && quantityText.enabled == true)
+        {
+            TooltipUI.Instance.ShowTooltip(this);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        TooltipUI.Instance.HideTooltip();
+        if (TooltipUI.Instance.IsTooltipShown)
+        {
+            TooltipUI.Instance.HideTooltip();
+        }
     }
 
     public void SetUI(Sprite newSprite, string newText)

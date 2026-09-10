@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AppleItemData
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemData
   itemName: Apple
-  itemImage: {fileID: 21300000, guid: 4e11ddc7855b58245a2b5a7b1228682c, type: 3}
-  tooltipDescription: "Are there doctors down here?\r\n\u3053\u306E\u8FBA\u308A\u306B\u533B\u8005\u306F\u3044\u307E\u3059\u304B\uFF1F"
+  itemSprite: {fileID: 21300000, guid: 4e11ddc7855b58245a2b5a7b1228682c, type: 3}
+  tooltipDescription: Are there doctors down here?

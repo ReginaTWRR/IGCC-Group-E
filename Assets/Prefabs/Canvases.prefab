@@ -3848,6 +3848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TooltipUI
   tooltipImage: {fileID: 5669787183256624816}
   descriptionText: {fileID: 3319355933410831279}
+  localOffset: {x: 0, y: 50, z: 0}
 --- !u!1 &3489313081699854289
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,10 @@ public class TooltipUI : PersistentSingleton<TooltipUI>
     [Header("Tooltip")]
     [SerializeField] Image tooltipImage;
     [SerializeField] TextMeshProUGUI descriptionText;
+    [SerializeField] Vector3 localOffset;
 
     bool isTooltipShown = false;
+    public bool IsTooltipShown => isTooltipShown;
 
     protected override void Awake()
     {
@@ -17,9 +19,20 @@ public class TooltipUI : PersistentSingleton<TooltipUI>
         UpdateUI();
     }
 
-    public void ShowTooltip()
+    public void ShowTooltip(InventorySlotUI hoveredSlot)
     {
         isTooltipShown = true;
+
+        // Visually move the image
+        // 画像を視覚的に移動させる
+        tooltipImage.rectTransform.SetParent(hoveredSlot.transform, false);
+        tooltipImage.rectTransform.localPosition = Vector3.zero + localOffset;
+
+        // Find the item data and description through the item database
+        // アイテムデータベースからアイテムデータと説明を検索します
+        CollectibleItemData data = Inventory.Instance.CollectibleDB.GetByItemSprite(hoveredSlot.itemImage.sprite);
+        descriptionText.text = data.tooltipDescription;
+
         UpdateUI();
     }
 

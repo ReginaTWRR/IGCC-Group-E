@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ColaItemData
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemData
   itemName: Cola
-  itemImage: {fileID: 21300000, guid: ad606fa51a85ece478514c05a420dbd5, type: 3}
-  tooltipDescription: "Maybe a cola can lift your \u201Cspirits\u201D?\r\n\u30B3\u30FC\u30E9\u306A\u3089\u3001\u6C17\u5206\u3092\u76DB\u308A\u4E0A\u3052\u3066\u304F\u308C\u308B\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u306D\u3002"
+  itemSprite: {fileID: 21300000, guid: ad606fa51a85ece478514c05a420dbd5, type: 3}
+  tooltipDescription: "Maybe a cola can lift your \u201Cspirits\u201D?"

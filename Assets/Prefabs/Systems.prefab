@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a37bf2b9f979b44da53dc97d0824ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  collectibleDB: {fileID: 11400000, guid: 0d2048f5a6b01cf4b847dcf5c1f6a6f8, type: 2}
+  capacity: 36
 --- !u!114 &472498391019526638
 MonoBehaviour:
   m_ObjectHideFlags: 0

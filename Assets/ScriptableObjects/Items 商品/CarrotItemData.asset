@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarrotItemData
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemData
   itemName: Carrot
-  itemImage: {fileID: 21300000, guid: 7cdaf272b7f080546ade73900f338924, type: 3}
-  tooltipDescription: "A very tasty looking carrot\r\n\u3068\u3066\u3082\u7F8E\u5473\u3057\u305D\u3046\u306A\u30CB\u30F3\u30B8\u30F3"
+  itemSprite: {fileID: 21300000, guid: 7cdaf272b7f080546ade73900f338924, type: 3}
+  tooltipDescription: A very tasty looking carrot
