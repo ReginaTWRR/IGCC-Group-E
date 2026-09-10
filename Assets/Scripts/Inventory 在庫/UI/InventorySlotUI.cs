@@ -11,12 +11,12 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipUI.Instance.ToggleTooltip();
+        TooltipUI.Instance.ShowTooltip();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        TooltipUI.Instance.ToggleTooltip();
+        TooltipUI.Instance.HideTooltip();
     }
 
     public void SetUI(Sprite newSprite, string newText)

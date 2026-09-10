@@ -14,14 +14,23 @@ public class TooltipUI : PersistentSingleton<TooltipUI>
     {
         base.Awake();
 
-        tooltipImage.enabled = isTooltipShown;
-        descriptionText.enabled = isTooltipShown;
+        UpdateUI();
     }
 
-    public void ToggleTooltip()
+    public void ShowTooltip()
     {
-        isTooltipShown = !isTooltipShown;
+        isTooltipShown = true;
+        UpdateUI();
+    }
 
+    public void HideTooltip()
+    {
+        isTooltipShown = false;
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
         tooltipImage.enabled = isTooltipShown;
         descriptionText.enabled = isTooltipShown;
     }
