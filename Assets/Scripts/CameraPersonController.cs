@@ -23,7 +23,7 @@ public class CameraPersonController : MonoBehaviour
     // Interpolation speed　補間速度
     [SerializeField] private float transitionSpeed = 5.0f;
 
-    // Target fixation　標的固定
+    // Target fixation　ターゲット固定
     private Transform targetAnchor;
 
     // Flag management for the first-person perspective　1人称視点かのフラグ管理

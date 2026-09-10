@@ -30,7 +30,7 @@ public class PlayerChangeController : MonoBehaviour
 
     [Header("Sytem 「設定」")]
     // Rigid Body
-    [SerializeField] private Rigidbody rd;
+    [SerializeField] private Rigidbody rigidBody;
 
     //Function to change to a ghost　プレイヤーを幽霊に変更する関数
     void OnChangeGhost()
@@ -49,8 +49,8 @@ public class PlayerChangeController : MonoBehaviour
         Instantiate(coffinObject, transform.position, transform.rotation);
 
         // Rigid Body Change　RigidBodyを変更
-        rd.isKinematic = true;
-        rd.useGravity = false;
+        rigidBody.isKinematic = true;
+        rigidBody.useGravity = false;
 
         // Adjusted the settings to slightly raise the player's Y-axis position　プレイヤーのY軸位置を少し上げるように設定
         transform.position = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
@@ -77,8 +77,8 @@ public class PlayerChangeController : MonoBehaviour
             transform.position = deleteObject.transform.position;
 
             // Rigid Body Change　RigidBodyを変更
-            rd.isKinematic = false;
-            rd.useGravity = true;
+            rigidBody.isKinematic = false;
+            rigidBody.useGravity = true;
 
             // Delete the generated coffin　生成した棺桶を削除する
             GameObject.Destroy(deleteObject);
