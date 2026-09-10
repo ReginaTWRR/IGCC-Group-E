@@ -6,6 +6,11 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
     [Header("Inventory")]
     [SerializeField] InventoryRowUI toolbarRow;
     [SerializeField] List<GameObject> inventoryRows;
+    [SerializeField] LiftedItemUI liftedItem;
+
+    // Boolean flag to indicate whether the mouse is lifting an item
+    // マウスがアイテムを運んでいるかどうかを示すブール値フラグ
+    bool isLiftingItem = false;
 
     bool isInventoryOpen = false;
     public bool IsInventoryOpen => isInventoryOpen;
@@ -56,6 +61,24 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
         }
     }
 
+    public void OnInventorySlotClicked(InventorySlotUI slotClicked)
+    {
+        if (!isLiftingItem)
+        {
+            if (slotClicked.IsOccupied)
+            {
+                // Lift the item
+                // アイテムを持ち上げる
+                slotClicked.ClearUI();
+                liftedItem.LiftItem();
+            }
+        }
+        else
+        {
+
+        }
+    }
+
     private void ClearUI()
     {
         // Loop through each slot and clear the item image and text
@@ -94,13 +117,20 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
         // 在庫行を追加する
         inventoryRows.Clear();
 
-        int iterator = 1;
-        while (true)
+        for (int i = 0; i < 2; ++i)
         {
-            Transform currentChild = transform.GetChild(iterator++);
+            Transform currentChild = transform.GetChild(i);
             inventoryRows.Add(currentChild.gameObject);
+        }
 
-            if (iterator > transform.childCount - 1) break;
+        // Add the lifted item
+        // 持ち上げたアイテムを追加する
+        liftedItem = null;
+        Transform liftedItemTransform = transform.Find("Lifted Item");
+
+        if (liftedItemTransform.TryGetComponent<LiftedItemUI>(out liftedItem) == false)
+        {
+            Debug.LogWarning("InventoryUI: Failed to find lifted item component.");
         }
     }
 #endif

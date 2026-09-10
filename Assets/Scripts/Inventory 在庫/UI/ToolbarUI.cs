@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ToolbarUI : PersistentSingleton<ToolbarUI>
+public class ToolbarUI : MonoBehaviour
 {
     [Header("Toolbar")]
     // Store a reference to the inventory row
@@ -14,31 +14,10 @@ public class ToolbarUI : PersistentSingleton<ToolbarUI>
     // 選択されたスロットのインデックスを保存します
     int selectedSlotIndex = 0;
 
-    // Boolean flag to indicate whether the mouse is lifting an item
-    // マウスがアイテムを運んでいるかどうかを示すブール値フラグ
-    bool isLiftingItem = false;
-
     // Update is called once per frame
     void Update()
     {
         UpdateSelection();
-    }
-
-    public void OnInventorySlotClicked(InventorySlotUI slotClicked)
-    {
-        if (!isLiftingItem)
-        {
-            if (slotClicked.IsOccupied)
-            {
-                // Lift the item
-                // アイテムを持ち上げる
-                slotClicked.ClearUI();
-            }
-        }
-        else
-        {
-
-        }
     }
 
     private void UpdateSelection()

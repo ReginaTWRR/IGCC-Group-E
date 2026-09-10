@@ -20,8 +20,12 @@ public class CursorManager : PersistentSingleton<CursorManager>
     // Update is called once per frame
     void Update()
     {
-        // Update the FSM
-        // FSMを更新する
+        UpdateFSM();
+        UpdateCursor();
+    }
+
+    private void UpdateFSM()
+    {
         switch (state)
         {
             case CursorState.Enabled:
@@ -50,7 +54,10 @@ public class CursorManager : PersistentSingleton<CursorManager>
 
                 break;
         }
+    }
 
+    private void UpdateCursor()
+    {
         // Update the cursor
         // カーソルを更新する
         if (IsCursorEnabled)

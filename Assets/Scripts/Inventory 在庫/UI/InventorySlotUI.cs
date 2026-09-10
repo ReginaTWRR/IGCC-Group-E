@@ -38,7 +38,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (InventoryUI.Instance.IsInventoryOpen)
         {
-            ToolbarUI.Instance.OnInventorySlotClicked(this);
+            InventoryUI.Instance.OnInventorySlotClicked(this);
         }
     }
 
