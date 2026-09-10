@@ -1,12 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
-public class InventorySlotUI : MonoBehaviour
+public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Inventory Slot")]
     public Image itemImage;
     public TextMeshProUGUI quantityText;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        TooltipUI.Instance.ToggleTooltip();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipUI.Instance.ToggleTooltip();
+    }
 
     public void SetUI(Sprite newSprite, string newText)
     {
