@@ -47,6 +47,10 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
             {
                 // This slot will be displayed at the toolbar
                 // このスロットはツールバーに表示されます
+                if (slots[i].item is CollectibleItemInstance item)
+                {
+                    toolbarRow.slots[i].SetUI(item.data.itemImage, item.currentQuantity.ToString());
+                }
             }
         }
     }

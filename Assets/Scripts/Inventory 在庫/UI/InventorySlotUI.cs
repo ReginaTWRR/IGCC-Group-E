@@ -8,6 +8,15 @@ public class InventorySlotUI : MonoBehaviour
     public Image itemImage;
     public TextMeshProUGUI quantityText;
 
+    public void SetUI(Sprite newSprite, string newText)
+    {
+        itemImage.sprite = newSprite;
+        itemImage.enabled = true;
+
+        quantityText.text = newText;
+        quantityText.enabled = true;
+    }
+
     public void ClearUI()
     {
         itemImage.sprite = null;

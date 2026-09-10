@@ -6,7 +6,7 @@ public class Inventory : PersistentSingleton<Inventory>
     [Header("Inventory")]
     [SerializeField] int capacity = 36;
 
-    List<InventorySlot> slots;
+    List<InventorySlot> slots = new();
     public List<InventorySlot> Slots => slots;
 
     protected override void Awake()
@@ -17,8 +17,7 @@ public class Inventory : PersistentSingleton<Inventory>
         // スロットを初期化する
         for (int i = 0; i < capacity; ++i)
         {
-            InventorySlot newSlot = new();
-            slots.Add(newSlot);
+            slots.Add(new InventorySlot());
         }
     }
 
