@@ -34,7 +34,6 @@ Transform:
   m_Children:
   - {fileID: 1708360682870104072}
   - {fileID: 5857369321582196326}
-  - {fileID: 7694392316109954004}
   - {fileID: 7351697082608929748}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -229,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7351697082608929748}
   m_Layer: 0
-  m_Name: ThistPersonFixedCenter
+  m_Name: PersonFixedCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,6 +247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7694392316109954004}
   - {fileID: 8725237167826834484}
   m_Father: {fileID: 8399621227621993028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -424,7 +424,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8399621227621993028}
+  m_Father: {fileID: 7351697082608929748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5583590406142616642
 PrefabInstance:
