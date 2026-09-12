@@ -1,31 +1,31 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HeadBob : MonoBehaviour
 {
     // Settings for head bobbing while walking (speed, amplitude, smoothness)
-    //•às‚Ìƒwƒbƒhƒ{ƒu‚Ìİ’èi—h‚ê‚Ì‘¬‚³A—h‚ê•AŠŠ‚ç‚©‚³j
+    //æ­©è¡Œæ™‚ã®ãƒ˜ãƒƒãƒ‰ãƒœãƒ–ã®è¨­å®šï¼ˆæºã‚Œã®é€Ÿã•ã€æºã‚Œå¹…ã€æ»‘ã‚‰ã‹ã•ï¼‰
     [Header("Head Bob")]
     [SerializeField] float bobFrequency = 10f;
     [SerializeField] float bobAmplitude = 0.1f;
     [SerializeField] float bobSmooth = 10f;
 
     // Camera settings during jumps (vertical movement intensity, smoothness)
-    //ƒWƒƒƒ“ƒv‚ÌƒJƒƒ‰İ’èiã‰ºˆÚ“®‚Ì‹­‚³AŠŠ‚ç‚©‚³j
+    //ã‚¸ãƒ£ãƒ³ãƒ—æ™‚ã®ã‚«ãƒ¡ãƒ©è¨­å®šï¼ˆä¸Šä¸‹ç§»å‹•ã®å¼·ã•ã€æ»‘ã‚‰ã‹ã•ï¼‰
     [Header("Jump Camera")]
     [SerializeField] float jumpCameraHeight = 0.15f;
     [SerializeField] float jumpCameraSmooth = 8f;
 
     // Variable to store the camera's initial position
-    // ƒJƒƒ‰‚Ì‰ŠúˆÊ’u‚ğ•Û‘¶‚·‚é•Ï”
+    // ã‚«ãƒ¡ãƒ©ã®åˆæœŸä½ç½®ã‚’ä¿å­˜ã™ã‚‹å¤‰æ•°
     Vector3 initialPosition;
 
     // Timer for managing head-bob timing
-    // ƒwƒbƒhƒ{ƒu‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğŠÇ—‚·‚éƒ^ƒCƒ}[
+    // ãƒ˜ãƒƒãƒ‰ãƒœãƒ–ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ç®¡ç†ã™ã‚‹ã‚¿ã‚¤ãƒãƒ¼
     float bobTimer;
 
     // Get the player's movement speed and ground contact status
-    // ƒvƒŒƒCƒ„[‚ÌˆÚ“®‘¬“x‚âÚ’nó‘Ô‚ğæ“¾
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•é€Ÿåº¦ã‚„æ¥åœ°çŠ¶æ…‹ã‚’å–å¾—
     CharacterController characterController;
 
     void Start()
@@ -42,54 +42,54 @@ public class HeadBob : MonoBehaviour
 
 
         // When in the air
-        // ‹ó’†‚É‚¢‚éê‡
+        // ç©ºä¸­ã«ã„ã‚‹å ´åˆ
         if (!characterController.isGrounded)
         {
             // Move the camera using the ascent and descent speeds
-            // ã¸E‰º~‘¬“x‚ğg‚Á‚ÄƒJƒƒ‰‚ğ“®‚©‚·
+            // ä¸Šæ˜‡ãƒ»ä¸‹é™é€Ÿåº¦ã‚’ä½¿ã£ã¦ã‚«ãƒ¡ãƒ©ã‚’å‹•ã‹ã™
             float jumpOffset = Mathf.Clamp(velocity.y * jumpCameraHeight,-jumpCameraHeight,jumpCameraHeight);
             Vector3 target = initialPosition + new Vector3(0, jumpOffset, 0);
             transform.localPosition = Vector3.Lerp(transform.localPosition,target,Time.deltaTime * jumpCameraSmooth);
 
             // Reset the head bob for walking
-            // •às—pƒwƒbƒhƒ{ƒu‚ğƒŠƒZƒbƒg
+            // æ­©è¡Œç”¨ãƒ˜ãƒƒãƒ‰ãƒœãƒ–ã‚’ãƒªã‚»ãƒƒãƒˆ
             bobTimer = 0;
 
             return;
         }
 
         // When on the ground
-        // ’n–Ê‚É‚¢‚éê‡
+        // åœ°é¢ã«ã„ã‚‹å ´åˆ
         if (horizontalVelocity.magnitude > 0.1f)
         {
             // Update the timing of the head bob
-            //ƒwƒbƒhƒ{ƒu‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğXV
+            //ãƒ˜ãƒƒãƒ‰ãƒœãƒ–ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ›´æ–°
             bobTimer += Time.deltaTime * bobFrequency;
 
             // Vertical oscillation using a sine wave
-            // Sin”g‚ğg‚Á‚½ã‰º•ûŒü‚Ì—h‚ê
+            // Sinæ³¢ã‚’ä½¿ã£ãŸä¸Šä¸‹æ–¹å‘ã®æºã‚Œ
             float bobY = Mathf.Sin(bobTimer) * bobAmplitude;
 
             // Left-right sway using a cosine wave
-            // Cos”g‚ğg‚Á‚½¶‰E•ûŒü‚Ì—h‚ê
+            // Cosæ³¢ã‚’ä½¿ã£ãŸå·¦å³æ–¹å‘ã®æºã‚Œ
             float bobX = Mathf.Cos(bobTimer * 0.5f) * bobAmplitude * 0.5f;
 
             // Do not move in the Z direction
-            // Z•ûŒü‚É‚ÍˆÚ“®‚³‚¹‚È‚¢
+            // Zæ–¹å‘ã«ã¯ç§»å‹•ã•ã›ãªã„
             Vector3 target = initialPosition + new Vector3(bobX, bobY, 0);
 
             // Move the camera to the position it would be in while walking
-            // ƒJƒƒ‰‚ğ•às‚Ì—h‚êˆÊ’u‚ÖˆÚ“®
+            // ã‚«ãƒ¡ãƒ©ã‚’æ­©è¡Œæ™‚ã®æºã‚Œä½ç½®ã¸ç§»å‹•
             transform.localPosition = Vector3.Lerp( transform.localPosition, target, Time.deltaTime * bobSmooth );
         }
         else
         {
             // Reset the head-bob timer
-            // ƒwƒbƒhƒ{ƒu‚Ìƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg
+            // ãƒ˜ãƒƒãƒ‰ãƒœãƒ–ã®ã‚¿ã‚¤ãƒãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆ
             bobTimer = 0;
 
             // Smoothly return the camera to its initial position
-            // ƒJƒƒ‰‚ğ‰ŠúˆÊ’u‚ÖŠŠ‚ç‚©‚É–ß‚·
+            // ã‚«ãƒ¡ãƒ©ã‚’åˆæœŸä½ç½®ã¸æ»‘ã‚‰ã‹ã«æˆ»ã™
             transform.localPosition = Vector3.Lerp(transform.localPosition,initialPosition,Time.deltaTime * bobSmooth);
         }
     }
