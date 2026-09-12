@@ -18,11 +18,22 @@ public class Player : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 0.1f;
     [SerializeField] private float maxLookAngle = 90f;
 
+    // Item settings 
+    // アイテムに関する設定（所持数、速度上昇率、効果時間）
+    [Header("Speed Item")][SerializeField] private int itemCount = 0;
+    [SerializeField] private float speedUpRate = 0.15f;
+    [SerializeField] private float speedUpDuration = 20f;
+
     // Variables used for player movement
     // プレイヤーの移動処理に使用する変数
     private CharacterController controller;
     private float verticalVelocity;
     private float cameraPitch;
+
+    // Speed item variables 
+    // 速度アップアイテム用の変数
+    private float speedUpTimer = 0f;
+    private bool isSpeedUp = false;
 
     private void Awake()
     {
@@ -57,6 +68,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Look();
+        Cola();
     }
 
     private void Move()
@@ -114,13 +126,81 @@ public class Player : MonoBehaviour
         // 重力
         verticalVelocity += gravity * Time.deltaTime;
 
+        // 通常の移動速度
+        float currentSpeed = moveSpeed; 
+        // 速度アップアイテムの効果中なら15%アップ
+        if (isSpeedUp) 
+        { 
+            currentSpeed = moveSpeed * (1f + speedUpRate); 
+        }
+
         //Move
         // 移動
-        Vector3 velocity = move * moveSpeed + Vector3.up * verticalVelocity;
+        Vector3 velocity = move * currentSpeed + Vector3.up * verticalVelocity; controller.Move(velocity * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
-
-        //アイテムを使ったら足が速くなる
     }
+
+    //
+    private void Cola()
+    {
+        if (Keyboard.current == null)
+        {
+            return;
+        }
+
+        //  Fkey: Use item 
+        // Fキー：アイテムを使用
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            // Cannot use if there is no item 
+            // アイテムを持っていなければ使用できない
+            if (itemCount <= 0) { Debug.Log("I don't have any items.アイテムを持っていません。"); return; }
+
+            // Consume one item 
+            // アイテムを1個消費
+            itemCount--;
+
+            // Activate speed-up effect 
+            // 速度アップ効果を開始
+            isSpeedUp = true;
+            speedUpTimer = speedUpDuration;
+
+            Debug.Log("I used a speed-boost item!速度アップアイテムを使用しました！");
+            Debug.Log("Number of items remaining 残りアイテム数：" + itemCount);
+            Debug.Log("Movement speed increases by 15% for 20 seconds.20秒間、移動速度が15%アップします。");
+
+        }
+
+        // Q key: Replenish item (For Functionality Testing)
+        // Qキー：アイテムを補充(動作確認用)
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            // Add one item 
+            // アイテムを1個補充
+            itemCount++;
+
+            Debug.Log("I restocked one item.アイテムを1個補充しました。");
+            Debug.Log("Current Number of Items 現在のアイテム数：" + itemCount);
+
+        }
+
+        // Count down the speed-up timer 
+        // 速度アップ効果の残り時間を減らす
+        if (isSpeedUp)
+        {
+            speedUpTimer -= Time.deltaTime;
+            {
+                // Effect has ended
+                // 効果時間が終了した場合
+                if (speedUpTimer <= 0f)
+                {
+                    speedUpTimer = 0f; isSpeedUp = false; Debug.Log("The speed boost has expired.速度アップの効果が切れました。");
+                }
+
+            }
+        }
+    }
+
 
     private void Look()
     {
@@ -152,5 +232,6 @@ public class Player : MonoBehaviour
         cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);
         playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
     }
-
 }
+
+
