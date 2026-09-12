@@ -8,9 +8,7 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
     [SerializeField] List<GameObject> inventoryRows;
     [SerializeField] LiftedItemUI liftedItem;
 
-    // Boolean flag to indicate whether the mouse is lifting an item
-    // マウスがアイテムを運んでいるかどうかを示すブール値フラグ
-    bool isLiftingItem = false;
+    List<InventorySlotUI> slotUIs = new();
 
     bool isInventoryOpen = false;
     public bool IsInventoryOpen => isInventoryOpen;
@@ -18,6 +16,13 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Assign the inventory slots
+        // インベントリスロットを割り当てる
+        foreach (InventorySlotUI slotUI in slotUIs)
+        {
+
+        }
+
         // Hide the inventory rows at the start
         // 最初に在庫行を非表示にする
         foreach (GameObject inventoryRow in inventoryRows)
@@ -63,19 +68,25 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
 
     public void OnInventorySlotClicked(InventorySlotUI slotClicked)
     {
-        if (!isLiftingItem)
+        if (liftedItem.IsLiftingItem == false)
         {
             if (slotClicked.IsOccupied)
             {
                 // Lift the item
                 // アイテムを持ち上げる
+                liftedItem.LiftItem(slotClicked.itemImage.sprite, slotClicked.quantityText.text);
                 slotClicked.ClearUI();
-                liftedItem.LiftItem();
             }
         }
         else
         {
-
+            if (slotClicked.IsOccupied == false)
+            {
+                // Place the item
+                // アイテムを配置する
+                slotClicked.SetUI(liftedItem.itemImage.sprite, liftedItem.quantityText.text);
+                liftedItem.PlaceItem();
+            }
         }
     }
 

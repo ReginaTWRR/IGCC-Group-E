@@ -6,6 +6,7 @@ using TMPro;
 public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Inventory Slot")]
+    [System.NonSerialized] public InventorySlot slot;
     public Image itemImage;
     public TextMeshProUGUI quantityText;
 

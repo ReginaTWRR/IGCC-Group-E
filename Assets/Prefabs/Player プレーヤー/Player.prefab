@@ -71,6 +71,39 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   forceMagnitude: 50
+--- !u!1 &1550409943945069718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4336472356203465500}
+  m_Layer: 0
+  m_Name: PersonFixedCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4336472356203465500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550409943945069718}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 698377804283773621}
+  - {fileID: 4357136667417991719}
+  m_Father: {fileID: 6105130073823972145}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5418905397739948175
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,9 +171,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 4, z: 1}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 698377804283773621}
-  - {fileID: 4357136667417991719}
+  m_Children: []
   m_Father: {fileID: 6105130073823972145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3158040303983129624
@@ -304,11 +335,11 @@ Transform:
   m_GameObject: {fileID: 7778396635487364031}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 3.5, z: -5.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 18, z: -20}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9193251281403606384}
+  m_Father: {fileID: 4336472356203465500}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!1 &8069752972082861835
 GameObject:
@@ -320,6 +351,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6105130073823972145}
   - component: {fileID: 3316859395760053832}
+  - component: {fileID: 6061907809870967108}
+  - component: {fileID: 5081274391342020481}
+  - component: {fileID: 5442438789309675867}
   - component: {fileID: 2029218655180433322}
   - component: {fileID: 6916457253503867697}
   - component: {fileID: 713637096470611394}
@@ -344,6 +378,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9193251281403606384}
+  - {fileID: 4336472356203465500}
   - {fileID: 2565744635868966873}
   - {fileID: 7723191041040146609}
   m_Father: {fileID: 0}
@@ -373,6 +408,98 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!136 &6061907809870967108
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8069752972082861835}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!54 &5081274391342020481
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8069752972082861835}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!114 &5442438789309675867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8069752972082861835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: b149576c591f33f4ca56c0b4cd0f6d4e, type: 3}
+  m_NotificationBehavior: 1
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 862102c1-7f60-4ff2-b10a-5324338af84c
+    m_ActionName: 'Human/ChangeGhost[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b12d3233-b9dd-4a72-a3ab-a064bc554a36
+    m_ActionName: 'Ghost/ChangeHuman[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fb9fceba-313c-462a-9768-d75e0085576d
+    m_ActionName: 'UI/Toggle Inventory[/Keyboard/e]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Human
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &2029218655180433322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,12 +533,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6b75e8b8ae6e84b951c679b063f51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  humanObject: {fileID: 4932185141483396065, guid: b6a793c6dff3a24459563c0bfa845a51, type: 3}
-  ghostObject: {fileID: 5222107685819082488, guid: b6a793c6dff3a24459563c0bfa845a51, type: 3}
   coffinObject: {fileID: 3573247651803937130, guid: e86508a409dc37c4486b601ed5e151da, type: 3}
   mainCamera: {fileID: 3158040303983129624}
-  inputDevice: {fileID: 2642433596917206752, guid: b6a793c6dff3a24459563c0bfa845a51, type: 3}
-  rigidBody: {fileID: 594613325260219862, guid: b6a793c6dff3a24459563c0bfa845a51, type: 3}
+  inputDevice: {fileID: 5442438789309675867}
+  characterController: {fileID: 3316859395760053832}
 --- !u!114 &713637096470611394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,11 +665,11 @@ Transform:
   m_GameObject: {fileID: 8243506277229350950}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9193251281403606384}
+  m_Father: {fileID: 4336472356203465500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8994592909349034536
 GameObject:

@@ -1,30 +1,50 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class LiftedItemUI : MonoBehaviour
 {
     [Header("Lifted Item")]
-    [SerializeField] Image itemImage;
-    [SerializeField] TextMeshProUGUI quantityText;
+    public Image itemImage;
+    public TextMeshProUGUI quantityText;
 
-    bool isUIEnabled = false;
+    bool isLiftingItem = false;
+    public bool IsLiftingItem => isLiftingItem;
 
     private void Awake()
     {
         UpdateUI();
     }
 
-    public void LiftItem()
+    // Update is called once per frame
+    void Update()
     {
-        isUIEnabled = true;
+        if (isLiftingItem)
+        {
+            transform.position = Mouse.current.position.ReadValue();
+        }
+    }
+
+    public void LiftItem(Sprite newSprite, string newText)
+    {
+        isLiftingItem = true;
+        UpdateUI(newSprite, newText);
+    }
+
+    public void PlaceItem()
+    {
+        isLiftingItem = false;
         UpdateUI();
     }
 
-    private void UpdateUI()
+    private void UpdateUI(Sprite newSprite = null, string newText = "0")
     {
-        itemImage.enabled = isUIEnabled;
-        quantityText.enabled = isUIEnabled;
+        itemImage.sprite = newSprite;
+        itemImage.enabled = isLiftingItem;
+
+        quantityText.text = newText;
+        quantityText.enabled = isLiftingItem;
     }
 
 #if UNITY_EDITOR
