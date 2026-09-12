@@ -1,58 +1,58 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
     // Movement settings (movement speed, jump height, gravity)
-    // ˆÚ“®‚ÉŠÖ‚·‚éİ’èiˆÚ“®‘¬“xAƒWƒƒƒ“ƒv‚Ì‚‚³Ad—Í‚Ìd‚³j
+    // ç§»å‹•ã«é–¢ã™ã‚‹è¨­å®šï¼ˆç§»å‹•é€Ÿåº¦ã€ã‚¸ãƒ£ãƒ³ãƒ—ã®é«˜ã•ã€é‡åŠ›ã®é‡ã•ï¼‰
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -20f;
 
     // Mouse control settings (camera used for the viewpoint, ease of movement for the viewpoint, maximum angle the camera can move up and down)
-    // ƒ}ƒEƒX‘€ì‚ÉŠÖ‚·‚éİ’èi‹“_‚É‚È‚éƒJƒƒ‰A‹“_‚Ì“®‚«‚â‚·‚³AƒJƒƒ‰‚ğã‰º‚É“®‚©‚¹‚éÅ‘åŠp“xj
+    // ãƒã‚¦ã‚¹æ“ä½œã«é–¢ã™ã‚‹è¨­å®šï¼ˆè¦–ç‚¹ã«ãªã‚‹ã‚«ãƒ¡ãƒ©ã€è¦–ç‚¹ã®å‹•ãã‚„ã™ã•ã€ã‚«ãƒ¡ãƒ©ã‚’ä¸Šä¸‹ã«å‹•ã‹ã›ã‚‹æœ€å¤§è§’åº¦ï¼‰
     [Header("Mouse Look")]
     [SerializeField] private Transform playerCamera;
     [SerializeField] private float mouseSensitivity = 0.1f;
     [SerializeField] private float maxLookAngle = 90f;
 
     // Item settings 
-    // ƒAƒCƒeƒ€‚ÉŠÖ‚·‚éİ’èiŠ”A‘¬“xã¸—¦AŒø‰ÊŠÔj
+    // ã‚¢ã‚¤ãƒ†ãƒ ã«é–¢ã™ã‚‹è¨­å®šï¼ˆæ‰€æŒæ•°ã€é€Ÿåº¦ä¸Šæ˜‡ç‡ã€åŠ¹æœæ™‚é–“ï¼‰
     [Header("Speed Item")][SerializeField] private int itemCount = 0;
     [SerializeField] private float speedUpRate = 0.15f;
     [SerializeField] private float speedUpDuration = 20f;
 
     // Variables used for player movement
-    // ƒvƒŒƒCƒ„[‚ÌˆÚ“®ˆ—‚Ég—p‚·‚é•Ï”
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹å¤‰æ•°
     private CharacterController controller;
     private float verticalVelocity;
     private float cameraPitch;
 
     // Speed item variables 
-    // ‘¬“xƒAƒbƒvƒAƒCƒeƒ€—p‚Ì•Ï”
+    // é€Ÿåº¦ã‚¢ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ç”¨ã®å¤‰æ•°
     private float speedUpTimer = 0f;
     private bool isSpeedUp = false;
 
     private void Awake()
     {
         // Get the CharacterController component
-        // CharacterControllerƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚·‚é
+        // CharacterControllerã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹
         controller = GetComponent<CharacterController>();
 
         if (playerCamera == null)
         {
             // Search for a Camera component among the player's own child objects
-            // ƒvƒŒƒCƒ„[©g‚ÌqƒIƒuƒWƒFƒNƒg‚Ì’†‚©‚çCameraƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ’T‚·
+            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è‡ªèº«ã®å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä¸­ã‹ã‚‰Cameraã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’æ¢ã™
             Camera cam = GetComponentInChildren<Camera>();
 
             // If a camera is found
-            // ƒJƒƒ‰‚ªŒ©‚Â‚©‚Á‚½ê‡
+            // ã‚«ãƒ¡ãƒ©ãŒè¦‹ã¤ã‹ã£ãŸå ´åˆ
             if (cam != null)
             {
                 // Set this to playerCamera
-                // playerCamera‚Éİ’è‚·‚é
+                // playerCameraã«è¨­å®šã™ã‚‹
                 playerCamera = cam.transform;
             }
         }
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
     private void Move()
     {
         // Movement using WASD
-        // WASD‚É‚æ‚éˆÚ“®
+        // WASDã«ã‚ˆã‚‹ç§»å‹•
         Vector2 input = Vector2.zero;
         if (Keyboard.current != null)
         {
@@ -96,46 +96,46 @@ public class Player : MonoBehaviour
         }
 
         // Prevent diagonal movement from becoming too fast
-        // Î‚ßˆÚ“®‚ª‘¬‚­‚È‚è‚·‚¬‚È‚¢‚æ‚¤‚É‚·‚é
+        // æ–œã‚ç§»å‹•ãŒé€Ÿããªã‚Šã™ããªã„ã‚ˆã†ã«ã™ã‚‹
         input = Vector2.ClampMagnitude(input, 1f);
         Vector3 move = transform.right * input.x + transform.forward * input.y;
 
         // Ground Collision Detection
-        // ’n–Ê”»’è
+        // åœ°é¢åˆ¤å®š
         bool isGrounded = controller.isGrounded;
 
         // Jump
-        // ƒWƒƒƒ“ƒv
+        // ã‚¸ãƒ£ãƒ³ãƒ—
         if (isGrounded == true)
         {
             // Reset the falling speed when on the ground
-            // ’n–Ê‚É‚¢‚é‚Æ‚«‚Í—‰º‘¬“x‚ğƒŠƒZƒbƒg
+            // åœ°é¢ã«ã„ã‚‹ã¨ãã¯è½ä¸‹é€Ÿåº¦ã‚’ãƒªã‚»ãƒƒãƒˆ
             verticalVelocity = -2f;
 
             // The moment the Space key is pressed
-            // SpaceƒL[‚ª‰Ÿ‚³‚ê‚½uŠÔ
+            // Spaceã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸç¬é–“
             if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 // Set jump speed
-                // ƒWƒƒƒ“ƒv‘¬“x‚ğİ’è
+                // ã‚¸ãƒ£ãƒ³ãƒ—é€Ÿåº¦ã‚’è¨­å®š
                 verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
         }
 
         // Gravity
-        // d—Í
+        // é‡åŠ›
         verticalVelocity += gravity * Time.deltaTime;
 
-        // ’Êí‚ÌˆÚ“®‘¬“x
+        // é€šå¸¸ã®ç§»å‹•é€Ÿåº¦
         float currentSpeed = moveSpeed; 
-        // ‘¬“xƒAƒbƒvƒAƒCƒeƒ€‚ÌŒø‰Ê’†‚È‚ç15%ƒAƒbƒv
+        // é€Ÿåº¦ã‚¢ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã®åŠ¹æœä¸­ãªã‚‰15%ã‚¢ãƒƒãƒ—
         if (isSpeedUp) 
         { 
             currentSpeed = moveSpeed * (1f + speedUpRate); 
         }
 
         //Move
-        // ˆÚ“®
+        // ç§»å‹•
         Vector3 velocity = move * currentSpeed + Vector3.up * verticalVelocity; controller.Move(velocity * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
     }
@@ -149,52 +149,52 @@ public class Player : MonoBehaviour
         }
 
         //  Fkey: Use item 
-        // FƒL[FƒAƒCƒeƒ€‚ğg—p
+        // Fã‚­ãƒ¼ï¼šã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½¿ç”¨
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             // Cannot use if there is no item 
-            // ƒAƒCƒeƒ€‚ğ‚Á‚Ä‚¢‚È‚¯‚ê‚Îg—p‚Å‚«‚È‚¢
-            if (itemCount <= 0) { Debug.Log("I don't have any items.ƒAƒCƒeƒ€‚ğ‚Á‚Ä‚¢‚Ü‚¹‚ñB"); return; }
+            // ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ãªã‘ã‚Œã°ä½¿ç”¨ã§ããªã„
+            if (itemCount <= 0) { Debug.Log("I don't have any items.ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ã¾ã›ã‚“ã€‚"); return; }
 
             // Consume one item 
-            // ƒAƒCƒeƒ€‚ğ1ŒÂÁ”ï
+            // ã‚¢ã‚¤ãƒ†ãƒ ã‚’1å€‹æ¶ˆè²»
             itemCount--;
 
             // Activate speed-up effect 
-            // ‘¬“xƒAƒbƒvŒø‰Ê‚ğŠJn
+            // é€Ÿåº¦ã‚¢ãƒƒãƒ—åŠ¹æœã‚’é–‹å§‹
             isSpeedUp = true;
             speedUpTimer = speedUpDuration;
 
-            Debug.Log("I used a speed-boost item!‘¬“xƒAƒbƒvƒAƒCƒeƒ€‚ğg—p‚µ‚Ü‚µ‚½I");
-            Debug.Log("Number of items remaining c‚èƒAƒCƒeƒ€”F" + itemCount);
-            Debug.Log("Movement speed increases by 15% for 20 seconds.20•bŠÔAˆÚ“®‘¬“x‚ª15%ƒAƒbƒv‚µ‚Ü‚·B");
+            Debug.Log("I used a speed-boost item!é€Ÿåº¦ã‚¢ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½¿ç”¨ã—ã¾ã—ãŸï¼");
+            Debug.Log("Number of items remaining æ®‹ã‚Šã‚¢ã‚¤ãƒ†ãƒ æ•°ï¼š" + itemCount);
+            Debug.Log("Movement speed increases by 15% for 20 seconds.20ç§’é–“ã€ç§»å‹•é€Ÿåº¦ãŒ15%ã‚¢ãƒƒãƒ—ã—ã¾ã™ã€‚");
 
         }
 
         // Q key: Replenish item (For Functionality Testing)
-        // QƒL[FƒAƒCƒeƒ€‚ğ•â[(“®ìŠm”F—p)
+        // Qã‚­ãƒ¼ï¼šã‚¢ã‚¤ãƒ†ãƒ ã‚’è£œå……(å‹•ä½œç¢ºèªç”¨)
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             // Add one item 
-            // ƒAƒCƒeƒ€‚ğ1ŒÂ•â[
+            // ã‚¢ã‚¤ãƒ†ãƒ ã‚’1å€‹è£œå……
             itemCount++;
 
-            Debug.Log("I restocked one item.ƒAƒCƒeƒ€‚ğ1ŒÂ•â[‚µ‚Ü‚µ‚½B");
-            Debug.Log("Current Number of Items Œ»İ‚ÌƒAƒCƒeƒ€”F" + itemCount);
+            Debug.Log("I restocked one item.ã‚¢ã‚¤ãƒ†ãƒ ã‚’1å€‹è£œå……ã—ã¾ã—ãŸã€‚");
+            Debug.Log("Current Number of Items ç¾åœ¨ã®ã‚¢ã‚¤ãƒ†ãƒ æ•°ï¼š" + itemCount);
 
         }
 
         // Count down the speed-up timer 
-        // ‘¬“xƒAƒbƒvŒø‰Ê‚Ìc‚èŠÔ‚ğŒ¸‚ç‚·
+        // é€Ÿåº¦ã‚¢ãƒƒãƒ—åŠ¹æœã®æ®‹ã‚Šæ™‚é–“ã‚’æ¸›ã‚‰ã™
         if (isSpeedUp)
         {
             speedUpTimer -= Time.deltaTime;
             {
                 // Effect has ended
-                // Œø‰ÊŠÔ‚ªI—¹‚µ‚½ê‡
+                // åŠ¹æœæ™‚é–“ãŒçµ‚äº†ã—ãŸå ´åˆ
                 if (speedUpTimer <= 0f)
                 {
-                    speedUpTimer = 0f; isSpeedUp = false; Debug.Log("The speed boost has expired.‘¬“xƒAƒbƒv‚ÌŒø‰Ê‚ªØ‚ê‚Ü‚µ‚½B");
+                    speedUpTimer = 0f; isSpeedUp = false; Debug.Log("The speed boost has expired.é€Ÿåº¦ã‚¢ãƒƒãƒ—ã®åŠ¹æœãŒåˆ‡ã‚Œã¾ã—ãŸã€‚");
                 }
 
             }
@@ -205,29 +205,29 @@ public class Player : MonoBehaviour
     private void Look()
     {
         // Check if the mouse is working
-        //ƒ}ƒEƒX‚ªg‚¦‚éó‘Ô‚©Šm”F‚·‚é
+        //ãƒã‚¦ã‚¹ãŒä½¿ãˆã‚‹çŠ¶æ…‹ã‹ç¢ºèªã™ã‚‹
         if (Mouse.current == null)
         {
             // If that doesn't work, exit
-            //‚Å‚«‚È‚©‚Á‚½‚çI—¹
+            //ã§ããªã‹ã£ãŸã‚‰çµ‚äº†
             return;
         }
 
         // Get how much the frame has moved since the previous frame
-        //‘O‚ÌƒtƒŒ[ƒ€‚©‚ç‚Ç‚ê‚¾‚¯“®‚¢‚½‚©‚ğæ“¾‚·‚é
+        //å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã©ã‚Œã ã‘å‹•ã„ãŸã‹ã‚’å–å¾—ã™ã‚‹
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
         // Get the distance the mouse has moved (X-axis, Y-axis)
-        //ƒ}ƒEƒX‚ªˆÚ“®‚µ‚½‹——£‚Ìæ“¾iX²AY²j
+        //ãƒã‚¦ã‚¹ãŒç§»å‹•ã—ãŸè·é›¢ã®å–å¾—ï¼ˆXè»¸ã€Yè»¸ï¼‰
         float mouseX = mouseDelta.x * mouseSensitivity;
         float mouseY = mouseDelta.y * mouseSensitivity;
 
         // Rotate the player character left and right
-        // ƒvƒŒƒCƒ„[–{‘Ì‚ğ¶‰E‚É‰ñ“]
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æœ¬ä½“ã‚’å·¦å³ã«å›è»¢
         transform.Rotate(Vector3.up * mouseX);
 
         // Rotate the camera up and down
-        // ƒJƒƒ‰‚ğã‰º‚É‰ñ“]
+        // ã‚«ãƒ¡ãƒ©ã‚’ä¸Šä¸‹ã«å›è»¢
         cameraPitch -= mouseY;
         cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);
         playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
