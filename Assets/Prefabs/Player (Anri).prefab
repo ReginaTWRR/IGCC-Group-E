@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 2108681003291201179}
   - component: {fileID: 6557042948800219029}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player (Anri)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
