@@ -1,16 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 // Script for switching players　プレイヤーの切り替えに関するスクリプト
 public class PlayerChangeController : MonoBehaviour
 {
     [Header("Object 「オブジェクト」")]
-
-    // Human Object　人間オブジェクト
-    [SerializeField] private GameObject humanObject;
-
-    // Ghost Object　幽霊オブジェクト
-    [SerializeField] private GameObject ghostObject;
 
     // Coffin Object　棺桶オブジェクト
     [SerializeField] private GameObject coffinObject;
@@ -28,17 +23,27 @@ public class PlayerChangeController : MonoBehaviour
     [SerializeField] private PlayerInput inputDevice;
 
 
-    [Header("Sytem 「設定」")]
+    [Header("System 「設定」")]
 
-    // Rigid Body
-    [SerializeField] private Rigidbody rigidBody;
+    // CharacterController　キャラクターコントローラー
+    [SerializeField] private CharacterController characterController;
+
+
+    // Directly store the reference to the generated coffin　生成した棺桶の参照を直接保存
+    private GameObject spawnedCoffin;
+
+    void Start()
+    {
+        // Set input device to Human　入力デバイスを人間に設定
+        inputDevice.SwitchCurrentActionMap("Human");
+    }
 
     //Function to change to a ghost　プレイヤーを幽霊に変更する関数
-    void OnChangeGhost()
+    void OnChangeGhost(InputValue value)
     {
-        // Set object active state　オブジェクトのアクティブを設定
-        humanObject.SetActive(false);
-        ghostObject.SetActive(true);
+        if (!value.isPressed) return;
+
+        if (spawnedCoffin != null) return;
 
         // Set input device to Ghost　入力デバイスを幽霊に設定
         inputDevice.SwitchCurrentActionMap("Ghost");
@@ -46,43 +51,44 @@ public class PlayerChangeController : MonoBehaviour
         // Switch perspectives　視点を切り替える
         mainCamera.GetComponent<CameraPersonController>().TogglePerspective();
 
-        // Spawn a coffin at the player's position　棺桶をプレイヤーの位置に生成する
-        Instantiate(coffinObject, transform.position, transform.rotation);
+        // The position of the coffin　棺桶の位置
+        Vector3 coffinPosition = transform.position;
+        coffinPosition.y = transform.position.y - 0.5f;
 
-        // Rigid Body Change　RigidBodyを変更
-        rigidBody.isKinematic = true;
-        rigidBody.useGravity = false;
+        // Spawn a coffin at the player's position　棺桶をプレイヤーの位置に生成する
+        spawnedCoffin = Instantiate(coffinObject, coffinPosition, transform.rotation);
+
+        if (characterController != null) characterController.enabled = false;
 
         // Adjusted the settings to slightly raise the player's Y-axis position　プレイヤーのY軸位置を少し上げるように設定
-        transform.position = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, coffinPosition.y + 5.0f, transform.position.z);
+
+        if (characterController != null) characterController.enabled = true;
     }
 
     //Function to change to a human　プレイヤーを人間に変更する関数
-    void OnChangeHuman()
+    void OnChangeHuman(InputValue value)
     {
-        // Set object active state　オブジェクトのアクティブを設定
-        humanObject.SetActive(true);
-        ghostObject.SetActive(false);
+        if (!value.isPressed) return;
 
-        // Set input device to Human　入力デバイスを人間に設定
-        inputDevice.SwitchCurrentActionMap("Human");
-
-        // Switch perspectives　視点を切り替える
-        mainCamera.GetComponent<CameraPersonController>().TogglePerspective();
-
-        // Find the generated coffin　生成した棺桶を探す
-        GameObject deleteObject = GameObject.Find("Coffin(Clone)");
-        if (deleteObject != null)
+        if (spawnedCoffin != null)
         {
-            // 棺桶の位置をプレイヤーの位置に合わせる
-            transform.position = deleteObject.transform.position;
+            // Set input device to Human　入力デバイスを人間に設定
+            inputDevice.SwitchCurrentActionMap("Human");
 
-            // Rigid Body Change　RigidBodyを変更
-            rigidBody.isKinematic = false;
-            rigidBody.useGravity = true;
+            // Switch perspectives　視点を切り替える
+            mainCamera.GetComponent<CameraPersonController>().TogglePerspective();
+
+            if (characterController != null) characterController.enabled = false;
+
+            // 棺桶の位置をプレイヤーの位置に合わせる
+            transform.position = spawnedCoffin.transform.position;
+
+            if (characterController != null) characterController.enabled = true;
 
             // Delete the generated coffin　生成した棺桶を削除する
-            GameObject.Destroy(deleteObject);
+            GameObject.Destroy(spawnedCoffin);
+            spawnedCoffin = null;
         }
     }
 }
