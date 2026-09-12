@@ -233,5 +233,3 @@ public class Player : MonoBehaviour
         playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
     }
 }
-
-

@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e02327abdc95d4fbbc4997bb807cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraPersonController
+  playerObject: {fileID: 6731917791846480756}
   firstPersonAnchor: {fileID: 1130133977}
   thistPersonAnchor: {fileID: 1614464467}
   transitionSpeed: 3
@@ -834,8 +835,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   humanObject: {fileID: 6731917791846480756}
   ghostObject: {fileID: 7156995001712936507}
+  coffinObject: {fileID: 0}
   mainCamera: {fileID: 330585545}
   inputDevice: {fileID: 7591503419506353487}
+  rigidBody: {fileID: 0}
 --- !u!23 &9189324275499293371
 MeshRenderer:
   m_ObjectHideFlags: 0
