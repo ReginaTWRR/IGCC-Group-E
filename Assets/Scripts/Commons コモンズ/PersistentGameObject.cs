@@ -7,6 +7,9 @@ public sealed class PersistentGameObject : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (gameObject.transform.parent == null)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

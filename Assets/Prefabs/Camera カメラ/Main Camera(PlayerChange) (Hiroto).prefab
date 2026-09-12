@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6130117627746912314}
   - component: {fileID: 5275450127480812907}
   m_Layer: 0
-  m_Name: Main Camera(PlayerChange)
+  m_Name: Main Camera(PlayerChange) (Hiroto)
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

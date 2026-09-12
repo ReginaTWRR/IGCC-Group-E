@@ -10,12 +10,18 @@ public enum CursorState
 
 public class CursorManager : PersistentSingleton<CursorManager>
 {
-    CursorState state = CursorState.Disabled;
+    CursorState state;
 
     public bool IsCursorEnabled => (
         state == CursorState.Enabled ||
         state == CursorState.TemporarilyEnabled
     );
+
+    protected override void Awake()
+    {
+        base.Awake();
+        state = CursorState.Disabled;
+    }
 
     // Update is called once per frame
     void Update()

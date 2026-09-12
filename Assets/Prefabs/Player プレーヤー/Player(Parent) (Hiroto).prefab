@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2642433596917206752}
   - component: {fileID: 594613325260219862}
   m_Layer: 0
-  m_Name: Player(Parent)
+  m_Name: Player(Parent) (Hiroto)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

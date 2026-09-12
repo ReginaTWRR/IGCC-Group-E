@@ -8,7 +8,10 @@ public class PersistentSingleton<T> : Singleton<T> where T : MonoBehaviour
 
         if (Instance == this)
         {
-            DontDestroyOnLoad(gameObject);
+            if (gameObject.transform.parent == null)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
     }
 }

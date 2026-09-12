@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     private float verticalVelocity;
     private float cameraPitch;
 
+    // Variables used for camera movement
+    // カメラの動きに使用される変数
+    public bool ShouldCameraMove => (CursorManager.Instance.IsCursorEnabled == false);
+
     // Speed item variables 
     // 速度アップアイテム用の変数
     private float speedUpTimer = 0f;
@@ -56,12 +60,6 @@ public class Player : MonoBehaviour
                 playerCamera = cam.transform;
             }
         }
-    }
-
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void Update()
@@ -204,6 +202,10 @@ public class Player : MonoBehaviour
 
     private void Look()
     {
+        // Check if the camera should move
+        // カメラを移動させるべきかどうかを確認する
+        if (ShouldCameraMove == false) return;
+
         // Check if the mouse is working
         //マウスが使える状態か確認する
         if (Mouse.current == null)
