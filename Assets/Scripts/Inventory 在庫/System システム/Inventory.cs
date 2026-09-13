@@ -20,7 +20,8 @@ public class Inventory : PersistentSingleton<Inventory>
         // スロットを初期化する
         for (int i = 0; i < capacity; ++i)
         {
-            slots.Add(new InventorySlot());
+            InventorySlot newSlot = new() { index = i };
+            slots.Add(newSlot);
         }
     }
 
@@ -34,17 +35,33 @@ public class Inventory : PersistentSingleton<Inventory>
             return false;
         }
 
-        unoccupiedSlot.AssignItem(item.data);
+        unoccupiedSlot.AssignItem(item.data, 0);
 
         // Update the InventorySlot
         // InventorySlotを更新する
         unoccupiedSlot.AddToStack();
 
-        // In this system, the UI is "rebuilt" after every update
-        // このシステムでは、UIは更新のたびに「再構築」されます
-        InventoryUI.Instance.BuildUI();
+        // Update the UI
+        // UIを更新する
+        InventoryUI.Instance.UpdateUI(unoccupiedSlot.index);
 
         return true;
+    }
+
+    public void ClearSlotAtIndex(int index)
+    {
+        // Remove the item at this slot
+        // このスロットにあるアイテムを削除します
+        InventorySlot slot = FindSlotByIndex(index);
+        slot.Clear();
+    }
+
+    public void AssignSlotAtIndex(CollectibleItemData item, int currentQuantity, int index)
+    {
+        // Assign an item to this slot
+        // このスロットにアイテムを割り当てます
+        InventorySlot slot = FindSlotByIndex(index);
+        slot.AssignItem(item, currentQuantity);
     }
 
     private bool FindUnoccupiedSlot(out InventorySlot unoccupiedSlot)
@@ -63,5 +80,15 @@ public class Inventory : PersistentSingleton<Inventory>
         }
 
         return false;
+    }
+
+    private InventorySlot FindSlotByIndex(int index)
+    {
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.index == index) return slot;
+        }
+
+        return null;
     }
 }

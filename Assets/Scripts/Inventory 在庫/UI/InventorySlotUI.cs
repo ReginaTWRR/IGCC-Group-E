@@ -6,9 +6,10 @@ using TMPro;
 public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Inventory Slot")]
-    [System.NonSerialized] public InventorySlot slot;
     public Image itemImage;
     public TextMeshProUGUI quantityText;
+
+    [System.NonSerialized] public InventorySlot slot;
 
     public bool IsOccupied => (itemImage.enabled == true && quantityText.enabled == true);
 
@@ -43,22 +44,21 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    public void SetUI(Sprite newSprite, string newText)
+    public void UpdateUI()
     {
-        itemImage.sprite = newSprite;
-        itemImage.enabled = true;
+        if (slot.IsOccupied)
+        {
+            itemImage.sprite = slot.item.itemSprite;
+            quantityText.text = slot.currentQuantity.ToString();
+        }
+        else
+        {
+            itemImage.sprite = null;
+            quantityText.text = "0";
+        }
 
-        quantityText.text = newText;
-        quantityText.enabled = true;
-    }
-
-    public void ClearUI()
-    {
-        itemImage.sprite = null;
-        itemImage.enabled = false;
-
-        quantityText.text = "0";
-        quantityText.enabled = false;
+        itemImage.enabled = slot.IsOccupied;
+        quantityText.enabled = slot.IsOccupied;
     }
 
 #if UNITY_EDITOR

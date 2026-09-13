@@ -9,8 +9,10 @@ public class LiftedItemUI : MonoBehaviour
     public Image itemImage;
     public TextMeshProUGUI quantityText;
 
-    bool isLiftingItem = false;
-    public bool IsLiftingItem => isLiftingItem;
+    [System.NonSerialized] public CollectibleItemData item = null;
+    [System.NonSerialized] public int currentQuantity = 0;
+
+    public bool IsLiftingItem => (item != null);
 
     private void Awake()
     {
@@ -20,31 +22,40 @@ public class LiftedItemUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isLiftingItem)
+        if (IsLiftingItem)
         {
             transform.position = Mouse.current.position.ReadValue();
         }
     }
 
-    public void LiftItem(Sprite newSprite, string newText)
+    public void LiftItem(CollectibleItemData item, int currentQuantity)
     {
-        isLiftingItem = true;
-        UpdateUI(newSprite, newText);
+        this.item = item;
+        this.currentQuantity = currentQuantity;
+        UpdateUI();
     }
 
     public void PlaceItem()
     {
-        isLiftingItem = false;
+        item = null;
         UpdateUI();
     }
 
-    private void UpdateUI(Sprite newSprite = null, string newText = "0")
+    private void UpdateUI()
     {
-        itemImage.sprite = newSprite;
-        itemImage.enabled = isLiftingItem;
+        if (IsLiftingItem)
+        {
+            itemImage.sprite = item.itemSprite;
+            quantityText.text = currentQuantity.ToString();
+        }
+        else
+        {
+            itemImage.sprite = null;
+            quantityText.text = "0";
+        }
 
-        quantityText.text = newText;
-        quantityText.enabled = isLiftingItem;
+        itemImage.enabled = IsLiftingItem;
+        quantityText.enabled = IsLiftingItem;
     }
 
 #if UNITY_EDITOR

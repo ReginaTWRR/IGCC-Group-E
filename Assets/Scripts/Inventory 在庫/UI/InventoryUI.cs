@@ -8,8 +8,6 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
     [SerializeField] List<GameObject> inventoryRows;
     [SerializeField] LiftedItemUI liftedItem;
 
-    List<InventorySlotUI> slotUIs = new();
-
     bool isInventoryOpen = false;
     public bool IsInventoryOpen => isInventoryOpen;
 
@@ -18,12 +16,24 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
     {
         // Assign the inventory slots
         // インベントリスロットを割り当てる
-        foreach (InventorySlotUI slotUI in slotUIs)
-        {
+        List<InventorySlot> slots = Inventory.Instance.Slots;
 
+        for (int i = 0; i < slots.Count; ++i)
+        {
+            if (i <= 11)
+            {
+                toolbarRow.slots[i].slot = slots[i];
+            }
         }
 
-        // Hide the inventory rows at the start
+        // Update the UI of each inventory slot
+        // 各インベントリスロットのUIを更新する
+        foreach (InventorySlotUI slot in toolbarRow.slots)
+        {
+            slot.UpdateUI();
+        }
+
+        // Hide the inventory rows
         // 最初に在庫行を非表示にする
         foreach (GameObject inventoryRow in inventoryRows)
         {
@@ -40,28 +50,16 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
         }
     }
 
-    public void BuildUI()
+    public void UpdateUI(int updatedSlotIndex)
     {
-        // Clear the UI first
-        // まずUIをクリアする
-        ClearUI();
-
-        // Build the UI according to the list of inventory slots
-        // インベントリスロットのリストに基づいてUIを構築する
-        List<InventorySlot> slots = Inventory.Instance.Slots;
-
-        for (int i = 0; i < slots.Count; ++i)
+        // Look for the InventorySlotUI that we should update
+        // 更新すべき InventorySlotUI を探します
+        foreach (InventorySlotUI slot in toolbarRow.slots)
         {
-            if (slots[i].IsOccupied == false) continue;
-
-            if (i <= 11)
+            if (slot.slot.index == updatedSlotIndex)
             {
-                // This slot will be displayed at the toolbar
-                // このスロットはツールバーに表示されます
-                if (slots[i].item is CollectibleItemData item)
-                {
-                    toolbarRow.slots[i].SetUI(item.itemSprite, slots[i].currentQuantity.ToString());
-                }
+                slot.UpdateUI();
+                return;
             }
         }
     }
@@ -74,8 +72,8 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
             {
                 // Lift the item
                 // アイテムを持ち上げる
-                liftedItem.LiftItem(slotClicked.itemImage.sprite, slotClicked.quantityText.text);
-                slotClicked.ClearUI();
+                liftedItem.LiftItem(slotClicked.slot.item, slotClicked.slot.currentQuantity);
+                Inventory.Instance.ClearSlotAtIndex(slotClicked.slot.index);
             }
         }
         else
@@ -84,20 +82,12 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
             {
                 // Place the item
                 // アイテムを配置する
-                slotClicked.SetUI(liftedItem.itemImage.sprite, liftedItem.quantityText.text);
+                Inventory.Instance.AssignSlotAtIndex(liftedItem.item, liftedItem.currentQuantity, slotClicked.slot.index);
                 liftedItem.PlaceItem();
             }
         }
-    }
 
-    private void ClearUI()
-    {
-        // Loop through each slot and clear the item image and text
-        // 各スロットをループ処理し、アイテムの画像とテキストをクリアする
-        foreach (InventorySlotUI slot in toolbarRow.slots)
-        {
-            slot.ClearUI();
-        }
+        slotClicked.UpdateUI();
     }
 
     private void ToggleInventory()
