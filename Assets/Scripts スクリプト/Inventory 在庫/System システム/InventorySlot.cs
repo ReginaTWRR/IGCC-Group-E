@@ -33,7 +33,7 @@ public class InventorySlot
 
         // Consume the item where applicable
         // 該当する場合はアイテムを消費する
-        if (item.isConsumable)
+        if (item.IsConsumable)
         {
             currentQuantity -= item.consumptionPerUse;
 

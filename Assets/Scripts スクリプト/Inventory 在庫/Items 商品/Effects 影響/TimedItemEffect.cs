@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TimedItemEffect", menuName = "Scriptable Objects/Inventory/Items/EffectsTimedItemEffect")]
-public class TimedItemEffect : ItemEffect
+public abstract class TimedItemEffect : ItemEffect
 {
     [Header("Timed Item")]
     public float effectDuration = 1f;

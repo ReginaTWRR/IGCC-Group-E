@@ -11,8 +11,6 @@ public class CollectibleItemData : ItemData
     [TextArea(2, 5)] public string tooltipDescription;
 
     [Header("Consumable")]
-    public bool isConsumable = true;
     public int consumptionPerUse = 1;
-
-    public bool IsUsable => (effect != null);
+    public bool IsConsumable => (consumptionPerUse > 0);
 }

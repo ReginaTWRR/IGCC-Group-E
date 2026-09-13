@@ -791,44 +791,15 @@ GameObject:
   - component: {fileID: 1185010348}
   - component: {fileID: 1185010347}
   - component: {fileID: 1185010341}
-  - component: {fileID: 1185010340}
-  - component: {fileID: 1185010339}
+  - component: {fileID: 1185010350}
   - component: {fileID: 1185010349}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Page
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1185010339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185010338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e882845b9125c4b8f382a068755c8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemInstance
-  data: {fileID: 11400000, guid: 66491eceaee73ea458719c42b1188f3e, type: 2}
---- !u!114 &1185010340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185010338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857523a8a3e83f847874f8d51821123e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Collectible
-  instance: {fileID: 1185010339}
-  hoverEffect: {fileID: 1185010349}
-  maxCollectionDuration: 1
 --- !u!54 &1185010341
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -851,7 +822,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -882,6 +853,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ddef31a930b973c4cb30e1571ff65a00, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -979,16 +951,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185010338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4748c5ec067349c4d885225d2e36455f, type: 3}
+  m_Script: {fileID: 11500000, guid: 62fd27946c3bbb449b2e5077a81fa50d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect3D
-  bobSpeed: 10
-  bobHeight: 0.1
-  bobSmooth: 2
-  rotationSpeed: 2
-  shouldRotateClockwise: 1
-  rb: {fileID: 1185010341}
-  isHovering: 1
+  m_EditorClassIdentifier: Assembly-CSharp::ClickableItemInstance
+  data: {fileID: 11400000, guid: 66491eceaee73ea458719c42b1188f3e, type: 2}
+--- !u!114 &1185010350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185010338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be66110773dc30d428d8b0a957793a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Clickable
+  instance: {fileID: 1185010349}
 --- !u!1 &1325065995
 GameObject:
   m_ObjectHideFlags: 0

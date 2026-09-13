@@ -11,4 +11,6 @@ public abstract class ItemData : ScriptableObject
     [Header("Item Data")]
     public ItemEffect effect;
     public string itemName;
+
+    public bool IsUsable => (effect != null);
 }

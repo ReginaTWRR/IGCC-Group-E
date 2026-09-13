@@ -392,8 +392,6 @@ MonoBehaviour:
   mouseSensitivity: 0.1
   maxLookAngle: 90
   itemCount: 0
-  speedUpRate: 0.15
-  speedUpDuration: 20
 --- !u!114 &8086143144115481155
 MonoBehaviour:
   m_ObjectHideFlags: 0
