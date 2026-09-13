@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 669029075}
   - component: {fileID: 669029074}
   - component: {fileID: 669029073}
+  - component: {fileID: 669029081}
   m_Layer: 3
   m_Name: Carrot
   m_TagString: Untagged
@@ -407,6 +408,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   instance: {fileID: 669029073}
+  hoverEffect: {fileID: 669029081}
+  maxCollectionDuration: 1
 --- !u!54 &669029075
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -429,7 +432,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -542,12 +545,31 @@ Transform:
   m_GameObject: {fileID: 669029072}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 1, z: -5}
+  m_LocalPosition: {x: 10, y: 0.5, z: -5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &669029081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669029072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748c5ec067349c4d885225d2e36455f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect3D
+  bobSpeed: 10
+  bobHeight: 0.1
+  bobSmooth: 2
+  rotationSpeed: 2
+  shouldRotateClockwise: 1
+  rb: {fileID: 669029075}
+  isHovering: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +793,7 @@ GameObject:
   - component: {fileID: 1185010341}
   - component: {fileID: 1185010340}
   - component: {fileID: 1185010339}
+  - component: {fileID: 1185010349}
   m_Layer: 3
   m_Name: Page
   m_TagString: Untagged
@@ -804,6 +827,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   instance: {fileID: 1185010339}
+  hoverEffect: {fileID: 1185010349}
+  maxCollectionDuration: 1
 --- !u!54 &1185010341
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -826,7 +851,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -897,8 +922,8 @@ Transform:
   m_GameObject: {fileID: 1185010338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.1, z: 0.75}
+  m_LocalPosition: {x: 5, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -945,6 +970,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1185010349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185010338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748c5ec067349c4d885225d2e36455f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect3D
+  bobSpeed: 10
+  bobHeight: 0.1
+  bobSmooth: 2
+  rotationSpeed: 2
+  shouldRotateClockwise: 1
+  rb: {fileID: 1185010341}
+  isHovering: 1
 --- !u!1 &1325065995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1117,7 @@ GameObject:
   - component: {fileID: 1389925937}
   - component: {fileID: 1389925939}
   - component: {fileID: 1389925940}
+  - component: {fileID: 1389925941}
   m_Layer: 3
   m_Name: Apple
   m_TagString: Untagged
@@ -1167,7 +1212,7 @@ Transform:
   m_GameObject: {fileID: 1389925932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 1, z: 0}
+  m_LocalPosition: {x: 10, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1195,7 +1240,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1234,6 +1279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   instance: {fileID: 1389925940}
+  hoverEffect: {fileID: 1389925941}
+  maxCollectionDuration: 1
 --- !u!114 &1389925940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,6 +1294,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemInstance
   data: {fileID: 11400000, guid: dccc4e05cb2548440a5bce5170ccd1ff, type: 2}
+--- !u!114 &1389925941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389925932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748c5ec067349c4d885225d2e36455f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect3D
+  bobSpeed: 10
+  bobHeight: 0.1
+  bobSmooth: 2
+  rotationSpeed: 2
+  shouldRotateClockwise: 1
+  rb: {fileID: 1389925937}
+  isHovering: 1
 --- !u!1 &1417101800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1553,7 @@ GameObject:
   - component: {fileID: 1627198066}
   - component: {fileID: 1627198065}
   - component: {fileID: 1627198064}
+  - component: {fileID: 1627198074}
   m_Layer: 3
   m_Name: Cola
   m_TagString: Untagged
@@ -1520,6 +1587,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   instance: {fileID: 1627198064}
+  hoverEffect: {fileID: 1627198074}
+  maxCollectionDuration: 1
 --- !u!54 &1627198066
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1542,7 +1611,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1613,7 +1682,7 @@ Transform:
   m_GameObject: {fileID: 1627198063}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 1, z: -10}
+  m_LocalPosition: {x: 10, y: 0.5, z: -10}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1665,6 +1734,25 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1627198074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627198063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748c5ec067349c4d885225d2e36455f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect3D
+  bobSpeed: 10
+  bobHeight: 0.1
+  bobSmooth: 2
+  rotationSpeed: 2
+  shouldRotateClockwise: 1
+  rb: {fileID: 1627198066}
+  isHovering: 1
 --- !u!1 &1982490155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,6 +1769,7 @@ GameObject:
   - component: {fileID: 1982490158}
   - component: {fileID: 1982490157}
   - component: {fileID: 1982490156}
+  - component: {fileID: 1982490164}
   m_Layer: 3
   m_Name: Apple (1)
   m_TagString: Untagged
@@ -1714,6 +1803,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   instance: {fileID: 1982490156}
+  hoverEffect: {fileID: 1982490164}
+  maxCollectionDuration: 1
 --- !u!54 &1982490158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1736,7 +1827,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1849,12 +1940,31 @@ Transform:
   m_GameObject: {fileID: 1982490155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 1, z: 5}
+  m_LocalPosition: {x: 10, y: 0.5, z: 5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1982490164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982490155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748c5ec067349c4d885225d2e36455f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect3D
+  bobSpeed: 10
+  bobHeight: 0.1
+  bobSmooth: 2
+  rotationSpeed: 2
+  shouldRotateClockwise: 1
+  rb: {fileID: 1982490158}
+  isHovering: 1
 --- !u!1 &2039133797
 GameObject:
   m_ObjectHideFlags: 0

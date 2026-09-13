@@ -7,6 +7,7 @@ public class InventoryRowUI : MonoBehaviour
     // Keep a list of all the slots in the row
     // 行内のすべてのスロットのリストを保持する
     public List<InventorySlotUI> slots = new();
+    [SerializeField] SlidingTransitionUI slideTransition;
 
     private void Awake()
     {
@@ -39,6 +40,12 @@ public class InventoryRowUI : MonoBehaviour
         }
     }
 
+    public void ToggleVisibility()
+    {
+        if (slideTransition == null) return;
+        slideTransition.DoTransition();
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Find References")]
     private void FindReferences()
@@ -54,6 +61,11 @@ public class InventoryRowUI : MonoBehaviour
             InventorySlotUI newSlot = slotChild.GetComponent<InventorySlotUI>();
             slots.Add(newSlot);
         }
+
+        // Add the slide transition
+        // スライドトランジションを追加
+        slideTransition = null;
+        TryGetComponent<SlidingTransitionUI>(out slideTransition);
     }
 #endif
 }
