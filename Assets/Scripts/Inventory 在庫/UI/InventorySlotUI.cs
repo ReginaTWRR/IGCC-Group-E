@@ -12,6 +12,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [System.NonSerialized] public InventorySlot slot;
 
     public bool IsOccupied => (itemImage.enabled == true && quantityText.enabled == true);
+    public bool IsAssigned => (slot != null);
 
     public void OnPointerEnter(PointerEventData eventData)
     {

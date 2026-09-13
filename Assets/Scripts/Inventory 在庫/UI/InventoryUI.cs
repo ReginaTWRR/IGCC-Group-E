@@ -5,10 +5,10 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
 {
     [Header("Inventory")]
     [SerializeField] InventoryRowUI toolbarRow;
-    [SerializeField] List<GameObject> inventoryRows;
+    [SerializeField] List<InventoryRowUI> inventoryRows;
     [SerializeField] LiftedItemUI liftedItem;
+    [SerializeField] bool isInventoryOpen = false;
 
-    bool isInventoryOpen = false;
     public bool IsInventoryOpen => isInventoryOpen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,28 +16,16 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
     {
         // Assign the inventory slots
         // インベントリスロットを割り当てる
-        List<InventorySlot> slots = Inventory.Instance.Slots;
+        AssignInventorySlots();
 
-        for (int i = 0; i < slots.Count; ++i)
-        {
-            if (i <= 11)
-            {
-                toolbarRow.slots[i].slot = slots[i];
-            }
-        }
+        // Update the UI of each inventory row
+        // 各在庫行のUIを更新する
+        toolbarRow.UpdateUI();
 
-        // Update the UI of each inventory slot
-        // 各インベントリスロットのUIを更新する
-        foreach (InventorySlotUI slot in toolbarRow.slots)
+        foreach (InventoryRowUI inventoryRow in inventoryRows)
         {
-            slot.UpdateUI();
-        }
-
-        // Hide the inventory rows
-        // 最初に在庫行を非表示にする
-        foreach (GameObject inventoryRow in inventoryRows)
-        {
-            inventoryRow.SetActive(false);
+            inventoryRow.UpdateUI();
+            inventoryRow.gameObject.SetActive(isInventoryOpen);
         }
     }
 
@@ -52,14 +40,28 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
 
     public void UpdateUI(int updatedSlotIndex)
     {
-        // Look for the InventorySlotUI that we should update
-        // 更新すべき InventorySlotUI を探します
+        // Look for the InventorySlotUI that we should update in the toolbar first
+        // まずツールバーで更新するInventorySlotUIを探します
         foreach (InventorySlotUI slot in toolbarRow.slots)
         {
             if (slot.slot.index == updatedSlotIndex)
             {
                 slot.UpdateUI();
                 return;
+            }
+        }
+
+        // Look for the InventorySlotUI that we should update in the rest of the inventory rows
+        // 残りの在庫行で更新する必要のある InventorySlotUI を探します
+        foreach (InventoryRowUI inventoryRow in inventoryRows)
+        {
+            foreach (InventorySlotUI slot in inventoryRow.slots)
+            {
+                if (slot.slot.index == updatedSlotIndex)
+                {
+                    slot.UpdateUI();
+                    return;
+                }
             }
         }
     }
@@ -90,13 +92,34 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
         slotClicked.UpdateUI();
     }
 
+    private void AssignInventorySlots()
+    {
+        // Get the inventory slots
+        // インベントリスロットを取得する
+        List<InventorySlot> slots = Inventory.Instance.Slots;
+        int index = 0;
+
+        // Assign the toolbar first
+        // まずツールバーを割り当てます
+        index = toolbarRow.AssignSlots(slots, index);
+
+        // Assign each inventory row
+        // 各在庫行を割り当てる
+        foreach (InventoryRowUI inventoryRow in inventoryRows)
+        {
+            index = inventoryRow.AssignSlots(slots, index);
+        }
+    }
+
     private void ToggleInventory()
     {
         isInventoryOpen = !isInventoryOpen;
 
-        foreach (GameObject inventoryRow in inventoryRows)
+        // Update the visibility of each inventory row accordingly
+        // 各在庫行の表示設定を適宜更新します
+        foreach (InventoryRowUI inventoryRow in inventoryRows)
         {
-            inventoryRow.SetActive(isInventoryOpen);
+            inventoryRow.gameObject.SetActive(IsInventoryOpen);
         }
     }
 
@@ -120,8 +143,15 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
 
         for (int i = 0; i < 2; ++i)
         {
-            Transform currentChild = transform.GetChild(i);
-            inventoryRows.Add(currentChild.gameObject);
+            Transform inventoryTransform = transform.GetChild(i);
+
+            if (inventoryTransform.TryGetComponent<InventoryRowUI>(out InventoryRowUI inventoryRow) == false)
+            {
+                Debug.LogWarning("InventoryUI: Failed to find inventory row components.");
+                return;
+            }
+
+            inventoryRows.Add(inventoryRow);
         }
 
         // Add the lifted item

@@ -18,14 +18,35 @@ public class InventoryRowUI : MonoBehaviour
         }
     }
 
+    public int AssignSlots(List<InventorySlot> invSlots, int startIndex)
+    {
+        for (int i = 0; i < slots.Count; ++i)
+        {
+            int invIndex = startIndex + i;
+            if (invIndex >= invSlots.Count) return invIndex;
+
+            slots[i].slot = invSlots[invIndex];
+        }
+
+        return startIndex + slots.Count;
+    }
+
+    public void UpdateUI()
+    {
+        foreach (InventorySlotUI slot in slots)
+        {
+            slot.UpdateUI();
+        }
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Find References")]
     private void FindReferences()
     {
         // Add the inventory slots
         // インベントリスロットを追加する
-        Transform slotParent = transform.Find("Slots");
         slots.Clear();
+        Transform slotParent = transform.Find("Slots");
 
         for (int i = 0; i < slotParent.childCount; ++i)
         {
