@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663312fd40047a64db79420edb6fad53, type: 3}
   m_Name: ColaItemEffect
   m_EditorClassIdentifier: Assembly-CSharp::ColaItemEffect
+  effectDuration: 20
+  speedUpRate: 0.15
