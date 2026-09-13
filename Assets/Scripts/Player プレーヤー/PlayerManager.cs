@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class Player : MonoBehaviour
+public class Player : PersistentSingleton<Player>
 {
     // Movement settings (movement speed, jump height, gravity)
     // 移動に関する設定（移動速度、ジャンプの高さ、重力の重さ）
@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     // Item settings 
     // アイテムに関する設定（所持数、速度上昇率、効果時間）
     [Header("Speed Item")][SerializeField] private int itemCount = 0;
-    [SerializeField] private float speedUpRate = 0.15f;
-    [SerializeField] private float speedUpDuration = 20f;
+    private float speedUpRate;
+    private float speedUpDuration;
 
     // Variables used for player movement
     // プレイヤーの移動処理に使用する変数
@@ -39,8 +39,10 @@ public class Player : MonoBehaviour
     private float speedUpTimer = 0f;
     private bool isSpeedUp = false;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         // Get the CharacterController component
         // CharacterControllerコンポーネントを取得する
         controller = GetComponent<CharacterController>();
@@ -67,6 +69,15 @@ public class Player : MonoBehaviour
         Move();
         Look();
         Cola();
+    }
+
+    public void SpeedUp(float speedUpRate, float speedUpDuration)
+    {
+        this.speedUpRate = speedUpRate;
+        this.speedUpDuration = speedUpDuration;
+
+        speedUpTimer = speedUpDuration;
+        isSpeedUp = true;
     }
 
     private void Move()

@@ -21,6 +21,31 @@ public class InventorySlot
         currentQuantity += quantity;
     }
 
+    public bool UseItem()
+    {
+        // Check if there is an item to use and if it is usable
+        // 使用できるアイテムが存在するか、また使用可能かどうかを確認する
+        if (IsOccupied == false || item.IsUsable == false) return false;
+
+        // Use the item
+        // アイテムを使用する
+        item.effect.Use();
+
+        // Consume the item where applicable
+        // 該当する場合はアイテムを消費する
+        if (item.isConsumable)
+        {
+            currentQuantity -= item.consumptionPerUse;
+
+            if (currentQuantity <= 0)
+            {
+                Clear();
+            }
+        }
+
+        return true;
+    }
+
     public void Clear()
     {
         item = null;

@@ -25,6 +25,17 @@ public class Inventory : PersistentSingleton<Inventory>
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        // Check if the player used an item
+        // プレイヤーがアイテムを使用したかどうかを確認する
+        if (InventoryInputHandler.Instance.CheckUseItemPressed())
+        {
+            UseItem();
+        }
+    }
+
     public bool CollectItem(CollectibleItemInstance item)
     {
         // Find a free slot in the list and assign the item to it
@@ -35,6 +46,8 @@ public class Inventory : PersistentSingleton<Inventory>
             return false;
         }
 
+        // Assign the item to the unoccupied slot
+        // アイテムを空いているスロットに割り当てる
         unoccupiedSlot.AssignItem(item.data, 0);
 
         // Update the InventorySlot
@@ -62,6 +75,23 @@ public class Inventory : PersistentSingleton<Inventory>
         // このスロットにアイテムを割り当てます
         InventorySlot slot = FindSlotByIndex(index);
         slot.AssignItem(item, currentQuantity);
+    }
+
+    private void UseItem()
+    {
+        // Get the selected slot and check if there is an item there
+        // 選択されたスロットを取得し、そこにアイテムがあるかどうかを確認します
+        InventorySlot selectedSlot = ToolbarUI.Instance.GetSelectedSlot();
+        if (selectedSlot.IsOccupied == false) return;
+
+        // Use the item
+        // アイテムを使用する
+        if (selectedSlot.UseItem())
+        {
+            // Update the UI if necessary
+            // 必要に応じてUIを更新する
+            InventoryUI.Instance.UpdateUI(selectedSlot.index);
+        }
     }
 
     private bool FindUnoccupiedSlot(out InventorySlot unoccupiedSlot)

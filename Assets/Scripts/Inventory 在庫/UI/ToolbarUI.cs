@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ToolbarUI : MonoBehaviour
+public class ToolbarUI : PersistentSingleton<ToolbarUI>
 {
     [Header("Toolbar")]
     // Store a reference to the inventory row
@@ -18,6 +18,11 @@ public class ToolbarUI : MonoBehaviour
     void Update()
     {
         UpdateSelection();
+    }
+
+    public InventorySlot GetSelectedSlot()
+    {
+        return slnOutline.SelectedSlot.slot;
     }
 
     private void UpdateSelection()

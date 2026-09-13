@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "CollectibleItemDatabase", menuName = "Scriptable Objects/Inventory/Items/CollectibleItemDatabase")]
+[CreateAssetMenu(fileName = "CollectibleItemDatabase", menuName = "Scriptable Objects/Inventory/Items/Collectibles/CollectibleItemDatabase")]
 public class CollectibleItemDatabase : ScriptableObject
 {
     [Header("Collectible Item Database")]

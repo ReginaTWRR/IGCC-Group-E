@@ -9,5 +9,6 @@ public abstract class ItemData : ScriptableObject
     // ItemInstance は、そのインスタンス固有の実行時データを格納します。
 
     [Header("Item Data")]
+    public ItemEffect effect;
     public string itemName;
 }
