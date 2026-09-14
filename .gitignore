@@ -104,8 +104,4 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
-Assets/Battle/Font/NotoSansJP-Medium.ttf.meta
-Assets/Battle/Font.meta
-Assets/Battle/Font/NotoSansJP-Medium SDF.asset
-Assets/Battle/Font/NotoSansJP-Medium SDF.asset.meta
-Assets/Battle/Font/NotoSansJP-Medium.ttf
+Assets/Fonts/BitcountSingle-Regular SDF.asset
