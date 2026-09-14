@@ -132,45 +132,58 @@ public class Player : MonoBehaviour
         // Detection While in Ghost Mode (CharacterController Disabled)
         if (controller != null && !controller.enabled)
         {
-            //Offset the starting point of the Ray to eye level or slightly higher Rayの起点を目線や少し高い位置にオフセット
-            Vector3 rayOrigin = transform.position + Vector3.up * 1.0f;
-            Ray ray = new Ray(rayOrigin, Vector3.down);
+            float deltaTime = Time.deltaTime;
 
-            //By raising the starting point, the irradiation distance is increased. 起点を高くした分、照射距離を伸ばす
-            bool isGroundedGhost = Physics.Raycast(ray,out RaycastHit hit,2.3f);
+            //Calculating the CharacterController's Foot Position
+            // CharacterControllerの足元位置を計算
+            float controllerBottom = controller.center.y - controller.height * 0.5f;
 
-            if (isGroundedGhost && verticalVelocity <= 0.5f)
+            Vector3 feetPosition = transform.position + Vector3.up * controllerBottom;
+
+            // Fire a ray from a point slightly above the feet
+            // 足元より少し上からRayを飛ばす
+            float rayStartOffset = 0.1f;
+            float rayLength = 0.3f;
+
+            Vector3 rayOrigin = feetPosition + Vector3.up * rayStartOffset;
+            bool isGroundedGhost = Physics.Raycast(rayOrigin,Vector3.down,out RaycastHit hit,rayLength);
+
+            if (isGroundedGhost && verticalVelocity <= 0.1f)
             {
-                float targetY = hit.point.y + 1.0f;
+                // Calculate the distance between the current foot and the floor
+                // 現在の足元と床との距離を計算
+                float groundOffset = hit.point.y - feetPosition.y;
 
-                //If the object is embedded in the ground, lock its position and clear its downward velocity 地面にめり込んでいる場合は位置を固定し、下方向の速度をクリアする                if (transform.position.y < targetY)
-                {
-                    Vector3 position = transform.position;
-                    position.y = targetY;
-                    transform.position = position;
-                }
+                // Align your feet with the floor
+                // 足元を床に合わせる
+                transform.position += Vector3.up * groundOffset;
 
-                // 接地中は落下速度をリセット
-                verticalVelocity = 0f;
+                // Maintain ground connection
+                // 接地状態を維持
+                verticalVelocity = -1.0f;
 
+                //Jump
                 // ジャンプ
-                if (Keyboard.current != null &&
-                    Keyboard.current.spaceKey.wasPressedThisFrame)
+                if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
                 {
-                    verticalVelocity = Mathf.Sqrt( jumpHeight * -2f * gravity);
+                    verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 }
             }
             else
             {
+                // In the air
                 // 空中
-                verticalVelocity += gravity * Time.deltaTime;
+                verticalVelocity += gravity * deltaTime;
             }
 
-            Vector3 ghostVelocity =move * currentSpeed +Vector3.up * verticalVelocity;
-            transform.Translate(ghostVelocity * Time.deltaTime,Space.World);
+            //Move
+            // 移動
+            Vector3 ghostVelocity = move * currentSpeed + Vector3.up * verticalVelocity;
+            transform.Translate(ghostVelocity * deltaTime, Space.World);
 
             return;
         }
+
         //Physics and Movement Processing in Human State (with CharacterController enabled)　人間状態（CharacterControllerが有効）の物理・移動処理
         bool isGrounded = controller.isGrounded;
 
