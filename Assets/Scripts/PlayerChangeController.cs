@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
 
 // Script for switching players　プレイヤーの切り替えに関するスクリプト
 public class PlayerChangeController : MonoBehaviour
@@ -38,10 +37,18 @@ public class PlayerChangeController : MonoBehaviour
         inputDevice.SwitchCurrentActionMap("Human");
     }
 
+    void Update()
+    {
+        if ((Keyboard.current != null) && (Keyboard.current.tabKey.wasPressedThisFrame))
+        {
+            ChangeLanguage();
+        }
+    }
+
     //Function to change to a ghost　プレイヤーを幽霊に変更する関数
     void OnChangeGhost(InputValue value)
     {
-        if (!value.isPressed) return;
+        if ((!value.isPressed) || (DialogueManager.Instance.IsDialogueActive)) return;
 
         if (spawnedCoffin != null) return;
 
@@ -69,7 +76,7 @@ public class PlayerChangeController : MonoBehaviour
     //Function to change to a human　プレイヤーを人間に変更する関数
     void OnChangeHuman(InputValue value)
     {
-        if (!value.isPressed) return;
+        if ((!value.isPressed) || (DialogueManager.Instance.IsDialogueActive)) return;
 
         if (spawnedCoffin != null)
         {
@@ -90,5 +97,14 @@ public class PlayerChangeController : MonoBehaviour
             GameObject.Destroy(spawnedCoffin);
             spawnedCoffin = null;
         }
+    }
+
+    // Function to switch languages　言語を切り替える関数
+    void ChangeLanguage()
+    {
+        if (DialogueManager.Instance.IsDialogueActive) return;
+
+        if (DialogueManager.Instance.IsWordedEnglish) DialogueManager.Instance.SetWordlanguage(false);
+        else DialogueManager.Instance.SetWordlanguage(true);
     }
 }

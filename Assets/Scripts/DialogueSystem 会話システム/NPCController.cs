@@ -6,8 +6,11 @@ public class NPCController : MonoBehaviour
 {
     [Header("Dialogue Data 「会話データ」")]
 
-    // Conversation JSON　会話Json
-    public TextAsset dialogueJson;
+    // Conversation JSON (English)　会話Json(英語)
+    public TextAsset dialogueJsonEnglish;
+
+    // Conversation JSON (Japanese)　会話Json(日本語)
+    public TextAsset dialogueJsonJapanese;
 
     // Check for nearby players　近くのプレイヤーがいるか調べる
     private bool isPlayerNearby = false;
@@ -15,13 +18,14 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
-        // Whether there is a player nearby and the C key is being pressed　近くにプレイヤーがいるのとCキーを押しているか
-        if ((isPlayerNearby) && (Keyboard.current != null) && (Keyboard.current.cKey.wasPressedThisFrame))
+        // Whether there is a player nearby and the Q key is being pressed　近くにプレイヤーがいるのとQキーを押しているか
+        if ((isPlayerNearby) && (Keyboard.current != null) && (Keyboard.current.qKey.wasPressedThisFrame))
         {
-            if (!DialogueManager.Instance.IsDialogueActive)
+            if ((!DialogueManager.Instance.IsDialogueActive) && (!DialogueManager.Instance.IsClosedThisFrame))
             {
                 // Start a conversation 会話を開始する
-                DialogueManager.Instance.StartDialogue(dialogueJson);
+                if (DialogueManager.Instance.IsWordedEnglish) DialogueManager.Instance.StartDialogue(dialogueJsonEnglish);
+                else DialogueManager.Instance.StartDialogue(dialogueJsonJapanese);
             }
         }
     }

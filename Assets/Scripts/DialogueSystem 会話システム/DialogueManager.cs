@@ -48,6 +48,12 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
     // NPC icon image　NPCアイコンイメージ
     public Image npcIconImage;
 
+    // Font Asset (English)　フォントアセット（英語）
+    public TMP_FontAsset fontEnglish;
+
+    // Font Asset (Japanese)　フォントアセット（日本語）
+    public TMP_FontAsset fontJapanese;
+
 
     [Header("System 「設定」")]
 
@@ -72,11 +78,21 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
     // Check if the frame has opened　フレームが開いたか調べる
     private bool openedThisFrame = false;
 
+    // Check if the frame has closed　フレームが閉じているか調べる
+    private bool closedThisFrame = false;
+
+    // Check if the characters are English　文字が英語か調べる
+    private bool isWordedEnglish = true;
+
     // Coroutine typing　コルーチンの型指定
     private Coroutine typingCoroutine;
 
+    // Scale Coroutine　大きさコルーチン
+    private Coroutine scaleCoroutine;
+
+
     // Function to start a conversation　会話を開始する関数
-    public void StartDialogue(TextAsset jsonFile)
+    public void StartDialogue(UnityEngine.TextAsset jsonFile)
     {
         if (isDialogueActive) return;
 
@@ -90,8 +106,23 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
         isDialogueActive = true;
         openedThisFrame = true;
 
+        // Change the font　フォントを変える
+        if (isWordedEnglish)
+        {
+            nameText.font = fontEnglish;
+            contentText.font = fontEnglish;
+        }
+        else
+        {
+            nameText.font = fontJapanese;
+            contentText.font = fontJapanese;
+        }
+
+        if (scaleCoroutine != null) StopCoroutine(scaleCoroutine);
+
+        dialogueBox.transform.localScale = Vector3.zero;
         dialogueBox.SetActive(true);
-        StartCoroutine(ScaleUI(Vector3.one));
+        scaleCoroutine = (StartCoroutine(ScaleUI(Vector3.one)));
 
         // Automatically start displaying the first line of dialogue　最初のセリフを自動で表示開始する
         DisplayNextSentence();
@@ -99,7 +130,9 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
 
     void Update()
     {
-        if (!isDialogueActive) return;
+        Debug.Log(IsWordedEnglish);
+
+        if ((!isDialogueActive) || (closedThisFrame)) return;
 
         if (openedThisFrame)
         {
@@ -107,8 +140,8 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
             return;
         }
 
-        // Processing when the C key is pressed during a conversation　会話中にCキーを押した時の処理
-        if ((Keyboard.current != null) && (Keyboard.current.cKey.wasPressedThisFrame))
+        // ction performed when the Q key or Space key is pressed during a conversation　会話中にQキーかスペースキーを押した時の処理
+        if ((Keyboard.current != null) && ((Keyboard.current.qKey.wasPressedThisFrame) || (Keyboard.current.spaceKey.wasPressedThisFrame)))
         {
             if (isTyping)
             {
@@ -137,7 +170,7 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
         }
 
         // Start typing the next line　次のセリフのタイピングを開始
-        if (typingCoroutine != null) StopCoroutine(TypeSentence(currentDialogues[currentIndex]));
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
         typingCoroutine = StartCoroutine(TypeSentence(currentDialogues[currentIndex]));
     }
 
@@ -154,7 +187,7 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
             if (!string.IsNullOrEmpty(dialogue.icon))
             {
                 // Load a sprite from the specified icon　指定したアイコンからスプライトを読み込む
-                Sprite iconSprite = Resources.Load<Sprite>("Texture/NPC/" + dialogue.icon);
+                Sprite iconSprite = Resources.Load<Sprite>("NPCIcon/" + dialogue.icon);
                 if (iconSprite != null)
                 {
                     npcIconImage.gameObject.SetActive(true);
@@ -177,9 +210,12 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
     private void EndDialogue()
     {
         isDialogueActive = false;
+        closedThisFrame = true;
+
+        if (scaleCoroutine != null) StopCoroutine(scaleCoroutine);
 
         // Hide the UI while scaling it down　UIを縮小しながら非表示にする
-        StartCoroutine(ScaleUI(Vector3.zero, () => dialogueBox.SetActive(false)));
+        scaleCoroutine = StartCoroutine(ScaleUI(Vector3.zero, () => dialogueBox.SetActive(false)));
     }
 
     // UI shrinking animation　UIの縮小アニメーション
@@ -196,9 +232,34 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
         }
 
         dialogueBox.transform.localScale = targetScale;
+        if (targetScale == Vector3.zero) closedThisFrame = false;
         onComplete?.Invoke();
+    }
+
+    // A function that sets the language for text　文字の言語を設定する関数
+    public void SetWordlanguage(bool englishWord)
+    {
+        isWordedEnglish = englishWord;
+
+        // Change the font　フォントを変える
+        if (isWordedEnglish)
+        {
+            nameText.font = fontEnglish;
+            contentText.font = fontEnglish;
+        }
+        else
+        {
+            nameText.font = fontJapanese;
+            contentText.font = fontJapanese;
+        }
     }
 
     // A property for checking from the outside whether a conversation is in progress　外部から会話中かどうかを確認するためのプロパティ
     public bool IsDialogueActive => isDialogueActive;
+
+    // A property for checking from the outside whether the frame is closed　外部からフレームを閉じているかどうかを確認するためのプロパティ
+    public bool IsClosedThisFrame => closedThisFrame;
+
+    // A property for checking from the outside whether a character is English　外部から文字が英語かどうかを確認するためのプロパティ
+    public bool IsWordedEnglish => isWordedEnglish;
 }
