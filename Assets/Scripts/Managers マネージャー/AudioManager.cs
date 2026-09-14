@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // Script for managing audio　オーディオを管理するスクリプト
 public class AudioManager : PersistentSingleton<AudioManager>
@@ -11,6 +13,12 @@ public class AudioManager : PersistentSingleton<AudioManager>
         public string name; // Name (for clarity)　名前（分かりやすくするように）
         public AudioClip clip; // mp3 format　mp3形式
     }
+
+    [Header("Text")]
+
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private TextMeshProUGUI bgmVolume;
+    [SerializeField] private TextMeshProUGUI seVolume;
 
     [Header("BGM")]
     public  AudioData[] bgms;
@@ -61,6 +69,18 @@ public class AudioManager : PersistentSingleton<AudioManager>
             this.mainCamera = GameObject.Find("Main Camera");
         }
         this.transform.position = this.mainCamera.transform.position;
+
+        if (this.canvas.enabled)
+        {
+            this.bgmVolume.text = bgmSource.volume.ToString();
+            this.seVolume.text = seSource.volume.ToString();
+        }
+
+        if ((Mouse.current != null) && (Mouse.current.middleButton.wasPressedThisFrame))
+        {
+            if (this.canvas.enabled) this.canvas.enabled = false;
+            else this.canvas.enabled = true;
+        }
     }
     // BGM
     public void PlayBGM(string name)
@@ -76,11 +96,32 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         this.bgmSource.Stop();
     }
+
+    public void SetBGMVolume(bool isAdd)
+    {
+        if (isAdd) this.bgmSource.volume += 0.1f;
+        else this.bgmSource.volume -= 0.1f;
+
+        this.bgmSource.volume = Mathf.Round(this.bgmSource.volume * 10.0f) / 10.0f;
+
+        this.bgmSource.volume = Mathf.Clamp(this.bgmSource.volume, 0.0f, 1.0f);
+    }
+
     // SE
     public void PlaySE(string name)
     {
         if (!this.seDictionary.TryGetValue(name, out AudioClip clip)) return;
 
         this.seSource.PlayOneShot(clip);
+    }
+
+    public void SetSEVolume(bool isAdd)
+    {
+        if (isAdd) this.seSource.volume += 0.1f;
+        else this.seSource.volume -= 0.1f;
+
+        this.seSource.volume = Mathf.Round(this.seSource.volume * 10.0f) / 10.0f;
+
+        this.seSource.volume = Mathf.Clamp(this.seSource.volume, 0.0f, 1.0f);
     }
 }
