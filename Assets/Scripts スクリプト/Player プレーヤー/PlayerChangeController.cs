@@ -68,6 +68,10 @@ public class PlayerChangeController : MonoBehaviour
 
         // Adjusted the settings to slightly raise the player's Y-axis position　プレイヤーのY軸位置を少し上げるように設定
         transform.position = new Vector3(transform.position.x, coffinPosition.y + 5.0f, transform.position.z);
+
+        // Ask tbe TransformationMonitor to react
+        // 変換モニターに反応するように要求する
+        TransformationMonitor.Instance.React(true);
     }
 
     // Function to change to a human プレイヤーを人間に変更する関数
@@ -92,6 +96,10 @@ public class PlayerChangeController : MonoBehaviour
             // Delete the generated coffin　生成した棺桶を削除する
             GameObject.Destroy(spawnedCoffin);
             spawnedCoffin = null;
+
+            // Ask tbe TransformationMonitor to react
+            // 変換モニターに反応するように要求する
+            TransformationMonitor.Instance.React(false);
         }
     }
 
