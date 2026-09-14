@@ -1,0 +1,216 @@
+{
+    "version": 1,
+    "name": "InputPlayerSystem",
+    "maps": [
+        {
+            "name": "Cursor",
+            "id": "fe6927b0-b60a-4d33-ae55-5af92296b9a0",
+            "actions": [
+                {
+                    "name": "Enable Cursor",
+                    "type": "Button",
+                    "id": "76db95d9-9863-4236-9cb6-dd3013a9d29d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a56f072a-9eba-4754-880f-eb4c95c30717",
+                    "path": "<Keyboard>/leftAlt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enable Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Human",
+            "id": "8a8c9731-fe56-4a9f-a5a4-3c8f5cf4662e",
+            "actions": [
+                {
+                    "name": "ChangeGhost",
+                    "type": "Button",
+                    "id": "862102c1-7f60-4ff2-b10a-5324338af84c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cdd2b645-ea80-4ca2-ab9b-3bed9ece3497",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeGhost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34cf5b4a-2d63-4660-9e5a-638a15997abd",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeGhost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Ghost",
+            "id": "f7db7185-58c3-40c1-a064-054bdd387aec",
+            "actions": [
+                {
+                    "name": "ChangeHuman",
+                    "type": "Button",
+                    "id": "b12d3233-b9dd-4a72-a3ab-a064bc554a36",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e2039703-c6d2-4152-a706-11bd91db5df1",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeHuman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "683081eb-5d78-43ac-9978-472769583995",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeHuman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player",
+            "id": "2dcd2bc0-4752-418c-a6b3-3df415b415d9",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "47af3ce9-0d34-476d-86fd-2c0d0bf074d6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2387e5b8-5c5f-41b2-aaae-de73ba4071da",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
+            "id": "81e66bc8-3b50-46c4-a819-e24a5c2ae4c2",
+            "actions": [
+                {
+                    "name": "Collect Item",
+                    "type": "Button",
+                    "id": "57e35228-e9ea-46c7-bbf4-87bc32675d64",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Use Item",
+                    "type": "Button",
+                    "id": "803e424a-db54-4b1d-b57a-9e90d9214ae9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Toggle Inventory",
+                    "type": "Button",
+                    "id": "fb9fceba-313c-462a-9768-d75e0085576d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "04ee699b-68f3-43e7-982a-9aa8965290cf",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53ba91b4-e1db-4760-ba38-77eaf9387e97",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f369ddff-ee4f-4f6a-8b84-b463fa8d2f9e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Collect Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

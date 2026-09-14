@@ -1,0 +1,19 @@
+{
+  "dialogueList": [
+    {
+      "name": "NPC",
+      "icon": "Test",
+      "text": "ABC Test desu"
+    },
+    {
+      "name": "NPC",
+      "icon": "Test",
+      "text": "ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB145"
+    },
+    {
+      "name": "NPC",
+      "icon": "Test",
+      "text": "Finish"
+    }
+  ]
+}
