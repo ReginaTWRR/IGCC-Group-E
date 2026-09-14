@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72504a00a71710459e7f7819bf0782d, type: 3}
   m_Name: PageItemData
   m_EditorClassIdentifier: Assembly-CSharp::ClickableItemData
-  effect: {fileID: 0}
+  effect: {fileID: 11400000, guid: d09e0454b2f241847ae017675bea74ff, type: 2}
   itemName: Page
+  itemSprite: {fileID: 21300000, guid: 6458aef023061034c8600fe80de0aad3, type: 3}
+  hasTooltip: 0
+  tooltipDescription: 
+  consumptionPerUse: 0
+  glowIntensity: 4

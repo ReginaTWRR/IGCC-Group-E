@@ -104,6 +104,19 @@ public class InventoryUI : PersistentSingleton<InventoryUI>
         // Update the boolean for other systems
         // 他のシステム用にブール値を更新する
         isInventoryOpen = !isInventoryOpen;
+
+        // Update the cursor
+        // カーソルを更新する
+        CursorManager csrMan = CursorManager.Instance;
+        
+        if (isInventoryOpen)
+        {
+            csrMan.EnableCursor();
+        }
+        else
+        {
+            csrMan.DisableCursor();
+        }
     }
 
 #if UNITY_EDITOR

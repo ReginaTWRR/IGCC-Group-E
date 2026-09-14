@@ -19,6 +19,7 @@ public class Clickable : MonoBehaviour
     void Update()
     {
         Glow();
+        Collect();
     }
 
     private void Glow()
@@ -41,11 +42,25 @@ public class Clickable : MonoBehaviour
         }
     }
 
+    private void Collect()
+    {
+        if (isGlowing)
+        {
+            if (InventoryInputHandler.Instance.CheckCollectItemPressed())
+            {
+                ItemCollector.Instance.CollectItem(instance, gameObject);
+                Destroy(gameObject);
+            }
+        }
+    }
+
     private void EnableGlow()
     {
+        if (instance.data is not ClickableItemData data) return;
+
         // Calculate the intensity factor using 2 to the power of glowIntensity
         // glowIntensityの2乗を使用して強度係数を計算します
-        float intensityFactor = Mathf.Pow(2, instance.data.glowIntensity);
+        float intensityFactor = Mathf.Pow(2, data.glowIntensity);
 
         // Create the newColor
         // 新しい色を作成する

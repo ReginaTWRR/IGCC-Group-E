@@ -13,6 +13,7 @@ public class CursorManager : PersistentSingleton<CursorManager>
     // Variables controlling the state of the cursor
     // カーソルの状態を制御する変数
     CursorState state;
+    bool shouldEnableCursor = false;
 
     public bool IsCursorEnabled => (
         state == CursorState.Enabled ||
@@ -54,30 +55,40 @@ public class CursorManager : PersistentSingleton<CursorManager>
         DetectHover();
     }
 
+    public void EnableCursor()
+    {
+        shouldEnableCursor = true;
+    }
+
+    public void DisableCursor()
+    {
+        shouldEnableCursor = false;
+    }
+
     private void UpdateFSM()
     {
         switch (state)
         {
             case CursorState.Enabled:
-                if (InventoryUI.Instance.IsInventoryOpen == false)
+                if (shouldEnableCursor == false)
                 {
                     state = CursorState.Disabled;
                 }
 
                 break;
             case CursorState.Disabled:
-                if (InventoryUI.Instance.IsInventoryOpen)
+                if (shouldEnableCursor)
                 {
                     state = CursorState.Enabled;
                 }
-                else if (Keyboard.current.leftAltKey.isPressed)
+                else if (InputSystem.actions["Enable Cursor"].IsPressed())
                 {
                     state = CursorState.TemporarilyEnabled;
                 }
 
                 break;
             case CursorState.TemporarilyEnabled:
-                if (Keyboard.current.leftAltKey.isPressed == false)
+                if (InputSystem.actions["Enable Cursor"].IsPressed() == false)
                 {
                     state = CursorState.Enabled;
                 }

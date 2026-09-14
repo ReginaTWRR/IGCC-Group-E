@@ -3,6 +3,35 @@
     "name": "InputPlayerSystem",
     "maps": [
         {
+            "name": "Cursor",
+            "id": "fe6927b0-b60a-4d33-ae55-5af92296b9a0",
+            "actions": [
+                {
+                    "name": "Enable Cursor",
+                    "type": "Button",
+                    "id": "76db95d9-9863-4236-9cb6-dd3013a9d29d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a56f072a-9eba-4754-880f-eb4c95c30717",
+                    "path": "<Keyboard>/leftAlt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enable Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Human",
             "id": "8a8c9731-fe56-4a9f-a5a4-3c8f5cf4662e",
             "actions": [
@@ -87,6 +116,16 @@
             "id": "81e66bc8-3b50-46c4-a819-e24a5c2ae4c2",
             "actions": [
                 {
+                    "name": "Collect Item",
+                    "type": "Button",
+                    "id": "57e35228-e9ea-46c7-bbf4-87bc32675d64",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Use Item",
                     "type": "Button",
                     "id": "803e424a-db54-4b1d-b57a-9e90d9214ae9",
@@ -127,6 +166,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Use Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f369ddff-ee4f-4f6a-8b84-b463fa8d2f9e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Collect Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

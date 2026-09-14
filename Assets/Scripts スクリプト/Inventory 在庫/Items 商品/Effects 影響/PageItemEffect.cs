@@ -5,6 +5,6 @@ public class PageItemEffect : ItemEffect
 {
     public override void Use()
     {
-        
+        PageUI.Instance.ShowPage();
     }
 }

@@ -22,8 +22,12 @@ public class TimerUI : PersistentSingleton<TimerUI>
     {
         if (IsTimerRunning == false) return;
 
+        // Update the timer
+        // タイマーを更新する
         timer -= Time.deltaTime;
 
+        // Disable the timer if the time is up
+        // 時間が経過したらタイマーを無効にする
         if (timer <= 0f)
         {
             SetTimer(0f);
@@ -34,6 +38,8 @@ public class TimerUI : PersistentSingleton<TimerUI>
         float zRotation = ((timer / duration) * 360f) + 90f;
         int intTimer = (int)(timer + 0.5f); // Round up 切り上げする
 
+        // Set the rotation
+        // 回転を設定します
         pivotTransform.rotation = Quaternion.Euler(0f, 0f, zRotation);
     }
 

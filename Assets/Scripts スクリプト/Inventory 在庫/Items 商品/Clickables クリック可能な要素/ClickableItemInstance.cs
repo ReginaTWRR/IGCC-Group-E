@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class ClickableItemInstance : ItemInstance
+public class ClickableItemInstance : CollectibleItemInstance
 {
-    [Header("Clickable Item Instance")]
-    public ClickableItemData data;
+    
 }

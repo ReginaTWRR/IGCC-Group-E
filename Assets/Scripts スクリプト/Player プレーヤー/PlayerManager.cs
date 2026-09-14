@@ -32,7 +32,10 @@ public class Player : PersistentSingleton<Player>
 
     // Variables used for camera movement
     // カメラの動きに使用される変数
-    public bool ShouldCameraMove => (CursorManager.Instance.IsCursorEnabled == false);
+    public bool ShouldCameraMove => (
+        GameManager.Instance.IsGamePaused == false &&
+        CursorManager.Instance.IsCursorEnabled == false
+    );
 
     // Speed item variables 
     // 速度アップアイテム用の変数
