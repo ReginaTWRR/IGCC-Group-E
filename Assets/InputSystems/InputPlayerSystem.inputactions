@@ -112,6 +112,35 @@
             ]
         },
         {
+            "name": "Player",
+            "id": "2dcd2bc0-4752-418c-a6b3-3df415b415d9",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "47af3ce9-0d34-476d-86fd-2c0d0bf074d6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2387e5b8-5c5f-41b2-aaae-de73ba4071da",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Inventory",
             "id": "81e66bc8-3b50-46c4-a819-e24a5c2ae4c2",
             "actions": [

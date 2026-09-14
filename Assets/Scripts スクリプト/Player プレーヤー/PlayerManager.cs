@@ -206,7 +206,7 @@ public class Player : PersistentSingleton<Player>
 
                 // ジャンプ
                 if (Keyboard.current != null &&
-                    Keyboard.current.spaceKey.wasPressedThisFrame)
+                    InputSystem.actions["Jump"].WasPressedThisFrame())
                 {
                     verticalVelocity = Mathf.Sqrt( jumpHeight * -2f * gravity);
                 }
