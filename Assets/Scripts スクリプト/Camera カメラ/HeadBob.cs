@@ -7,7 +7,7 @@ public class HeadBob : MonoBehaviour
     //歩行時のヘッドボブの設定（揺れの速さ、揺れ幅、滑らかさ）
     [Header("Head Bob")]
     [SerializeField] float bobFrequency = 10f;
-    [SerializeField] float bobAmplitude = 0.1f;
+    [SerializeField] float bobAmplitude = 0.2f;
     [SerializeField] float bobSmooth = 10f;
 
     // Camera settings during jumps (vertical movement intensity, smoothness)
@@ -18,11 +18,11 @@ public class HeadBob : MonoBehaviour
 
     // Variable to store the camera's initial position
     // カメラの初期位置を保存する変数
-    Vector3 initialPosition;
+    private Vector3 initialPosition;
 
     // Timer for managing head-bob timing
     // ヘッドボブのタイミングを管理するタイマー
-    float bobTimer;
+    private float bobTimer;
 
     // Get the player's movement speed and ground contact status
     // プレイヤーの移動速度や接地状態を取得
