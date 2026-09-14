@@ -1,8 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[Serializable]
+public class SoundSettingsData
+{
+    public float bgmVolume = 0.5f;
+    public float seVolume = 0.5f;
+}
 
 // Script for managing audio　オーディオを管理するスクリプト
 public class AudioManager : PersistentSingleton<AudioManager>
@@ -15,7 +23,6 @@ public class AudioManager : PersistentSingleton<AudioManager>
     }
 
     [Header("Text")]
-
     [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI bgmVolume;
     [SerializeField] private TextMeshProUGUI seVolume;
@@ -34,12 +41,16 @@ public class AudioManager : PersistentSingleton<AudioManager>
 
     private GameObject mainCamera;  // Object (Main Camera)　オブジェクト(Main Camera)
 
+    private string saveFilePath;
+
     protected override void Awake()
     {
         // Singleton verification　シングルトン確認
         base.Awake();
 
         if (AudioManager.Instance != this) return;
+
+        this.saveFilePath = Path.Combine(Application.persistentDataPath, "AudioVolume.json");
 
         this.bgmDictionary = new Dictionary<string, AudioClip>();
 
@@ -59,9 +70,14 @@ public class AudioManager : PersistentSingleton<AudioManager>
 
         this.bgmSource = sources[0];
         this.seSource = sources[1];
+
+        LoadSoundSettings();
     }
 
-
+    void Start()
+    {
+        
+    }
     void Update()
     {
         if (this.mainCamera == null)
@@ -105,6 +121,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
         this.bgmSource.volume = Mathf.Round(this.bgmSource.volume * 10.0f) / 10.0f;
 
         this.bgmSource.volume = Mathf.Clamp(this.bgmSource.volume, 0.0f, 1.0f);
+
+        SaveSoundSettings();
     }
 
     // SE
@@ -123,5 +141,36 @@ public class AudioManager : PersistentSingleton<AudioManager>
         this.seSource.volume = Mathf.Round(this.seSource.volume * 10.0f) / 10.0f;
 
         this.seSource.volume = Mathf.Clamp(this.seSource.volume, 0.0f, 1.0f);
+
+        SaveSoundSettings();
+    }
+
+    private void SaveSoundSettings()
+    {
+        SoundSettingsData data = new SoundSettingsData();
+        data.bgmVolume = this.bgmSource.volume;
+        data.seVolume = this.seSource.volume;
+
+        string json = JsonUtility.ToJson(data, true);
+
+        File.WriteAllText(this.saveFilePath, json);
+    }
+
+    private void LoadSoundSettings()
+    {
+        if (File.Exists(this.saveFilePath))
+        {
+            string json = File.ReadAllText(this.saveFilePath);
+            SoundSettingsData data = JsonUtility.FromJson<SoundSettingsData>(json);
+
+            this.bgmSource.volume = data.bgmVolume;
+            this.seSource.volume = data.seVolume;
+        }
+        else
+        {
+            this.bgmSource.volume = 0.5f;
+            this.seSource.volume = 0.5f;
+            SaveSoundSettings();
+        }
     }
 }
