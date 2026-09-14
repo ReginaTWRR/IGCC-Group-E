@@ -3,12 +3,14 @@ using UnityEngine;
 public class UIManager : PersistentSingleton<UIManager>
 {
     [Header("UI Manager")]
+    [SerializeField] GameObject health;
     [SerializeField] GameObject inventory;
     [SerializeField] GameObject page;
     [SerializeField] GameObject timer;
 
     public void SetDefault()
     {
+        health.SetActive(true);
         inventory.SetActive(true);
         page.SetActive(false);
         timer.SetActive(true);
@@ -16,6 +18,7 @@ public class UIManager : PersistentSingleton<UIManager>
 
     public void FocusPage()
     {
+        health.SetActive(false);
         inventory.SetActive(false);
         page.SetActive(true);
         timer.SetActive(false);
@@ -25,6 +28,17 @@ public class UIManager : PersistentSingleton<UIManager>
     [ContextMenu("Find References")]
     private void FindReferences()
     {
+        // Add the health
+        // 健康状態を追加
+        health = null;
+        Transform healthTransform = transform.Find("Health Canvas");
+        health = healthTransform.gameObject;
+
+        if (health == null)
+        {
+            Debug.LogWarning("UIManager: Failed to find health object.");
+        }
+
         // Add the inventory
         // 在庫を追加する
         inventory = null;

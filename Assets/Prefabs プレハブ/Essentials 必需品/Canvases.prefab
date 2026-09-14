@@ -2995,6 +2995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09478d10ba60d84caca4d0996c54ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  health: {fileID: 6792616129204091112}
   inventory: {fileID: 4691281640383122654}
   page: {fileID: 6765875879317930298}
   timer: {fileID: 4346322507230044456}
