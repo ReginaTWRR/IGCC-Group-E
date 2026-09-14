@@ -6,8 +6,21 @@ public class Clickable : MonoBehaviour
     [SerializeField] ClickableItemInstance instance;
     [SerializeField] Renderer rdr;
 
+    ClickableItemData data;
     Color baseColor;
     bool isGlowing = false;
+
+    private void Awake()
+    {
+        if (instance.data is ClickableItemData clickableData)
+        {
+            data = clickableData;
+        }
+        else
+        {
+            Debug.LogError("Clickable: The instance has an invalid itemData.");
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,7 +61,15 @@ public class Clickable : MonoBehaviour
         {
             if (InventoryInputHandler.Instance.CheckCollectItemPressed())
             {
+                // Collect the item
+                // アイテムを収集する
                 ItemCollector.Instance.CollectItem(instance, gameObject);
+
+                if (data.IsUsable && data.useOnCollection)
+                {
+                    data.effect.Use();
+                }
+
                 Destroy(gameObject);
             }
         }
@@ -56,8 +77,6 @@ public class Clickable : MonoBehaviour
 
     private void EnableGlow()
     {
-        if (instance.data is not ClickableItemData data) return;
-
         // Calculate the intensity factor using 2 to the power of glowIntensity
         // glowIntensityの2乗を使用して強度係数を計算します
         float intensityFactor = Mathf.Pow(2, data.glowIntensity);

@@ -9658,6 +9658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PageUI
   page: {fileID: 3050090107224773596}
+  pageImage: {fileID: 5462226938893927320}
   isPageShown: 0
 --- !u!1 &6884286805470169859
 GameObject:
