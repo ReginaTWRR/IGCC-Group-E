@@ -98,24 +98,73 @@ public class Player : MonoBehaviour
         input = Vector2.ClampMagnitude(input, 1f);
         Vector3 move = transform.right * input.x + transform.forward * input.y;
 
-        // Ground Collision Detection
-        // 地面判定
+        //Default Movement Speed Setting 通常の移動速度設定
+        float currentSpeed = moveSpeed;
+        //If a speed-boosting item is active, speed is increased by 15%　速度アップアイテムの効果中なら15%アップ
+        if (isSpeedUp)
+        {
+            currentSpeed = moveSpeed * (1f + speedUpRate);
+        }
+
+        // Detection While in Ghost Mode (CharacterController Disabled)
+        if (controller != null && !controller.enabled)
+        {
+            //Offset the starting point of the Ray to eye level or slightly higher Rayの起点を目線や少し高い位置にオフセット
+            Vector3 rayOrigin = transform.position + Vector3.up * 1.0f;
+            Ray ray = new Ray(rayOrigin, Vector3.down);
+
+            //By raising the starting point, the irradiation distance is increased. 起点を高くした分、照射距離を伸ばす
+            bool isGroundedGhost = Physics.Raycast(ray, out RaycastHit hit, 2.3f);
+
+            if (isGroundedGhost && verticalVelocity <= 0.5f)
+            {
+                //Target height from the floor surface 床の表面からの目標高さ
+                float targetY = hit.point.y + 1.0f;
+
+                //If the object is embedded in the ground, lock its position and clear its downward velocity 地面にめり込んでいる場合は位置を固定し、下方向の速度をクリアする
+                if (transform.position.y < targetY)
+                {
+                    Vector3 p = transform.position;
+                    p.y = targetY;
+                    transform.position = p;
+
+                    //Since the position was corrected directly, set the downward displacement for this frame to zero. 位置を直接補正したため、このフレームでの下方向移動量をゼロにする
+                    verticalVelocity = 0f;
+                }
+                else
+                {
+                    //Minimal downward velocity to maintain contact with the ground 接地維持のための微小な押し下げ速度
+                    verticalVelocity = -2f;
+                }
+
+                //Jump Detection ジャンプ判定
+                if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+                {
+                    verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                }
+            }
+            else
+            {
+                //If you are in the air, calculate gravity 空中にいる場合は重力を計算
+                verticalVelocity += gravity * Time.deltaTime;
+            }
+
+            //Transfer Processing 移動処理
+            Vector3 ghostVelocity = move * currentSpeed + Vector3.up * verticalVelocity;
+            transform.Translate(ghostVelocity * Time.deltaTime, Space.World);
+
+            return; //Terminate processing here during ghost mode. ゴースト時はここで処理を終了する
+        }
+
+        //Physics and Movement Processing in Human State (with CharacterController enabled)　人間状態（CharacterControllerが有効）の物理・移動処理
         bool isGrounded = controller.isGrounded;
 
-        // Jump
-        // ジャンプ
-        if (isGrounded == true)
+        if (isGrounded)
         {
-            // Reset the falling speed when on the ground
-            // 地面にいるときは落下速度をリセット
             verticalVelocity = -2f;
 
-            // The moment the Space key is pressed
-            // Spaceキーが押された瞬間
             if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                // Set jump speed
-                // ジャンプ速度を設定
                 verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
         }
@@ -124,21 +173,12 @@ public class Player : MonoBehaviour
         // 重力
         verticalVelocity += gravity * Time.deltaTime;
 
-        // 通常の移動速度
-        float currentSpeed = moveSpeed; 
-        // 速度アップアイテムの効果中なら15%アップ
-        if (isSpeedUp) 
-        { 
-            currentSpeed = moveSpeed * (1f + speedUpRate); 
-        }
-
-        //Move
-        // 移動
-        Vector3 velocity = move * currentSpeed + Vector3.up * verticalVelocity; controller.Move(velocity * Time.deltaTime);
+        //Movement with Collision Detection Using CharacterController CharacterControllerによる衝突判定ありの移動
+        Vector3 velocity = move * currentSpeed + Vector3.up * verticalVelocity;
         controller.Move(velocity * Time.deltaTime);
     }
 
-    //
+
     private void Cola()
     {
         if (Keyboard.current == null)
