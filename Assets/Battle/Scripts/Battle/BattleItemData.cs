@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-public struct ItemData
+public struct BattleItemData
 {
     public string itemName;
     public int healAmount;

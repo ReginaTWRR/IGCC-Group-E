@@ -16,7 +16,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private CharacterData enemyData;
 
     [Header("Inventory")]
-    [SerializeField] private List<ItemData> inventory = new List<ItemData>();
+    [SerializeField] private List<BattleItemData> inventory = new List<BattleItemData>();
 
     [Header("All Available Skills")]
     [SerializeField] private List<AttackSkill> allSkills; // 5色のスキルプール
@@ -39,7 +39,7 @@ public class BattleSystem : MonoBehaviour
         // アイテム初期化
         if (inventory.Count == 0)
         {
-            inventory.Add(new ItemData { itemName = "Potion", healAmount = 50, count = 2 });
+            inventory.Add(new BattleItemData { itemName = "Potion", healAmount = 50, count = 2 });
         }
 
         uiManager.SetupUI(playerData, enemyData);
@@ -212,7 +212,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (inventory[i].count > 0)
             {
-                ItemData item = inventory[i];
+                BattleItemData item = inventory[i];
                 item.count--;
                 inventory[i] = item;
 
