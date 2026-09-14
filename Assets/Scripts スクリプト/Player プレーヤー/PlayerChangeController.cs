@@ -1,5 +1,4 @@
-﻿using UnityEditor.UIElements;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 // Script for switching players　プレイヤーの切り替えに関するスクリプト
