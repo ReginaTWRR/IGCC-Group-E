@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+
 
 public class BattleSystem : MonoBehaviour
 {
     [SerializeField] private BattleUIManager uiManager;
 
     [Header("Dataes")]
-    //[SerializeField] private CharacterData playerData;
     [SerializeField] private CharacterData playerData;
-    //[SerializeField] private CharacterData enemyData;
+
     [SerializeField] private CharacterData enemyData;
 
     [Header("Inventory")]
@@ -36,13 +39,17 @@ public class BattleSystem : MonoBehaviour
         // アイテム初期化
         if (inventory.Count == 0)
         {
-            inventory.Add(new ItemData { itemName = "Potion", healAmount = 50, count = 3 });
+            inventory.Add(new ItemData { itemName = "Potion", healAmount = 50, count = 2 });
         }
 
         uiManager.SetupUI(playerData, enemyData);
-        uiManager.UpdateLog($"{enemyData.characterName} ga arawareta!");
+        uiManager.UpdateLog($"{enemyData.characterName} が あらわれた!");
 
-        yield return new WaitForSeconds(1.0f);
+        bool isPressed = false;
+        using (var subscription = InputSystem.onAnyButtonPress.Call(control => isPressed = true))
+        {
+            yield return new WaitUntil(() => isPressed);
+        }
 
         //先手はプレイヤーから
         ChangeState(BattleState.PlayerTurn);
@@ -72,12 +79,13 @@ public class BattleSystem : MonoBehaviour
                 //最大HP参照の毒
                 int poisonDamage = Mathf.Max(1, character.maxHp / 10);
                 character.TakeDamage(poisonDamage);
-
+                playerData.ChargeSpecialGauge((int)(poisonDamage*0.75));
+                uiManager.UpdatePlayerUI(playerData);
                 if (isPlayer) uiManager.UpdatePlayerUI(character);
                 else uiManager.UpdateEnemyUI(character);
 
-                uiManager.UpdateLog($"{character.characterName} ha dokunodame-ziwouketa! (-{poisonDamage})");
-                yield return new WaitForSeconds(1.0f);
+                uiManager.UpdateLog($"{character.characterName} は 毒によるダメージを受けた! (-{poisonDamage})");
+                yield return new WaitForSeconds(3.0f);
             }
 
             //ターン数の減算
@@ -102,26 +110,59 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
-        uiManager.UpdateLog("dousuru?");
+        uiManager.UpdateLog("なにする?");
         uiManager.UpdatePlayerUI(playerData);
         uiManager.OpenActionPanel();
+        yield return StartCoroutine(uiManager.UIAnimation(1));
     }
 
 
     public void OnMainAttackButton()
     {
+        
+
+        
         if (_currentState != BattleState.PlayerTurn) return;
-
-        List<AttackSkill> pool = new List<AttackSkill>(allSkills);
-        for (int i = 0; i < 3; i++)
+        if (playerData.currentSpecialGauge < playerData.maxSpecialGauge)
         {
-            if (pool.Count == 0) break;
-            int randomIndex = Random.Range(0, pool.Count);
-            _currentAttackOptions[i] = pool[randomIndex];
-            pool.RemoveAt(randomIndex);
-        }
+            StartCoroutine(MainAttackRoutine());
+            IEnumerator MainAttackRoutine()
+            {
+                yield return StartCoroutine(uiManager.UIAnimation(0));
 
-        uiManager.OpenAttackChoicePanel(_currentAttackOptions);
+                List<AttackSkill> pool = new List<AttackSkill>(allSkills);
+                for (int i = 0; i < 3; i++)
+                {
+                    if (pool.Count == 0) break;
+                    int randomIndex = Random.Range(0, pool.Count-1);
+                    _currentAttackOptions[i] = pool[randomIndex];
+                    pool.RemoveAt(randomIndex);
+                }
+
+                uiManager.OpenAttackChoicePanel(_currentAttackOptions);
+                yield return StartCoroutine(uiManager.UIAnimation(3));
+            }
+        }
+        else
+        {
+            StartCoroutine(MainAttackRoutine());
+            IEnumerator MainAttackRoutine()
+            {
+                yield return StartCoroutine(uiManager.UIAnimation(0));
+
+                List<AttackSkill> pool = new List<AttackSkill>(allSkills);
+                for (int i = 0; i < 3; i++)
+                {
+                    if (pool.Count == 0) break;
+                    int randomIndex = pool.Count-1;
+                    _currentAttackOptions[i] = pool[randomIndex];
+                    
+                }
+
+                uiManager.OpenAttackChoicePanel(_currentAttackOptions,true);
+                yield return StartCoroutine(uiManager.UIAnimation(4));
+            }
+        }
     }
 
 
@@ -135,21 +176,21 @@ public class BattleSystem : MonoBehaviour
     {
         uiManager.HideAllPanels();
 
-        if (skill.skillColor == SkillColor.Purple && !playerData.IsSpecialReady)
+        if (skill.skillColor == SkillColor.Special && !playerData.IsSpecialReady)
         {
 
             playerData.currentSpecialGauge = 0;
         }
 
 
-        skill.Execute(playerData, enemyData, out string log);
+        int damage = skill.Execute(playerData, enemyData, out string log);
         uiManager.UpdateLog(log);
         uiManager.UpdateEnemyUI(enemyData);
 
-        playerData.ChargeSpecialGauge(50);
+        playerData.ChargeSpecialGauge((int)(damage*0.5));
         uiManager.UpdatePlayerUI(playerData);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.0f);
 
         if (enemyData.IsDead) ChangeState(BattleState.Won);
         else ChangeState(BattleState.EnemyTurn);
@@ -177,7 +218,7 @@ public class BattleSystem : MonoBehaviour
 
                 playerData.currentHp = Mathf.Clamp(playerData.currentHp + item.healAmount, 0, playerData.maxHp);
                 uiManager.UpdatePlayerUI(playerData);
-                uiManager.UpdateLog($"{item.itemName} wo use ! HP {item.healAmount} kaihukusita （nokori {item.count} cnt）");
+                uiManager.UpdateLog($"{item.itemName} を　つかった ! {item.healAmount} 回復した （のこり {item.count} 個）");
                 itemUsed = true;
                 break;
             }
@@ -185,13 +226,13 @@ public class BattleSystem : MonoBehaviour
 
         if (!itemUsed)
         {
-            uiManager.UpdateLog("NOT USE!");
-            yield return new WaitForSeconds(1.0f);
+            uiManager.UpdateLog("使えない!");
+            yield return new WaitForSeconds(3.0f);
             uiManager.OpenActionPanel();
             yield break;
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.0f);
         ChangeState(BattleState.EnemyTurn);
     }
 
@@ -199,7 +240,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (_currentState != BattleState.PlayerTurn) return;
         uiManager.HideAllPanels();
-        uiManager.UpdateLog("Player see Enemy");
+        uiManager.UpdateLog("敵を観察している");
         Invoke(nameof(GoToEnemyTurn), 1.0f);
     }
 
@@ -215,7 +256,8 @@ public class BattleSystem : MonoBehaviour
         }
 
         uiManager.UpdateLog($"{enemyData.characterName} 's ta-n");
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(3.0f);
+        uiManager.UpdateEnemyUI(enemyData);
 
 
         AttackSkill enemySkill = allSkills[Random.Range(0, allSkills.Count)];
@@ -223,19 +265,21 @@ public class BattleSystem : MonoBehaviour
 
         int previousHp = playerData.currentHp;
 
-        enemySkill.Execute(enemyData, playerData, out string log);
+        int damage = enemySkill.Execute(enemyData, playerData, out string log);
         uiManager.UpdateLog(log);
         uiManager.UpdatePlayerUI(playerData);
 
 
         if (playerData.currentHp < previousHp)
         {
-            playerData.ChargeSpecialGauge(75);
+            playerData.ChargeSpecialGauge((int)(damage*0.75));
             uiManager.UpdatePlayerUI(playerData);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        uiManager.UpdateEnemyUI(enemyData);
 
+        yield return new WaitForSeconds(3f);
+        
         if (playerData.IsDead) ChangeState(BattleState.Lost);
         else ChangeState(BattleState.PlayerTurn);
     }
@@ -243,6 +287,8 @@ public class BattleSystem : MonoBehaviour
     private void EndBattle(bool isWon)
     {
         uiManager.HideAllPanels();
-        uiManager.UpdateLog(isWon ? $"{enemyData.characterName} wo taosita!" : "Player lose ...");
+        uiManager.UpdateLog(isWon ? $"{enemyData.characterName} を倒した!" : "負け");
     }
+
+
 }

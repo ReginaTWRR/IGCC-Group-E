@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PurpleSkill
   m_EditorClassIdentifier: Assembly-CSharp::AttackSkill
   skillName: purple
-  skillColor: 0
+  skillColor: 4
   description: 
   Color_R: 255
   Color_G: 0

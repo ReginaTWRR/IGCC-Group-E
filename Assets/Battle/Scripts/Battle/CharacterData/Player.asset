@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01903d3875274c54ea7298531b1fde83, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: KN
+  characterName: "\u304B\u306B"
   maxHp: 300
-  currentHp: 300
+  currentHp: 160
   baseAttackPower: 30
   baseHitRate: 90
-  currentSpecialGauge: 0
-  activeEffects: []
+  maxSpecialGauge: 200
+  currentSpecialGauge: 200
+  activeEffects:
+  - type: 2
+    durationTurns: 2

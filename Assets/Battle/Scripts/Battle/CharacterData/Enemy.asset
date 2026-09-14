@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01903d3875274c54ea7298531b1fde83, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: MZNK
+  characterName: "\u307F\u305A\u306E\u3053"
   maxHp: 400
-  currentHp: 400
+  currentHp: 350
   baseAttackPower: 40
   baseHitRate: 90
+  maxSpecialGauge: 200
   currentSpecialGauge: 0
   activeEffects: []

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 [CreateAssetMenu(fileName = "NewCharacterData", menuName = "Battle/CharacterData")]
 public class CharacterData : ScriptableObject
@@ -15,13 +16,14 @@ public class CharacterData : ScriptableObject
     [Range(0, 100)] public int baseHitRate = 90;
 
     [Header("Special Gauge (%)")]
-    public int currentSpecialGauge = 0; // MAX = 100
+    public int maxSpecialGauge = 200;
+    public int currentSpecialGauge = 0;
 
     // 現在かかっている状態異常のリスト
-    [HideInInspector] public List<ActiveEffect> activeEffects = new List<ActiveEffect>();
+    [SerializeField] public List<ActiveEffect> activeEffects = new List<ActiveEffect>();
 
     public bool IsDead => currentHp <= 0;
-    public bool IsSpecialReady => currentSpecialGauge >= 100;
+    public bool IsSpecialReady => currentSpecialGauge >= maxSpecialGauge;
 
     public int GetCurrentAttack()
     {
@@ -36,10 +38,38 @@ public class CharacterData : ScriptableObject
         return hasBlind ? baseHitRate / 2 : baseHitRate;
     }
 
-    // シールドを持っているか確認
-    public bool HasShield() => activeEffects.Exists(e => e.type == EffectType.Shield);
-    // 反射を持っているか確認
+    public bool HasDebuff() => activeEffects.Exists(e => e.type == EffectType.Debuff);
+    public int HasDebuffTurn()
+    {
+        var targetEffect = activeEffects.Find(e => e.type == EffectType.Debuff);
+
+        return targetEffect.durationTurns;
+
+    }
+   
+    public bool HasPoison() => activeEffects.Exists(e => e.type == EffectType.Poison);
+
+    public int HasPoisonTurn()
+    {
+        var targetEffect = activeEffects.Find(e => e.type == EffectType.Poison);
+
+        return targetEffect.durationTurns;
+
+    }
     public bool HasReflect() => activeEffects.Exists(e => e.type == EffectType.Reflect);
+    public bool HasBlind() => activeEffects.Exists(e => e.type == EffectType.Blind);
+
+    public int HasBlindTurn()
+    {
+        var targetEffect = activeEffects.Find(e => e.type == EffectType.Blind);
+
+        return targetEffect.durationTurns;
+
+    }
+    public bool HasShield() => activeEffects.Exists(e => e.type == EffectType.Shield);
+    
+    
+    
 
     public void TakeDamage(int damage)
     {
@@ -48,7 +78,7 @@ public class CharacterData : ScriptableObject
 
     public void ChargeSpecialGauge(int amount)
     {
-        currentSpecialGauge = Mathf.Clamp(currentSpecialGauge + amount, 0, 100);
+        currentSpecialGauge = Mathf.Clamp(currentSpecialGauge + amount, 0, maxSpecialGauge);
     }
 
     public bool EvaluateHit()
