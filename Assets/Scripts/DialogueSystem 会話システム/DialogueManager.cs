@@ -130,8 +130,6 @@ public class DialogueManager : PersistentSingleton<DialogueManager>
 
     void Update()
     {
-        Debug.Log(IsWordedEnglish);
-
         if ((!isDialogueActive) || (closedThisFrame)) return;
 
         if (openedThisFrame)

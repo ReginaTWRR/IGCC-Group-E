@@ -1,9 +1,16 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 // NPC script for conversations　会話で使用するNPCのスクリプト
 public class NPCController : MonoBehaviour
 {
+    [Header("Object 「オブジェクト」")]
+
+    // Player Object　プレイヤーオブジェクト
+    [SerializeField] private GameObject playerObject;
+
+
     [Header("Dialogue Data 「会話データ」")]
 
     // Conversation JSON (English)　会話Json(英語)
@@ -16,18 +23,38 @@ public class NPCController : MonoBehaviour
     private bool isPlayerNearby = false;
 
 
+    [Header("System 「設定」")]
+
+    // Interpolation speed　補間速度
+    [SerializeField] private float transitionSpeed = 8.0f;
+
     void Update()
     {
-        // Whether there is a player nearby and the Q key is being pressed　近くにプレイヤーがいるのとQキーを押しているか
-        if ((isPlayerNearby) && (Keyboard.current != null) && (Keyboard.current.qKey.wasPressedThisFrame))
+        // Are there any players nearby　近くにプレイヤーがいるか
+        if (isPlayerNearby)
         {
-            if ((!DialogueManager.Instance.IsDialogueActive) && (!DialogueManager.Instance.IsClosedThisFrame))
+            // direction　方向
+            Vector3 direction = (playerObject.transform.position - transform.position).normalized;
+
+            if (direction != Vector3.zero)
             {
-                // Start a conversation 会話を開始する
-                if (DialogueManager.Instance.IsWordedEnglish) DialogueManager.Instance.StartDialogue(dialogueJsonEnglish);
-                else DialogueManager.Instance.StartDialogue(dialogueJsonJapanese);
+                quaternion rotate = Quaternion.LookRotation(direction);
+
+                // Interpolated movement toward the target　ターゲットに向かって補間移動
+                transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * transitionSpeed);
             }
-        }
+
+            // Are you pressing the Q key　Qキーを押しているか
+            if ((Keyboard.current != null) && (Keyboard.current.qKey.wasPressedThisFrame))
+            {
+                if ((!DialogueManager.Instance.IsDialogueActive) && (!DialogueManager.Instance.IsClosedThisFrame))
+                {
+                    // Start a conversation 会話を開始する
+                    if (DialogueManager.Instance.IsWordedEnglish) DialogueManager.Instance.StartDialogue(dialogueJsonEnglish);
+                    else DialogueManager.Instance.StartDialogue(dialogueJsonJapanese);
+                }
+            }
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
