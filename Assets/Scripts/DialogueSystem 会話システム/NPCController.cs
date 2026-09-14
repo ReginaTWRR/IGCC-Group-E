@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 // NPC script for conversations　会話で使用するNPCのスクリプト
 public class NPCController : MonoBehaviour
@@ -26,7 +27,16 @@ public class NPCController : MonoBehaviour
     [Header("System 「設定」")]
 
     // Interpolation speed　補間速度
-    [SerializeField] private float transitionSpeed = 8.0f;
+    [SerializeField] private float transitionSpeed = 2.0f;
+
+    // Initial rotational position　初期回転位置
+    private Quaternion initialRotatetion;
+
+    void Start()
+    {
+        // Save initial rotational position　初期回転位置を保存
+        initialRotatetion = transform.rotation;
+    }
 
     void Update()
     {
@@ -41,7 +51,7 @@ public class NPCController : MonoBehaviour
                 quaternion rotate = Quaternion.LookRotation(direction);
 
                 // Interpolated movement toward the target　ターゲットに向かって補間移動
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * transitionSpeed);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * transitionSpeed);
             }
 
             // Are you pressing the Q key　Qキーを押しているか
@@ -55,6 +65,11 @@ public class NPCController : MonoBehaviour
                 }
             }
         } 
+        else
+        {
+            // Interpolated movement toward the target　ターゲットに向かって補間移動
+            transform.rotation = Quaternion.Slerp(transform.rotation, initialRotatetion, Time.deltaTime * transitionSpeed);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

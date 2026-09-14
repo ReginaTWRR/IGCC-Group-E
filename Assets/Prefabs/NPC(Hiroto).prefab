@@ -50,7 +50,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   dialogueJsonEnglish: {fileID: 4900000, guid: 795317e0e680849449023354c7698917, type: 3}
   dialogueJsonJapanese: {fileID: 4900000, guid: 2953af2da27495d40a3b95bff986bfa6, type: 3}
-  transitionSpeed: 8
+  transitionSpeed: 2
 --- !u!135 &8754107611262670907
 SphereCollider:
   m_ObjectHideFlags: 0
