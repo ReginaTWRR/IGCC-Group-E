@@ -10,6 +10,8 @@ public enum CursorState
 
 public class CursorManager : PersistentSingleton<CursorManager>
 {
+    // Variables controlling the state of the cursor
+    // カーソルの状態を制御する変数
     CursorState state;
 
     public bool IsCursorEnabled => (
@@ -17,10 +19,28 @@ public class CursorManager : PersistentSingleton<CursorManager>
         state == CursorState.TemporarilyEnabled
     );
 
+    // Variables for hovering over objects
+    // オブジェクトにマウスカーソルを合わせるための変数
+    [Header("Hovering")]
+    [SerializeField] LayerMask raycastTargets;
+
+    Camera mainCam;
+    GameObject hoveredObject;
+
+    public GameObject HoveredObject => hoveredObject;
+
     protected override void Awake()
     {
         base.Awake();
         state = CursorState.Disabled;
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        // Cache the main camera for better performance
+        // パフォーマンス向上のため、メインカメラをキャッシュする
+        mainCam = Camera.main;
     }
 
     // Update is called once per frame
@@ -28,6 +48,10 @@ public class CursorManager : PersistentSingleton<CursorManager>
     {
         UpdateFSM();
         UpdateCursor();
+
+        if (IsCursorEnabled == false) return;
+
+        DetectHover();
     }
 
     private void UpdateFSM()
@@ -73,6 +97,29 @@ public class CursorManager : PersistentSingleton<CursorManager>
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    private void DetectHover()
+    {
+        // Create a ray from the camera passing through the mouse position
+        // カメラからマウスの位置を通過する光線を作成する
+        Ray ray = mainCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        // Do the raycast
+        // レイキャストを実行する
+        if (Physics.Raycast(ray, out RaycastHit hit, raycastTargets))
+        {
+            GameObject hitObject = hit.collider.gameObject;
+
+            if (hitObject != hoveredObject)
+            {
+                hoveredObject = hitObject;
+            }
+        }
+        else
+        {
+            hoveredObject = null;
         }
     }
 }

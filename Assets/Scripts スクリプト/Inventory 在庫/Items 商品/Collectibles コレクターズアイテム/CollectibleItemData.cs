@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CollectibleItemData", menuName = "Scriptable Objects/Inventory/Items/Collectibles/CollectibleItemData")]
 public class CollectibleItemData : ItemData
 {
-    [Header("Collectible Item Data")]
+    [Header("Collectible Item")]
     public Sprite itemSprite;
 
     [Header("Tooltip")]
