@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: CarrotItemData
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemData
   itemName: Carrot
+  effect: {fileID: 11400000, guid: adc0314d75186c246b3f0f46914fce4a, type: 2}
   itemSprite: {fileID: 21300000, guid: 7cdaf272b7f080546ade73900f338924, type: 3}
+  hasTooltip: 1
   tooltipDescription: A very tasty looking carrot
+  consumptionPerUse: 1

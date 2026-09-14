@@ -11,7 +11,7 @@ public class UIManager : PersistentSingleton<UIManager>
     {
         inventory.SetActive(true);
         page.SetActive(false);
-        timer.SetActive(TimerUI.Instance.IsTimerRunning);
+        timer.SetActive(true);
     }
 
     public void FocusPage()

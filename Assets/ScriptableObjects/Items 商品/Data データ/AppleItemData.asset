@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: AppleItemData
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemData
   itemName: Apple
+  effect: {fileID: 11400000, guid: 1403bf8b8ee48034bbab3f203288ed1e, type: 2}
   itemSprite: {fileID: 21300000, guid: 4e11ddc7855b58245a2b5a7b1228682c, type: 3}
+  hasTooltip: 1
   tooltipDescription: Are there doctors down here?
+  consumptionPerUse: 1

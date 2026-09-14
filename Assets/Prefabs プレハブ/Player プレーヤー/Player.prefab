@@ -391,6 +391,8 @@ MonoBehaviour:
   playerCamera: {fileID: 2821105683359783553}
   mouseSensitivity: 0.1
   maxLookAngle: 90
+  startingHealth: 50
+  maxHealth: 100
   itemCount: 0
 --- !u!114 &8086143144115481155
 MonoBehaviour:

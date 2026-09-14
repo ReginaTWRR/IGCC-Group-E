@@ -65,11 +65,15 @@ public class Clickable : MonoBehaviour
                 // アイテムを収集する
                 ItemCollector.Instance.CollectItem(instance, gameObject);
 
+                // Use the item where applicable
+                // 該当する場合はアイテムを使用してください
                 if (data.IsUsable && data.useOnCollection)
                 {
                     data.effect.Use();
                 }
 
+                // Destroy the object
+                // オブジェクトを破棄する
                 Destroy(gameObject);
             }
         }

@@ -18,6 +18,16 @@ public class Player : PersistentSingleton<Player>
     [SerializeField] private float mouseSensitivity = 0.1f;
     [SerializeField] private float maxLookAngle = 90f;
 
+    // Health settings
+    // 健康設定
+    [Header("Health")]
+    [SerializeField] float startingHealth = 100f;
+    [SerializeField] float maxHealth = 100f;
+    private float currentHealth;
+
+    public float MaxHealth => maxHealth;
+    public float CurrentHealth => currentHealth;
+
     // Item settings 
     // アイテムに関する設定（所持数、速度上昇率、効果時間）
     [Header("Speed Item")][SerializeField] private int itemCount = 0;
@@ -65,6 +75,21 @@ public class Player : PersistentSingleton<Player>
                 playerCamera = cam.transform;
             }
         }
+
+        // Initialise the health
+        // ヘルスを初期化する
+        if (startingHealth > maxHealth)
+        {
+            Debug.LogError("PlayerManager: Attempted to start the game with too much health.");
+        }
+
+        currentHealth = startingHealth;
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        HealthUI.Instance.UpdateHealthUI(currentHealth);
     }
 
     private void Update()
@@ -72,6 +97,18 @@ public class Player : PersistentSingleton<Player>
         Move();
         Look();
         Cola();
+    }
+
+    public void Heal(float healAmount)
+    {
+        currentHealth += healAmount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        HealthUI.Instance.UpdateHealthUI(currentHealth);
     }
 
     public void SpeedUp(float speedUpRate, float speedUpDuration)
