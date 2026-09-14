@@ -55,7 +55,7 @@ public class CameraPersonController : MonoBehaviour
         RaycastHit hit;
 
         // Check if an object is in contact with the space between the camera and the player　カメラとプレイヤーの間にオブジェクトが接触しているか調べる
-        if (Physics.Raycast(playerObject.transform.position, direction.normalized, out hit, maxDistance))
+        if ((Physics.Raycast(playerObject.transform.position, direction.normalized, out hit, maxDistance)) && (!hit.collider.CompareTag("NPC")))
         {
             // Move the camera slightly forward from the point of contact　接触位置からカメラを少し前に出す
             targetPosition = hit.point - direction.normalized * 0.2f;
