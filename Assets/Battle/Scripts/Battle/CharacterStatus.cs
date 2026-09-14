@@ -1,0 +1,82 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class CharacterStatus
+{
+    public string characterName;
+
+    [Header("HP")]
+    public int maxHp;
+    public int currentHp;
+
+    [Header("Combat")]
+    public int baseAttackPower;
+    [Range(0, 100)] public int baseHitRate = 90;
+
+    [Header("Special Gauge (%)")]
+    public int currentSpecialGauge = 0; // 100でMAX
+
+    // 現在かかっている状態異常のリスト
+    [HideInInspector] public List<ActiveEffect> activeEffects = new List<ActiveEffect>();
+
+    public bool IsDead => currentHp <= 0;
+    public bool IsSpecialReady => currentSpecialGauge >= 100;
+
+    // 現在のバフ・デバフを考慮した攻撃力を取得
+    public int GetCurrentAttack()
+    {
+        bool hasDebuff = activeEffects.Exists(e => e.type == EffectType.Debuff);
+        return hasDebuff ? Mathf.Max(1, baseAttackPower / 2) : baseAttackPower;
+    }
+
+    // 現在の状態異常を考慮した命中率を取得
+    public int GetCurrentHitRate()
+    {
+        bool hasBlind = activeEffects.Exists(e => e.type == EffectType.Blind);
+        return hasBlind ? baseHitRate / 2 : baseHitRate;
+    }
+
+    // シールドを持っているか確認
+    public bool HasShield() => activeEffects.Exists(e => e.type == EffectType.Shield);
+    // 反射を持っているか確認
+    public bool HasReflect() => activeEffects.Exists(e => e.type == EffectType.Reflect);
+
+    public void TakeDamage(int damage)
+    {
+        currentHp = Mathf.Clamp(currentHp - damage, 0, maxHp);
+    }
+
+    public void ChargeSpecialGauge(int amount)
+    {
+        currentSpecialGauge = Mathf.Clamp(currentSpecialGauge + amount, 0, 100);
+    }
+
+    public bool EvaluateHit()
+    {
+        return Random.Range(0, 100) < GetCurrentHitRate();
+    }
+
+    // 状態異常の付与
+    public void AddEffect(EffectType type, int turns)
+    {
+        // 既存の同じ効果があればターン数を上書き、なければ新規追加
+        int index = activeEffects.FindIndex(e => e.type == type);
+        if (index >= 0)
+        {
+            var effect = activeEffects[index];
+            effect.durationTurns = turns;
+            activeEffects[index] = effect;
+        }
+        else
+        {
+            activeEffects.Add(new ActiveEffect { type = type, durationTurns = turns });
+        }
+    }
+
+    // シールドや反射などの「1回消費型」の効果を消去
+    public void RemoveEffect(EffectType type)
+    {
+        activeEffects.RemoveAll(e => e.type == type);
+    }
+}
