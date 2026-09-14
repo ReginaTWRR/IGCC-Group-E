@@ -271,10 +271,11 @@ GameObject:
   - component: {fileID: 8332823219813047019}
   - component: {fileID: 8086143144115481155}
   - component: {fileID: 4149131398705670877}
+  - component: {fileID: 279083184453262170}
   - component: {fileID: 7259339489007653035}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +343,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -423,6 +424,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemCollector
   playerMagnet: {fileID: 5362604100649837979}
+--- !u!114 &279083184453262170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461847713269978617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783f6b8d0cd14a748b1327becd9cec51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstaclesPushController
+  pushPower: 2
 --- !u!114 &7259339489007653035
 MonoBehaviour:
   m_ObjectHideFlags: 0
