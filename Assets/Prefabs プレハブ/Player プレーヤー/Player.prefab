@@ -410,7 +410,7 @@ MonoBehaviour:
   playerCamera: {fileID: 2821105683359783553}
   mouseSensitivity: 0.1
   maxLookAngle: 90
-  startingHealth: 50
+  startingHealth: 100
   maxHealth: 100
   itemCount: 0
   footstepAudio: {fileID: 0}
