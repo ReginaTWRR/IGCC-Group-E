@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4684213290928609848}
   - component: {fileID: 4272319881218394326}
   - component: {fileID: 1929856030134654958}
+  - component: {fileID: 3677089923410456200}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -154,6 +155,23 @@ MonoBehaviour:
   firstPersonAnchor: {fileID: 8568170509112850208}
   thistPersonAnchor: {fileID: 7434619440992433679}
   transitionSpeed: 8
+--- !u!114 &3677089923410456200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909678362578278624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bec57c18ff1af49be8ce13ee33c7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeadBob
+  bobFrequency: 10
+  bobAmplitude: 0.2
+  bobSmooth: 10
+  jumpCameraHeight: 0.15
+  jumpCameraSmooth: 8
 --- !u!1 &2748363970098672611
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +290,7 @@ GameObject:
   - component: {fileID: 8086143144115481155}
   - component: {fileID: 4149131398705670877}
   - component: {fileID: 7259339489007653035}
+  - component: {fileID: 5264541296443211316}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -467,6 +486,23 @@ MonoBehaviour:
   m_DefaultActionMap: Human
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5264541296443211316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461847713269978617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bec57c18ff1af49be8ce13ee33c7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeadBob
+  bobFrequency: 10
+  bobAmplitude: 0.2
+  bobSmooth: 10
+  jumpCameraHeight: 0.15
+  jumpCameraSmooth: 8
 --- !u!1 &5644038737193802871
 GameObject:
   m_ObjectHideFlags: 0
