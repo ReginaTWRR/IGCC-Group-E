@@ -131,16 +131,6 @@ MonoBehaviour:
     isEnabledWhenGhost: 0
   - receiver: {fileID: 0}
     isEnabledWhenGhost: 0
-  - receiver: {fileID: 0}
-    isEnabledWhenGhost: 0
-  - receiver: {fileID: 0}
-    isEnabledWhenGhost: 0
-  - receiver: {fileID: 0}
-    isEnabledWhenGhost: 0
-  - receiver: {fileID: 0}
-    isEnabledWhenGhost: 0
-  - receiver: {fileID: 0}
-    isEnabledWhenGhost: 0
 --- !u!1 &5750164532481409333
 GameObject:
   m_ObjectHideFlags: 0
