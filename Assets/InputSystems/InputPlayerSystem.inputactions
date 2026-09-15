@@ -3,6 +3,35 @@
     "name": "InputPlayerSystem",
     "maps": [
         {
+            "name": "Cursor",
+            "id": "fe6927b0-b60a-4d33-ae55-5af92296b9a0",
+            "actions": [
+                {
+                    "name": "Enable Cursor",
+                    "type": "Button",
+                    "id": "76db95d9-9863-4236-9cb6-dd3013a9d29d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a56f072a-9eba-4754-880f-eb4c95c30717",
+                    "path": "<Keyboard>/leftAlt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enable Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Human",
             "id": "8a8c9731-fe56-4a9f-a5a4-3c8f5cf4662e",
             "actions": [
@@ -83,9 +112,142 @@
             ]
         },
         {
-            "name": "UI",
+            "name": "Player",
+            "id": "2dcd2bc0-4752-418c-a6b3-3df415b415d9",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "47af3ce9-0d34-476d-86fd-2c0d0bf074d6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Move Forward",
+                    "type": "Button",
+                    "id": "a4f40741-0a8a-4a3e-aa67-ce8b125c1571",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Move Backward",
+                    "type": "Button",
+                    "id": "6141cac0-4bbc-4b89-820c-20e30fbbad93",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Move Rightward",
+                    "type": "Button",
+                    "id": "a88b5b7d-1fb2-4082-9eec-f446c6d1c27b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Move Leftward",
+                    "type": "Button",
+                    "id": "a297f581-29b0-41bc-befb-35ddc8dd3a8f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2387e5b8-5c5f-41b2-aaae-de73ba4071da",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b7f47c5-541f-452b-8497-581b9cef77df",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be391386-eb29-41c8-89a8-671f56d6a5ca",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Backward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "847cd897-ca3f-46a9-aa95-34e18bc3098b",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Rightward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f03126f-876c-4ea0-8236-6d099c760e6b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Leftward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
             "id": "81e66bc8-3b50-46c4-a819-e24a5c2ae4c2",
             "actions": [
+                {
+                    "name": "Collect Item",
+                    "type": "Button",
+                    "id": "57e35228-e9ea-46c7-bbf4-87bc32675d64",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Use Item",
+                    "type": "Button",
+                    "id": "803e424a-db54-4b1d-b57a-9e90d9214ae9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
                 {
                     "name": "Toggle Inventory",
                     "type": "Button",
@@ -106,6 +268,57 @@
                     "processors": "",
                     "groups": "",
                     "action": "Toggle Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53ba91b4-e1db-4760-ba38-77eaf9387e97",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f369ddff-ee4f-4f6a-8b84-b463fa8d2f9e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Collect Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Interaction",
+            "id": "82c2a279-17e9-4958-a415-d3f0b1617644",
+            "actions": [
+                {
+                    "name": "Click Interact",
+                    "type": "Button",
+                    "id": "42479155-2983-48ef-94b3-b1d524667003",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c58e4764-45ba-436b-9b86-6d48aa63ccef",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
