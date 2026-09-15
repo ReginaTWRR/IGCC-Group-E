@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8202271176978167894}
+  - component: {fileID: 8257832005864892107}
   m_Layer: 0
   m_Name: "Fox \u30AD\u30C4\u30CD"
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   - {fileID: 118893305214164025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8257832005864892107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900566483071587193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d591e22a77a69469ef1124e2fb7231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!1001 &444974184239152082
 PrefabInstance:
   m_ObjectHideFlags: 0

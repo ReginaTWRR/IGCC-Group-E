@@ -22,6 +22,18 @@ public class TransformationMonitor : PersistentSingleton<TransformationMonitor>
     bool isPlayerAGhost = false;
     public bool IsPlayerAGhost => isPlayerAGhost;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        isPlayerAGhost = false;
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        React(isPlayerAGhost);
+    }
+
     public void React(bool isPlayerAGhost)
     {
         // React accordingly
@@ -80,6 +92,15 @@ public class TransformationMonitor : PersistentSingleton<TransformationMonitor>
         foreach (CollectibleItemInstance collectible in collectibles)
         {
             reactions.Add(new(collectible.gameObject, false));
+        }
+
+        // Add the enemies
+        // 敵を追加する
+        Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+
+        foreach (Enemy enemy in enemies)
+        {
+            reactions.Add(new(enemy.gameObject, true));
         }
     }
 #endif

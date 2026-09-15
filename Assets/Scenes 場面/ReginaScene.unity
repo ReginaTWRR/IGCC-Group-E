@@ -1581,22 +1581,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2186281585907945691, guid: ba400ffe849527b41bbc6a3f7fd9952d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2186281585907945691, guid: ba400ffe849527b41bbc6a3f7fd9952d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2186281585907945691, guid: ba400ffe849527b41bbc6a3f7fd9952d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2186281585907945691, guid: ba400ffe849527b41bbc6a3f7fd9952d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760727999024239645, guid: ba400ffe849527b41bbc6a3f7fd9952d, type: 3}
       propertyPath: m_Name
       value: Snake
