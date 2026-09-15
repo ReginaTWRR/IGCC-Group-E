@@ -1,41 +1,16 @@
 using UnityEngine;
 
-public class Clickable : Collectible
+public class GlowOnMouseHover : MonoBehaviour
 {
-    [Header("Clickable")]
+    [Header("Glow Effect")]
     [SerializeField] GameObject objWithCollider;
     [SerializeField] Renderer rdr;
-
-    // Cache the clickable item data if the type casting was successful
-    // 型変換が成功した場合、クリック可能なアイテムのデータをキャッシュする
-    ClickableItemData data;
+    [SerializeField] float glowIntensity = 4f;
 
     Color baseColor;
+
     bool isGlowing = false;
-
-    protected override void CheckCollection()
-    {
-        // Check if the item has been clicked while the mouse is hovered over it
-        // マウスカーソルがアイテムの上に重なっている間に、アイテムがクリックされたかどうかを確認します。
-        if (isGlowing && InventoryInputHandler.Instance.CheckCollectItemPressed())
-        {
-            CollectItem();
-        }
-    }
-
-    private void Awake()
-    {
-        if (instance.data is ClickableItemData clickableData)
-        {
-            data = clickableData;
-        }
-        else
-        {
-            Debug.LogError("Clickable: The instance has an invalid itemData.");
-            Debug.Log($"Clickable: itemData = {instance.data}");
-            Debug.Log($"Clickable: gameObject = {gameObject.name}");
-        }
-    }
+    public bool IsGlowing => isGlowing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,9 +27,9 @@ public class Clickable : Collectible
         }
     }
 
-    protected override void Update()
+    // Update is called once per frame
+    void Update()
     {
-        base.Update();
         Glow();
     }
 
@@ -84,7 +59,7 @@ public class Clickable : Collectible
     {
         // Calculate the intensity factor using 2 to the power of glowIntensity
         // glowIntensityの2乗を使用して強度係数を計算します
-        float intensityFactor = Mathf.Pow(2, data.glowIntensity);
+        float intensityFactor = Mathf.Pow(2, glowIntensity);
 
         // Create the newColor
         // 新しい色を作成する

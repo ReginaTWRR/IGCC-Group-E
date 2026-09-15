@@ -23,7 +23,7 @@ public abstract class Collectible : MonoBehaviour
         // 該当する場合はアイテムを使用してください
         if (instance.data.IsUsable && instance.data.useOnCollection)
         {
-            instance.data.effect.Use();
+            instance.data.effect.TriggerEffect();
         }
 
         // Destroy the item

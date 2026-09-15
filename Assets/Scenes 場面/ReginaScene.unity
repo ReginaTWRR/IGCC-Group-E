@@ -1348,17 +1348,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4014997402427075407, guid: 8ddd1cc2820f673459f92a10b60b9c35, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5109247486894748067, guid: 8ddd1cc2820f673459f92a10b60b9c35, type: 3}
       propertyPath: m_Name
       value: Polaroid
-      objectReference: {fileID: 0}
-    - target: {fileID: 5109247486894748067, guid: 8ddd1cc2820f673459f92a10b60b9c35, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5909056266011461320, guid: 8ddd1cc2820f673459f92a10b60b9c35, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1398,10 +1390,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5909056266011461320, guid: 8ddd1cc2820f673459f92a10b60b9c35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6908613661283875397, guid: 8ddd1cc2820f673459f92a10b60b9c35, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

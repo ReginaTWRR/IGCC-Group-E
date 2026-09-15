@@ -2,5 +2,5 @@ using UnityEngine;
 
 public abstract class ItemEffect : ScriptableObject
 {
-    public abstract void Use();
+    public abstract void TriggerEffect();
 }

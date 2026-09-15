@@ -5,7 +5,7 @@ public abstract class TimedItemEffect : ItemEffect
     [Header("Timed Item")]
     public float effectDuration = 1f;
 
-    public override void Use()
+    public override void TriggerEffect()
     {
         TimerUI.Instance.SetTimer(effectDuration);
     }

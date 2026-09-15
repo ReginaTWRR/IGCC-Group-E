@@ -29,7 +29,7 @@ public class InventorySlot
 
         // Use the item
         // アイテムを使用する
-        item.effect.Use();
+        item.effect.TriggerEffect();
 
         // Consume the item where applicable
         // 該当する場合はアイテムを消費する

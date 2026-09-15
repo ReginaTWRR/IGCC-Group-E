@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2607120300920664593}
   - component: {fileID: 781571199336086843}
   - component: {fileID: 5980700261772886736}
+  - component: {fileID: 3183875980464533507}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -47,8 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Clickable
   instance: {fileID: 5980700261772886736}
-  objWithCollider: {fileID: 2044716622001983025}
-  rdr: {fileID: 531625550153543652}
+  glowEffect: {fileID: 3183875980464533507}
 --- !u!114 &5980700261772886736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +62,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClickableItemInstance
   data: {fileID: 11400000, guid: a9d58b50339170146b68d37be985c382, type: 2}
+--- !u!114 &3183875980464533507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655376552541362998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661aeeddaa569144a883400c1f815c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlowOnMouseHover
+  objWithCollider: {fileID: 2044716622001983025}
+  rdr: {fileID: 531625550153543652}
+  glowIntensity: 4
 --- !u!1001 &1198277728622539616
 PrefabInstance:
   m_ObjectHideFlags: 0
