@@ -1,15 +1,27 @@
 using UnityEngine;
 
-public class Clickable : MonoBehaviour
+public class Clickable : Collectible
 {
     [Header("Clickable")]
-    [SerializeField] ClickableItemInstance instance;
     [SerializeField] GameObject objWithCollider;
     [SerializeField] Renderer rdr;
 
+    // Cache the clickable item data if the type casting was successful
+    // 型変換が成功した場合、クリック可能なアイテムのデータをキャッシュする
     ClickableItemData data;
+
     Color baseColor;
     bool isGlowing = false;
+
+    protected override void CheckCollection()
+    {
+        // Check if the item has been clicked while the mouse is hovered over it
+        // マウスカーソルがアイテムの上に重なっている間に、アイテムがクリックされたかどうかを確認します。
+        if (isGlowing && InventoryInputHandler.Instance.CheckCollectItemPressed())
+        {
+            CollectItem();
+        }
+    }
 
     private void Awake()
     {
@@ -20,6 +32,8 @@ public class Clickable : MonoBehaviour
         else
         {
             Debug.LogError("Clickable: The instance has an invalid itemData.");
+            Debug.Log($"Clickable: itemData = {instance.data}");
+            Debug.Log($"Clickable: gameObject = {gameObject.name}");
         }
     }
 
@@ -38,11 +52,10 @@ public class Clickable : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         Glow();
-        Collect();
     }
 
     private void Glow()
@@ -63,30 +76,6 @@ public class Clickable : MonoBehaviour
                 CursorManager.Instance.IsCursorEnabled == false)
             {
                 DisableGlow();
-            }
-        }
-    }
-
-    private void Collect()
-    {
-        if (isGlowing)
-        {
-            if (InventoryInputHandler.Instance.CheckCollectItemPressed())
-            {
-                // Collect the item
-                // アイテムを収集する
-                PlayerItemCollector.Instance.CollectItem(instance, gameObject);
-
-                // Use the item where applicable
-                // 該当する場合はアイテムを使用してください
-                if (data.IsUsable && data.useOnCollection)
-                {
-                    data.effect.Use();
-                }
-
-                // Destroy the object
-                // オブジェクトを破棄する
-                Destroy(gameObject);
             }
         }
     }

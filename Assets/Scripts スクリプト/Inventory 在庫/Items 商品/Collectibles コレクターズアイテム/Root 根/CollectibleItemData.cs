@@ -1,11 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CollectibleItemData", menuName = "Scriptable Objects/Inventory/Items/Collectibles/CollectibleItemData")]
-public class CollectibleItemData : ItemData
+public abstract class CollectibleItemData : ItemData
 {
     [Header("Collectible Item")]
-    public ItemEffect effect;
     public Sprite itemSprite;
+
+    [Header("Usability")]
+    public ItemEffect effect;
+    public bool useOnCollection = false;
     public bool IsUsable => (effect != null);
 
     [Header("Tooltip")]

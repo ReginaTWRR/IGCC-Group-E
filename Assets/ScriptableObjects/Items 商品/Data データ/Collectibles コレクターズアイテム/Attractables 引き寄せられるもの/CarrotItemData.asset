@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 528ef187fec5eb84fa2799d571307cad, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f8c585124a94dc47910947d8d7fe53d, type: 3}
   m_Name: CarrotItemData
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleItemData
+  m_EditorClassIdentifier: Assembly-CSharp::AttractableItemData
   itemName: Carrot
-  effect: {fileID: 11400000, guid: adc0314d75186c246b3f0f46914fce4a, type: 2}
   itemSprite: {fileID: 21300000, guid: 7cdaf272b7f080546ade73900f338924, type: 3}
+  effect: {fileID: 11400000, guid: adc0314d75186c246b3f0f46914fce4a, type: 2}
+  useOnCollection: 0
   hasTooltip: 1
   tooltipDescription: A very tasty looking carrot
   consumptionPerUse: 1

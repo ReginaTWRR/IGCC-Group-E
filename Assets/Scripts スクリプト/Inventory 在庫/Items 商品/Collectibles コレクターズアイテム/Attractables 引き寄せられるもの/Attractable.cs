@@ -1,17 +1,15 @@
 using UnityEngine;
 
-public class Collectible : MonoBehaviour
+public class Attractable : Collectible
 {
-    [Header("Collectible")]
-    [SerializeField] CollectibleItemInstance instance;
+    [Header("Attractable")]
     [SerializeField] HoverEffect3D hoverEffect;
     [SerializeField] float maxCollectionDuration = 1f;
 
     float attractionTime = -Mathf.Infinity;
     bool isBeingCollected = false;
 
-    // Update is called once per frame
-    void Update()
+    protected override void CheckCollection()
     {
         // Check if the item has been following the player for too long
         // アイテムがプレイヤーに追従しすぎているかどうかを確認する
@@ -36,12 +34,6 @@ public class Collectible : MonoBehaviour
         {
             CollectItem();
         }
-    }
-
-    private void CollectItem()
-    {
-        PlayerItemCollector.Instance.CollectItem(instance, gameObject);
-        Destroy(gameObject);
     }
 
 #if UNITY_EDITOR

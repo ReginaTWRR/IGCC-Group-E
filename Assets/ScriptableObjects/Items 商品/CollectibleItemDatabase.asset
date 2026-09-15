@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CollectibleItemDatabase
   m_EditorClassIdentifier: Assembly-CSharp::ItemDatabase
   collectibleItemDatas:
-  - {fileID: 11400000, guid: a9d58b50339170146b68d37be985c382, type: 2}
-  - {fileID: 11400000, guid: 66491eceaee73ea458719c42b1188f3e, type: 2}
   - {fileID: 11400000, guid: dccc4e05cb2548440a5bce5170ccd1ff, type: 2}
   - {fileID: 11400000, guid: 580fcdaa2dc707841b27d7680b26ad55, type: 2}
   - {fileID: 11400000, guid: 932bef46bae56e74d989c3467153c1bc, type: 2}
+  - {fileID: 11400000, guid: a9d58b50339170146b68d37be985c382, type: 2}
+  - {fileID: 11400000, guid: 66491eceaee73ea458719c42b1188f3e, type: 2}
