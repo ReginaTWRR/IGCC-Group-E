@@ -2433,18 +2433,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1988649587122418730, guid: ad66bcdf395a7ef4793e46ae6971cbac, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: bc79ef986f666714d8e94393b003b57f, type: 2}
-    - target: {fileID: 5007816027769374750, guid: ad66bcdf395a7ef4793e46ae6971cbac, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: bc79ef986f666714d8e94393b003b57f, type: 2}
-    - target: {fileID: 6129527399056863774, guid: ad66bcdf395a7ef4793e46ae6971cbac, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: bc79ef986f666714d8e94393b003b57f, type: 2}
     - target: {fileID: 6371835057417928211, guid: ad66bcdf395a7ef4793e46ae6971cbac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -2489,10 +2477,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minion
       objectReference: {fileID: 0}
-    - target: {fileID: 7831462767209424039, guid: ad66bcdf395a7ef4793e46ae6971cbac, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: bc79ef986f666714d8e94393b003b57f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
