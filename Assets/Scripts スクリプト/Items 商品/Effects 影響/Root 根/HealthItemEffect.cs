@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HealthItemEffect", menuName = "Scriptable Objects/Inventory/Items/Effects/HealthItemEffect")]
+[CreateAssetMenu(fileName = "HealthItemEffect", menuName = "Scriptable Objects/Items/Effects/HealthItemEffect")]
 public class HealthItemEffect : ItemEffect
 {
     [Header("Health Item")]

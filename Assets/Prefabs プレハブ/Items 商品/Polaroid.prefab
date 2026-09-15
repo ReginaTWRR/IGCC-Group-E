@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5909056266011461320}
   - component: {fileID: 5053474237475610082}
+  - component: {fileID: 8928840515743933532}
   - component: {fileID: 952598137266603377}
   m_Layer: 0
   m_Name: Polaroid
@@ -46,7 +47,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c82263862d5b242a0b4fada57dd282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClickableInteractable
+  instance: {fileID: 8928840515743933532}
   glowEffect: {fileID: 952598137266603377}
+--- !u!114 &8928840515743933532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109247486894748067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50927c4021cd6c4c9926043da121e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickableInteractableItemInstance
+  data: {fileID: 11400000, guid: 726e32af79c690f4abca3922cc85e36b, type: 2}
 --- !u!114 &952598137266603377
 MonoBehaviour:
   m_ObjectHideFlags: 0

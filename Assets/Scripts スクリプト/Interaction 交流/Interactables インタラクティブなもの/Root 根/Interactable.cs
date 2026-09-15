@@ -15,7 +15,21 @@ public abstract class Interactable : MonoBehaviour
 
     protected void Interact()
     {
-        // Call the item's OnInteract() function
-        // アイテムの OnInteract() 関数を呼び出す
+        // Call the item's effect function
+        // アイテムのエフェクト関数を呼び出す
+        instance.data.effect.TriggerEffect();
+
+        // Update the number of interactions
+        // インタラクション数を更新する
+        ++instance.currentInteractTimes;
+
+        // Check if the item has run out of interactions
+        // アイテムのインタラクション回数が上限に達したかどうかを確認する
+        if (instance.IsOutOfInteractions)
+        {
+            // Destroy the item
+            // アイテムを破棄する
+            Destroy(gameObject);
+        }
     }
 }

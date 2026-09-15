@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PageItemEffect", menuName = "Scriptable Objects/Inventory/Items/Effects/PageItemEffect")]
+[CreateAssetMenu(fileName = "PageItemEffect", menuName = "Scriptable Objects/Items/Effects/PageItemEffect")]
 public class PageItemEffect : ItemEffect
 {
     [Header("Page Item Effect")]

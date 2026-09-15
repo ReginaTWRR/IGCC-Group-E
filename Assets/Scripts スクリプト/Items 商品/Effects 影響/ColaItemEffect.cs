@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ColaItemEffect", menuName = "Scriptable Objects/Inventory/Items/Effects/ColaItemEffect")]
+[CreateAssetMenu(fileName = "ColaItemEffect", menuName = "Scriptable Objects/Items/Effects/ColaItemEffect")]
 public class ColaItemEffect : TimedItemEffect
 {
     [Header("Cola")]
