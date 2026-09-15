@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemCollector : PersistentSingleton<ItemCollector>
+public class PlayerItemCollector : PersistentSingleton<PlayerItemCollector>
 {
     [Header("Item Collector")]
     [SerializeField] PointEffector3D playerMagnet;

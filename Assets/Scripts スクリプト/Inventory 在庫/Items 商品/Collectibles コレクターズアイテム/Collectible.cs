@@ -40,7 +40,7 @@ public class Collectible : MonoBehaviour
 
     private void CollectItem()
     {
-        ItemCollector.Instance.CollectItem(instance, gameObject);
+        PlayerItemCollector.Instance.CollectItem(instance, gameObject);
         Destroy(gameObject);
     }
 

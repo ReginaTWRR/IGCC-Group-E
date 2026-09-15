@@ -63,7 +63,7 @@ public class Clickable : MonoBehaviour
             {
                 // Collect the item
                 // アイテムを収集する
-                ItemCollector.Instance.CollectItem(instance, gameObject);
+                PlayerItemCollector.Instance.CollectItem(instance, gameObject);
 
                 // Use the item where applicable
                 // 該当する場合はアイテムを使用してください
