@@ -6,8 +6,9 @@ public class PageItemEffect : ItemEffect
     [Header("Page Item Effect")]
     public Sprite pageSprite;
 
-    public override void TriggerEffect()
+    public override bool TriggerEffect()
     {
         PageUI.Instance.ShowPage(pageSprite);
+        return true;
     }
 }

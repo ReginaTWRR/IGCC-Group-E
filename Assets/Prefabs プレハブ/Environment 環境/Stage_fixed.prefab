@@ -6566,8 +6566,8 @@ GameObject:
   - component: {fileID: 2004177542216618720}
   - component: {fileID: 6691167822417514034}
   - component: {fileID: 2211681531335229053}
-  m_Layer: 0
-  m_Name: Door 16
+  m_Layer: 2
+  m_Name: Yellow Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16464,6 +16464,7 @@ GameObject:
   - component: {fileID: 6821057609048005609}
   - component: {fileID: 5012920677393180730}
   - component: {fileID: 2867084657210157539}
+  - component: {fileID: 6174161786424333194}
   m_Layer: 0
   m_Name: Object144
   m_TagString: Untagged
@@ -16565,6 +16566,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4289358294559607945, guid: 073999209cd3ee04791a37e0fa9ba9ba, type: 3}
+--- !u!114 &6174161786424333194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5213572599136943890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4e4f604f88a1b4a9ea1e5b2c775fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlidingTransition
+  tfm: {fileID: 3512478093229742211}
+  hiddenPos: {x: 2.064059, y: 0.1000018, z: -9.356524}
+  shownPos: {x: 0, y: 0, z: 0}
+  slideDuration: 3
+  shouldShow: 1
+  shouldCopyHiddenPos: 0
+  shouldCopyShownPos: 1
 --- !u!1 &5246093646757863076
 GameObject:
   m_ObjectHideFlags: 0
@@ -19097,8 +19117,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7971455404424023055}
-  m_Layer: 0
-  m_Name: Door 19
+  - component: {fileID: 4146942296760837773}
+  - component: {fileID: 7121994618956537977}
+  m_Layer: 2
+  m_Name: Black Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19121,6 +19143,50 @@ Transform:
   - {fileID: 3512478093229742211}
   m_Father: {fileID: 1366924495696460873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4146942296760837773
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347051649229309532}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 1.375, z: -9.375}
+--- !u!114 &7121994618956537977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347051649229309532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616cef7765bfce24b9c1329dad67c8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  match: {fileID: 11400000, guid: fb1365975e500064b941810454b98f1d, type: 2}
+  colliders:
+  - {fileID: 4146942296760837773}
+  - {fileID: 8860058092115478293}
+  - {fileID: 2867084657210157539}
+  renderers:
+  - {fileID: 6193409283626099903}
+  - {fileID: 5012920677393180730}
+  transitions:
+  - {fileID: 7298045361869423420}
+  - {fileID: 6174161786424333194}
 --- !u!1 &6358091057853112051
 GameObject:
   m_ObjectHideFlags: 0
@@ -21912,6 +21978,7 @@ GameObject:
   - component: {fileID: 1596156133242649252}
   - component: {fileID: 6193409283626099903}
   - component: {fileID: 8860058092115478293}
+  - component: {fileID: 7298045361869423420}
   m_Layer: 0
   m_Name: Object143
   m_TagString: Untagged
@@ -22013,6 +22080,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4565219636324545150, guid: 073999209cd3ee04791a37e0fa9ba9ba, type: 3}
+--- !u!114 &7298045361869423420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688374717064541550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4e4f604f88a1b4a9ea1e5b2c775fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlidingTransition
+  tfm: {fileID: 6245250215296293012}
+  hiddenPos: {x: -2.064047, y: 0.100002, z: -9.406531}
+  shownPos: {x: 0, y: 0, z: 0}
+  slideDuration: 3
+  shouldShow: 1
+  shouldCopyHiddenPos: 0
+  shouldCopyShownPos: 1
 --- !u!1 &7705360190225108492
 GameObject:
   m_ObjectHideFlags: 0

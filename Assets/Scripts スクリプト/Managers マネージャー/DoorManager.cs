@@ -9,11 +9,13 @@ public class DoorManager : PersistentSingleton<DoorManager>
         this.nearestDoor = nearestDoor;
     }
 
-    public void TryUnlockDoor(KeyDoorMatchData match)
+    public bool TryUnlockDoor(KeyDoorMatchData match)
     {
-        if (nearestDoor == null) return;
-        if (nearestDoor.match.door != match.door) return;
+        if (nearestDoor == null) return false;
+        if (nearestDoor.match.door != match.door) return false;
 
         nearestDoor.UnlockDoor();
+
+        return true;
     }
 }

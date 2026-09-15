@@ -6,9 +6,12 @@ public class ColaItemEffect : TimedItemEffect
     [Header("Cola")]
     public float speedUpRate = 0.15f;
 
-    public override void TriggerEffect()
+    public override bool TriggerEffect()
     {
-        base.TriggerEffect();
+        if (base.TriggerEffect() == false) return false;
+
         Player.Instance.SpeedUp(speedUpRate, effectDuration);
+
+        return true;
     }
 }

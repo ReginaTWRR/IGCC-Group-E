@@ -66,10 +66,10 @@ public class PlayerChangeController : MonoBehaviour
         if (characterController != null) characterController.enabled = false;
 
         // Adjusted the settings to slightly raise the player's Y-axis position　プレイヤーのY軸位置を少し上げるように設定
-        transform.position = new Vector3(transform.position.x, coffinPosition.y + 5.0f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, coffinPosition.y + 2f, transform.position.z);
 
-        // Ask tbe TransformationMonitor to react
-        // 変換モニターに反応するように要求する
+        // Ask the TransformationMonitor to react
+        // TransformationMonitorに反応するように要求する
         TransformationMonitor.Instance.React(true);
     }
 
@@ -96,8 +96,8 @@ public class PlayerChangeController : MonoBehaviour
             GameObject.Destroy(spawnedCoffin);
             spawnedCoffin = null;
 
-            // Ask tbe TransformationMonitor to react
-            // 変換モニターに反応するように要求する
+            // Ask the TransformationMonitor to react
+            // TransformationMonitorに反応するように要求する
             TransformationMonitor.Instance.React(false);
         }
     }

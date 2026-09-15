@@ -6,8 +6,9 @@ public class HealthItemEffect : ItemEffect
     [Header("Health Item")]
     [SerializeField] float healAmount = 0f;
 
-    public override void TriggerEffect()
+    public override bool TriggerEffect()
     {
         Player.Instance.Heal(healAmount);
+        return true;
     }
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: KeyDoorMatchDatabase
   m_EditorClassIdentifier: Assembly-CSharp::KeyDoorMatchDatabase
   keyDoorMatchDatas:
+  - {fileID: 11400000, guid: fb1365975e500064b941810454b98f1d, type: 2}
   - {fileID: 11400000, guid: e6fbde1f641048d488705d2cc651a41a, type: 2}

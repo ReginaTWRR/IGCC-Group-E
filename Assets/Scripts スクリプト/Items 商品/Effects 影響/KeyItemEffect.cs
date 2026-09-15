@@ -7,8 +7,8 @@ public class KeyItemEffect : ItemEffect
     [SerializeField] KeyDoorMatchData match;
     public KeyDoorMatchData Match => match;
 
-    public override void TriggerEffect()
+    public override bool TriggerEffect()
     {
-        DoorManager.Instance.TryUnlockDoor(match);
+        return DoorManager.Instance.TryUnlockDoor(match);
     }
 }
