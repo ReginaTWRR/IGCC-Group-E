@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ecb8b365f0c12dd4884645d18e8cd306
+guid: f95e075893b00604aa0f9c565406e4eb
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
@@ -92,8 +92,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 10
-    rootMotionBoneName: snake
+    globalScale: 0.099999994
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -101,7 +101,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
