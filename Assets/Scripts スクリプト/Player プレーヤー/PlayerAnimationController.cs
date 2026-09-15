@@ -25,8 +25,6 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetBool(isStartingWalkHash, plr.IsStartingWalk);
         animator.SetBool(isStoppingWalkHash, plr.IsStoppingWalk);
-
-        DebugLogs();
     }
 
     private void DebugLogs()
@@ -34,7 +32,7 @@ public class PlayerAnimationController : MonoBehaviour
         // Print the current animation clip
         // 現在のアニメーションクリップを表示する
         AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        Debug.Log(clipInfo[0].clip.name);
+        Debug.Log($"PlayerAnimationController: Current animation clip = {clipInfo[0].clip.name}");
     }
 
 #if UNITY_EDITOR

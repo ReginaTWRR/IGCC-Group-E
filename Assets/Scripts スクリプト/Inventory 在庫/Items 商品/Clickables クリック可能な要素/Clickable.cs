@@ -4,6 +4,7 @@ public class Clickable : MonoBehaviour
 {
     [Header("Clickable")]
     [SerializeField] ClickableItemInstance instance;
+    [SerializeField] GameObject objWithCollider;
     [SerializeField] Renderer rdr;
 
     ClickableItemData data;
@@ -25,7 +26,16 @@ public class Clickable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        baseColor = rdr.material.color;
+        if (rdr.material.HasProperty("_Color"))
+        {
+            baseColor = rdr.material.GetColor("_Color");
+        }
+        // If the previous check failed, we check for the color based on the ArnoldStandardSurface shader
+        // 前のチェックが失敗した場合、ArnoldStandardSurface シェーダーに基づいて色をチェックします
+        else if (rdr.material.HasProperty("_BASE_COLOR"))
+        {
+            baseColor = rdr.material.GetColor("_BASE_COLOR");
+        }
     }
 
     // Update is called once per frame
@@ -37,9 +47,11 @@ public class Clickable : MonoBehaviour
 
     private void Glow()
     {
+        // Detect mouse hover with the object that has the collider component
+        // コライダーコンポーネントを持つオブジェクトでマウスオーバーを検出します
         if (isGlowing == false)
         {
-            if (CursorManager.Instance.HoveredObject == this.gameObject &&
+            if (CursorManager.Instance.HoveredObject == objWithCollider &&
                 CursorManager.Instance.IsCursorEnabled)
             {
                 EnableGlow();
@@ -47,7 +59,7 @@ public class Clickable : MonoBehaviour
         }
         else
         {
-            if (CursorManager.Instance.HoveredObject != this.gameObject ||
+            if (CursorManager.Instance.HoveredObject != objWithCollider ||
                 CursorManager.Instance.IsCursorEnabled == false)
             {
                 DisableGlow();
@@ -96,8 +108,15 @@ public class Clickable : MonoBehaviour
 
         // Apply the new color to the material
         // マテリアルに新しい色を適用する
-        rdr.material.EnableKeyword("_EMISSION");
-        rdr.material.SetColor("_EmissionColor", newColor);
+        if (rdr.material.HasProperty("_EmissionColor"))
+        {
+            rdr.material.EnableKeyword("_EMISSION");
+            rdr.material.SetColor("_EmissionColor", newColor);
+        }
+        else if (rdr.material.HasProperty("_EMISSION_COLOR"))
+        {
+            rdr.material.SetColor("_EMISSION_COLOR", newColor);
+        }
 
         // Update the isGlowing bool
         // 光る本を更新する
@@ -108,7 +127,15 @@ public class Clickable : MonoBehaviour
     {
         // Reset the color back to non-glowing
         // 色を元の非発光色に戻す
-        rdr.material.DisableKeyword("_EMISSION");
+        if (rdr.material.HasProperty("_EmissionColor"))
+        {
+            rdr.material.SetColor("_EmissionColor", Color.black);
+            rdr.material.DisableKeyword("_EMISSION");
+        }
+        else if (rdr.material.HasProperty("_EMISSION_COLOR"))
+        {
+            rdr.material.SetColor("_EMISSION_COLOR", Color.black);
+        }
 
         // Update the isGlowing bool
         // 光る本を更新する

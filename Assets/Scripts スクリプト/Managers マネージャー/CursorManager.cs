@@ -133,4 +133,12 @@ public class CursorManager : PersistentSingleton<CursorManager>
             hoveredObject = null;
         }
     }
+
+    private void DebugLog()
+    {
+        // Print the current hovered object
+        // 現在マウスオーバーしているオブジェクトを表示する
+        if (hoveredObject == null) return;
+        Debug.Log($"CursorManager: Current hovered object = {hoveredObject.name}");
+    }
 }

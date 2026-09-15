@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8202271176978167894}
   m_Layer: 0
-  m_Name: Fox
+  m_Name: "Fox \u30AD\u30C4\u30CD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
