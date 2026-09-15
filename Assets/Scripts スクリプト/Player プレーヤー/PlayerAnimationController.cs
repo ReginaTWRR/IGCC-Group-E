@@ -25,6 +25,8 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetBool(isStartingWalkHash, plr.IsStartingWalk);
         animator.SetBool(isStoppingWalkHash, plr.IsStoppingWalk);
+
+        DebugLogs();
     }
 
     private void DebugLogs()

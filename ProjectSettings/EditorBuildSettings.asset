@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/Scenes \u5834\u9762/BattleScene.unity"
-    guid: 1ca73cdf1d8e85244840825fa0a11428
+    path: "Assets/Scenes \u5834\u9762/GameScene.unity"
+    guid: 213b00dd0a325e74bbad36a16c313a94
   - enabled: 1
     path: "Assets/Scenes \u5834\u9762/ReginaScene.unity"
     guid: a16044b5a844ac54fa977799be2330d8
+  - enabled: 1
+    path: "Assets/Scenes \u5834\u9762/BattleScene.unity"
+    guid: 1ca73cdf1d8e85244840825fa0a11428
   - enabled: 1
     path: "Assets/Scenes \u5834\u9762/HirotoScene.unity"
     guid: 5ee49d51cc3f50241a620ab1dbe515f7

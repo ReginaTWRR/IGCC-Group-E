@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: addf2197e42394643a8afe0770969fe8
+guid: eead56d0f682a2744b23e166e77b9bfb
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
@@ -93,7 +93,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: ghost_walk_body
+    rootMotionBoneName: ghost_prewalk_body
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

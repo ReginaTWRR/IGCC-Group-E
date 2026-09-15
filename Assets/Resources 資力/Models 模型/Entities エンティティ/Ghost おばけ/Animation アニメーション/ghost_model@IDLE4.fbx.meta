@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 53d44dba0110de94ca6b0028b2415d47
+guid: b64f64be3ae7d184caae5832a8265bd3
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
@@ -30,7 +30,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: IDLE4
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -84,7 +113,27 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: ghost_model(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.01, y: 0.01, z: 0.01}
+    - name: right_eye
+      parentName: ghost_model(Clone)
+      position: {x: 0.53225565, y: 3.9524574, z: 1.0245644}
+      rotation: {x: 0, y: 0.17580329, z: -0, w: 0.9844253}
+      scale: {x: 0.20345144, y: 0.2126179, z: 0.072169915}
+    - name: ghost_body
+      parentName: ghost_model(Clone)
+      position: {x: -0, y: 4.0414367, z: -0.00082367315}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0444335, y: 1, z: 1}
+    - name: left_eye
+      parentName: ghost_model(Clone)
+      position: {x: -0.5584262, y: 3.9524574, z: 0.9947858}
+      rotation: {x: -0.025994249, y: -0.16709745, z: -0.008574397, w: 0.9855604}
+      scale: {x: 0.20345144, y: 0.2126179, z: 0.072169915}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -93,7 +142,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: ghost_prewalk_body
+    rootMotionBoneName: ghost_idle_body
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
