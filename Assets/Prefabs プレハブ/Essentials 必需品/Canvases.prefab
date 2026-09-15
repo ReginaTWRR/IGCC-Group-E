@@ -9252,9 +9252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlidingTransitionUI
   tfm: {fileID: 8561496843221421981}
   hiddenPos: {x: 0, y: -250, z: 0}
-  shownPos: {x: 0, y: -110, z: 0}
+  shownPos: {x: 0, y: 0, z: 0}
   slideDuration: 2
   shouldShow: 0
+  shouldCopyHiddenPos: 0
+  shouldCopyShownPos: 1
 --- !u!1 &6378228941802121939
 GameObject:
   m_ObjectHideFlags: 0
@@ -13237,6 +13239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlidingTransitionUI
   tfm: {fileID: 9172840546460655667}
   hiddenPos: {x: 0, y: -250, z: 0}
-  shownPos: {x: 0, y: -180, z: 0}
+  shownPos: {x: 0, y: 0, z: 0}
   slideDuration: 2
   shouldShow: 0
+  shouldCopyHiddenPos: 0
+  shouldCopyShownPos: 1

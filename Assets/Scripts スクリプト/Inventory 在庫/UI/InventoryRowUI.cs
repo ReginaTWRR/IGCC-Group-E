@@ -7,7 +7,7 @@ public class InventoryRowUI : MonoBehaviour
     // Keep a list of all the slots in the row
     // 行内のすべてのスロットのリストを保持する
     public List<InventorySlotUI> slots = new();
-    [SerializeField] SlidingTransitionUI slideTransition;
+    [SerializeField] SlidingTransition slideTransition;
 
     private void Awake()
     {
@@ -65,7 +65,7 @@ public class InventoryRowUI : MonoBehaviour
         // Add the slide transition
         // スライドトランジションを追加
         slideTransition = null;
-        TryGetComponent<SlidingTransitionUI>(out slideTransition);
+        TryGetComponent<SlidingTransition>(out slideTransition);
     }
 #endif
 }

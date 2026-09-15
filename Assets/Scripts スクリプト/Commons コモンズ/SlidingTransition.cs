@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class SlidingTransitionUI : MonoBehaviour
+public class SlidingTransition : MonoBehaviour
 {
     [Header("Sliding Transition")]
-    [SerializeField] RectTransform tfm;
+    [SerializeField] Transform tfm;
     [SerializeField] Vector3 hiddenPos;
     [SerializeField] Vector3 shownPos;
     [SerializeField] float slideDuration = 1f;
     [SerializeField] bool shouldShow = false;
+    [SerializeField] bool shouldCopyHiddenPos = false;
+    [SerializeField] bool shouldCopyShownPos = false;
 
     float slideTime = -Mathf.Infinity;
 
@@ -16,6 +18,16 @@ public class SlidingTransitionUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (shouldCopyHiddenPos)
+        {
+            hiddenPos = tfm.localPosition;
+        }
+
+        if (shouldCopyShownPos)
+        {
+            shownPos = tfm.localPosition;
+        }
+
         tfm.localPosition = shouldShow ? shownPos : hiddenPos;
     }
 

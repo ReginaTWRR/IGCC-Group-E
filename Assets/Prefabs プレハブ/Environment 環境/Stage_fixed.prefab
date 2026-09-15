@@ -6623,6 +6623,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616cef7765bfce24b9c1329dad67c8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+  match: {fileID: 11400000, guid: e6fbde1f641048d488705d2cc651a41a, type: 2}
+  colliders:
+  - {fileID: 6691167822417514034}
+  - {fileID: 3317786465885609007}
+  - {fileID: 4502749279894958779}
+  renderers:
+  - {fileID: 9062592544138094743}
+  - {fileID: 2638488810458769196}
+  transitions:
+  - {fileID: 8459061601943026141}
+  - {fileID: 4038217151136064985}
 --- !u!1 &2252347539963532014
 GameObject:
   m_ObjectHideFlags: 0
@@ -8260,6 +8271,7 @@ GameObject:
   - component: {fileID: 8949834304904740272}
   - component: {fileID: 2638488810458769196}
   - component: {fileID: 4502749279894958779}
+  - component: {fileID: 4038217151136064985}
   m_Layer: 0
   m_Name: Object136
   m_TagString: Untagged
@@ -8361,6 +8373,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2970999948767082646, guid: 073999209cd3ee04791a37e0fa9ba9ba, type: 3}
+--- !u!114 &4038217151136064985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705881582242653602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4e4f604f88a1b4a9ea1e5b2c775fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlidingTransition
+  tfm: {fileID: 3033178256123815561}
+  hiddenPos: {x: -2.064047, y: 0.1000011, z: -3.050003}
+  shownPos: {x: 0, y: 0, z: 0}
+  slideDuration: 3
+  shouldShow: 1
+  shouldCopyHiddenPos: 0
+  shouldCopyShownPos: 1
 --- !u!1 &2772818565758512836
 GameObject:
   m_ObjectHideFlags: 0
@@ -9659,6 +9690,7 @@ GameObject:
   - component: {fileID: 3077887629274947629}
   - component: {fileID: 9062592544138094743}
   - component: {fileID: 3317786465885609007}
+  - component: {fileID: 8459061601943026141}
   m_Layer: 0
   m_Name: Object135
   m_TagString: Untagged
@@ -9760,6 +9792,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2156272568384666828, guid: 073999209cd3ee04791a37e0fa9ba9ba, type: 3}
+--- !u!114 &8459061601943026141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3172940827883737780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4e4f604f88a1b4a9ea1e5b2c775fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlidingTransition
+  tfm: {fileID: 3522801598993586320}
+  hiddenPos: {x: 2.064047, y: 0.1000013, z: -3.01}
+  shownPos: {x: 0, y: 0, z: 0}
+  slideDuration: 3
+  shouldShow: 1
+  shouldCopyHiddenPos: 0
+  shouldCopyShownPos: 1
 --- !u!1 &3180905256981962022
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 083f3ec716efc674d97bd78550cf073b, type: 3}
-  m_Name: KeyItemEffect
-  m_EditorClassIdentifier: Assembly-CSharp::KeyItemEffect
-  match: {fileID: 11400000, guid: e6fbde1f641048d488705d2cc651a41a, type: 2}
+  m_Script: {fileID: 11500000, guid: 0153d2d42e796274e983da8e56184ebf, type: 3}
+  m_Name: KeyDoorMatchDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::KeyDoorMatchDatabase
+  keyDoorMatchDatas:
+  - {fileID: 11400000, guid: e6fbde1f641048d488705d2cc651a41a, type: 2}

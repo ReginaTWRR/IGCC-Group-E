@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickableItemData
   itemName: Key
   itemSprite: {fileID: 21300000, guid: b393008c657d8824ea54e5e2ff5f1a82, type: 3}
-  effect: {fileID: 0}
+  effect: {fileID: 11400000, guid: ddfb0e4effd80bb449f5ebd88077b87f, type: 2}
   useOnCollection: 0
   hasTooltip: 1
   tooltipDescription: "Look for something locked\u2026"
-  consumptionPerUse: 0
-  glowIntensity: 4
+  consumptionPerUse: 1

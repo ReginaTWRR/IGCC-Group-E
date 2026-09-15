@@ -2,22 +2,18 @@ using UnityEngine;
 
 public class DoorManager : PersistentSingleton<DoorManager>
 {
-    LockedDoor nearestDoor;
-    
-    public void SetNearestDoor(LockedDoor nearestDoor)
+    Door nearestDoor;
+
+    public void SetNearestDoor(Door nearestDoor)
     {
         this.nearestDoor = nearestDoor;
     }
 
-    public void TryUnlockDoor()
+    public void TryUnlockDoor(KeyDoorMatchData match)
     {
         if (nearestDoor == null) return;
+        if (nearestDoor.match.door != match.door) return;
 
-        // Turn all the colliders off
-        // すべてのコライダーをオフにする
-        foreach (Collider cld in nearestDoor.colliders)
-        {
-            cld.enabled = false;
-        }
+        nearestDoor.UnlockDoor();
     }
 }
