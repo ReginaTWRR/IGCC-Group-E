@@ -12,20 +12,20 @@ public class InventoryInputHandler : PersistentSingleton<InventoryInputHandler>
 {
     // Keep a list of all the keybinds that will be used to select a box in the toolbar
     // ツールバー内のボックスを選択するために使用するすべてのキーバインドのリストを保持してください。
-    readonly Key[] toolbarKeys =
+    readonly UnityEngine.InputSystem.Key[] toolbarKeys =
     {
-        Key.Digit1,
-        Key.Digit2,
-        Key.Digit3,
-        Key.Digit4,
-        Key.Digit5,
-        Key.Digit6,
-        Key.Digit7,
-        Key.Digit8,
-        Key.Digit9,
-        Key.Digit0,
-        Key.Minus,
-        Key.Equals
+        UnityEngine.InputSystem.Key.Digit1,
+        UnityEngine.InputSystem.Key.Digit2,
+        UnityEngine.InputSystem.Key.Digit3,
+        UnityEngine.InputSystem.Key.Digit4,
+        UnityEngine.InputSystem.Key.Digit5,
+        UnityEngine.InputSystem.Key.Digit6,
+        UnityEngine.InputSystem.Key.Digit7,
+        UnityEngine.InputSystem.Key.Digit8,
+        UnityEngine.InputSystem.Key.Digit9,
+        UnityEngine.InputSystem.Key.Digit0,
+        UnityEngine.InputSystem.Key.Minus,
+        UnityEngine.InputSystem.Key.Equals
     };
 
     // Store the selected key index
