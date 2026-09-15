@@ -11,6 +11,14 @@ public class Player : PersistentSingleton<Player>
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -20f;
 
+    private bool isIdle = true;
+    private bool isStartingWalk = false;
+    private bool isWalking = false;
+    private bool isStoppingWalk = false;
+
+    public bool IsStartingWalk => isStartingWalk;
+    public bool IsStoppingWalk => isStoppingWalk;
+
     // Mouse control settings (camera used for the viewpoint, ease of movement for the viewpoint, maximum angle the camera can move up and down)
     // マウス操作に関する設定（視点になるカメラ、視点の動きやすさ、カメラを上下に動かせる最大角度）
     [Header("Mouse Look")]
@@ -133,19 +141,19 @@ public class Player : PersistentSingleton<Player>
         if (Keyboard.current != null)
         {
             // W
-            if (Keyboard.current.wKey.isPressed)
+            if (InputSystem.actions["Move Forward"].IsPressed())
                 input.y += 1f;
 
             // S
-            if (Keyboard.current.sKey.isPressed)
+            if (InputSystem.actions["Move Backward"].IsPressed())
                 input.y -= 1f;
 
             // A
-            if (Keyboard.current.aKey.isPressed)
+            if (InputSystem.actions["Move Leftward"].IsPressed())
                 input.x -= 1f;
 
             // D
-            if (Keyboard.current.dKey.isPressed)
+            if (InputSystem.actions["Move Rightward"].IsPressed())
                 input.x += 1f;
         }
 
@@ -153,6 +161,10 @@ public class Player : PersistentSingleton<Player>
         // 斜め移動が速くなりすぎないようにする
         input = Vector2.ClampMagnitude(input, 1f);
         Vector3 move = transform.right * input.x + transform.forward * input.y;
+
+        // Update the movement bools
+        // 移動記録を更新する
+        UpdateMovementBools(move);
 
         // WASDを押している間だけ効果音を再生
         if (input.sqrMagnitude > 0.01f)
@@ -256,8 +268,6 @@ public class Player : PersistentSingleton<Player>
         //Movement with Collision Detection Using CharacterController CharacterControllerによる衝突判定ありの移動
         Vector3 velocity = move * currentSpeed + Vector3.up * verticalVelocity;
         controller.Move(velocity * Time.deltaTime);
-
-
     }
 
 
@@ -355,5 +365,53 @@ public class Player : PersistentSingleton<Player>
         cameraPitch -= mouseY;
         cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);
         playerCamera.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
+    }
+
+    private void UpdateMovementBools(Vector3 horizontalMovement)
+    {
+        bool isMoving = horizontalMovement.sqrMagnitude > 0f;
+
+        if (isMoving)
+        {
+            // Check if we are starting to walk (isIdle == true)
+            // 歩行を開始しているかどうかを確認します (isIdle == true)
+            if (isIdle)
+            {
+                isIdle = false;
+                isStartingWalk = true;
+                isWalking = false;
+                isStoppingWalk = false;
+            }
+            // Check if we have ended the pre-walk (isStartingWalk == true)
+            // 事前ウォークが終了したかどうかを確認します (isStartingWalk == true)
+            else if (isStartingWalk)
+            {
+                isIdle = false;
+                isStartingWalk = false;
+                isWalking = true;
+                isStoppingWalk = false;
+            }
+        }
+        else
+        {
+            // Check if we are stopping the walk (isWalking == true)
+            // 歩行を停止するかどうかを確認します (isWalking == true)
+            if (isWalking)
+            {
+                isIdle = false;
+                isStartingWalk = false;
+                isWalking = false;
+                isStoppingWalk = true;
+            }
+            // Check if we have stopped the walk (isStoppingWalk == true)
+            // 歩行が停止したかどうかを確認します (isStoppingWalk == true)
+            else if (isStoppingWalk)
+            {
+                isIdle = true;
+                isStartingWalk = false;
+                isWalking = false;
+                isStoppingWalk = false;
+            }
+        }
     }
 }

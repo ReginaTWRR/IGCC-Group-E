@@ -1,8 +1,8 @@
 [System.Serializable]
 public class InventorySlot
 {
-    // Each inventory slot owns an item instance
-    // 各インベントリスロットはアイテムインスタンスを所有します
+    // Each inventory slot can be treated as an item instance that stores runtime data
+    // 各インベントリスロットは、実行時データを格納するアイテムインスタンスとして扱うことができます
 
     public CollectibleItemData item;
     public int currentQuantity = 0;
@@ -29,7 +29,7 @@ public class InventorySlot
 
         // Use the item
         // アイテムを使用する
-        item.effect.Use();
+        item.effect.TriggerEffect();
 
         // Consume the item where applicable
         // 該当する場合はアイテムを消費する
