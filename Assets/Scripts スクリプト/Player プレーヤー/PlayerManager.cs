@@ -16,9 +16,7 @@ public class Player : PersistentSingleton<Player>
     private bool isWalking = false;
     private bool isStoppingWalk = false;
 
-    public bool IsIdle => isIdle;
     public bool IsStartingWalk => isStartingWalk;
-    public bool IsWalking => isWalking;
     public bool IsStoppingWalk => isStoppingWalk;
 
     // Mouse control settings (camera used for the viewpoint, ease of movement for the viewpoint, maximum angle the camera can move up and down)

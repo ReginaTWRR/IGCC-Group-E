@@ -10,9 +10,7 @@ public class PlayerAnimationController : MonoBehaviour
     // Animation hashes
     // アニメーションハッシュ
     int isStartingWalkHash = Animator.StringToHash("isStartingWalk");
-    int isWalkingHash = Animator.StringToHash("isWalking");
     int isStoppingWalkHash = Animator.StringToHash("isStoppingWalk");
-    int isIdleHash = Animator.StringToHash("isIdle");
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,9 +24,9 @@ public class PlayerAnimationController : MonoBehaviour
     void Update()
     {
         animator.SetBool(isStartingWalkHash, plr.IsStartingWalk);
-        animator.SetBool(isWalkingHash, plr.IsWalking);
         animator.SetBool(isStoppingWalkHash, plr.IsStoppingWalk);
-        animator.SetBool(isIdleHash, plr.IsIdle);
+
+        DebugLogs();
     }
 
     private void DebugLogs()
