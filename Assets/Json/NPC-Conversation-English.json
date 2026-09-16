@@ -1,19 +1,34 @@
 {
   "dialogueList": [
     {
-      "name": "NPC",
-      "icon": "Test",
-      "text": "ABC Test desu"
+      "name": "Minako",
+      "icon": "GhostSmile",
+      "text": "What... Who are you?"
     },
     {
-      "name": "NPC",
-      "icon": "Test",
-      "text": "ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB145"
+      "name": "You",
+      "icon": "Ghost",
+      "text": "Have you seen Hifumi around?"
     },
     {
-      "name": "NPC",
-      "icon": "Test",
-      "text": "Finish"
+      "name": "Minako",
+      "icon": "GhostSmile",
+      "text": "No, I don't know a Hifumi. Who are you?"
+    },
+    {
+      "name": "You",
+      "icon": "Ghost",
+      "text": "I... I died recently. You may not have seen me around much."
+    },
+    {
+      "name": "Minako",
+      "icon": "Ghost",
+      "text": "..."
+    },
+    {
+      "name": "Minako",
+      "icon": "Ghost",
+      "text": "You are not supposed to be here. Please leave as soon as you can."
     }
   ]
 }

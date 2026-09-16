@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YellowKeyItemData
   m_EditorClassIdentifier: Assembly-CSharp::ClickableItemData
   itemName: Yellow Key
-  itemSprite: {fileID: 21300000, guid: b393008c657d8824ea54e5e2ff5f1a82, type: 3}
+  itemSprite: {fileID: 21300000, guid: 4f3d76e158598b8439327382b0ce7f11, type: 3}
   effect: {fileID: 11400000, guid: ddfb0e4effd80bb449f5ebd88077b87f, type: 2}
   useOnCollection: 0
   hasTooltip: 1

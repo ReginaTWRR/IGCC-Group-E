@@ -44,11 +44,17 @@ public class TransformationMonitor : PersistentSingleton<TransformationMonitor>
         {
             if (isPlayerAGhost)
             {
-                reaction.receiver.SetActive(reaction.isEnabledWhenGhost);
+                if (reaction.receiver != null)
+                {
+                    reaction.receiver.SetActive(reaction.isEnabledWhenGhost);
+                }
             }
             else
             {
-                reaction.receiver.SetActive(!reaction.isEnabledWhenGhost);
+                if (reaction.receiver != null)
+                {
+                    reaction.receiver.SetActive(!reaction.isEnabledWhenGhost);
+                }
             }
         }
     }
