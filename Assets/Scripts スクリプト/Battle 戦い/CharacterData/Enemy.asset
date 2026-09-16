@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01903d3875274c54ea7298531b1fde83, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: "\u307F\u305A\u306E\u3053"
+  characterName: Snake
   maxHp: 400
-  currentHp: 350
+  currentHp: 400
   baseAttackPower: 40
-  baseHitRate: 90
+  baseHitRate: 80
   maxSpecialGauge: 200
   currentSpecialGauge: 0
   activeEffects: []

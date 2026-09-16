@@ -43,7 +43,7 @@ public class BattleSystem : MonoBehaviour
         }
 
         uiManager.SetupUI(playerData, enemyData);
-        uiManager.UpdateLog($"{enemyData.characterName} が あらわれた!");
+        uiManager.UpdateLog($"{enemyData.characterName} appeared!");
 
         bool isPressed = false;
         using (var subscription = InputSystem.onAnyButtonPress.Call(control => isPressed = true))
@@ -84,7 +84,7 @@ public class BattleSystem : MonoBehaviour
                 if (isPlayer) uiManager.UpdatePlayerUI(character);
                 else uiManager.UpdateEnemyUI(character);
 
-                uiManager.UpdateLog($"{character.characterName} は 毒によるダメージを受けた! (-{poisonDamage})");
+                uiManager.UpdateLog($"{character.characterName} took poison damage! (-{poisonDamage})");
                 yield return new WaitForSeconds(3.0f);
             }
 
@@ -110,7 +110,7 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
-        uiManager.UpdateLog("なにする?");
+        uiManager.UpdateLog("What should we do?");
         uiManager.UpdatePlayerUI(playerData);
         uiManager.OpenActionPanel();
         yield return StartCoroutine(uiManager.UIAnimation(1));
@@ -218,7 +218,7 @@ public class BattleSystem : MonoBehaviour
 
                 playerData.currentHp = Mathf.Clamp(playerData.currentHp + item.healAmount, 0, playerData.maxHp);
                 uiManager.UpdatePlayerUI(playerData);
-                uiManager.UpdateLog($"{item.itemName} を　つかった ! {item.healAmount} 回復した （のこり {item.count} 個）");
+                uiManager.UpdateLog($"Used {item.itemName}! Recovered {item.healAmount} HP ({item.count} remaining)");
                 itemUsed = true;
                 break;
             }
@@ -226,7 +226,7 @@ public class BattleSystem : MonoBehaviour
 
         if (!itemUsed)
         {
-            uiManager.UpdateLog("使えない!");
+            uiManager.UpdateLog("It's useless!");
             yield return new WaitForSeconds(3.0f);
             uiManager.OpenActionPanel();
             yield break;
@@ -240,7 +240,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (_currentState != BattleState.PlayerTurn) return;
         uiManager.HideAllPanels();
-        uiManager.UpdateLog("敵を観察している");
+        uiManager.UpdateLog("I am observing the enemy.");
         Invoke(nameof(GoToEnemyTurn), 1.0f);
     }
 
@@ -255,7 +255,7 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
-        uiManager.UpdateLog($"{enemyData.characterName} 's ta-n");
+        uiManager.UpdateLog($"{enemyData.characterName}'s turn");
         yield return new WaitForSeconds(3.0f);
         uiManager.UpdateEnemyUI(enemyData);
 
@@ -287,7 +287,9 @@ public class BattleSystem : MonoBehaviour
     private void EndBattle(bool isWon)
     {
         uiManager.HideAllPanels();
-        uiManager.UpdateLog(isWon ? $"{enemyData.characterName} を倒した!" : "負け");
+        uiManager.UpdateLog(isWon ? $"{enemyData.characterName} defeated!" : "Defeat...");
+        new WaitForSeconds(5f);
+        SceneChangeManager.Instance.OnSceneChange("GameScene");
     }
 
 

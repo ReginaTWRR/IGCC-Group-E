@@ -281,22 +281,7 @@ public class BattleUIManager : MonoBehaviour
                 break;
             case 3:
                 {
-                    //float progress = 0.0f;
 
-                    //while (progress < 100.0f)
-                    //{
-                    //    Vector3 currentScale = attackChoicePanel.transform.localScale;
-                    //    currentScale.x = progress / 100.0f;
-                    //    attackChoicePanel.transform.localScale = currentScale;
-
-                    //    progress += Time.deltaTime * 100f;
-
-                    //    yield return null;
-                    //}
-
-                    //Vector3 finalScale = attackChoicePanel.transform.localScale;
-                    //finalScale.x = 1.0f;
-                    //attackChoicePanel.transform.localScale = finalScale;
 
                     float progress = 0.0f;
                     var buttonImage1 = attackButtons[0].GetComponent<Image>();

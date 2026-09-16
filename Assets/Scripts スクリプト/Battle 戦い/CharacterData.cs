@@ -16,7 +16,7 @@ public class CharacterData : ScriptableObject
     [Range(0, 100)] public int baseHitRate = 90;
 
     [Header("Special Gauge (%)")]
-    public int maxSpecialGauge = 200;
+    public int maxSpecialGauge = 400;
     public int currentSpecialGauge = 0;
 
     // 現在かかっている状態異常のリスト
